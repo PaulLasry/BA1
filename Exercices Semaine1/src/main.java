@@ -1,6 +1,5 @@
 import java.time.Year;
 import java.util.Scanner;
-import java.util.Date;
 
 //Ceci est un exemple
 class IMC{
