@@ -6,8 +6,8 @@ import java.util.Date;
 class IMC{
     public static void main(String[] args){
         Scanner kyd = new Scanner(System.in);
-        double poids = 80.0;
-        double taille = 1.9;
+        double poids;
+        double taille;
 
         System.out.println("Entrez votre poids (en kg) :");
         poids = kyd.nextDouble();
