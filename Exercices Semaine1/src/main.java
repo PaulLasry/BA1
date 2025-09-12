@@ -113,5 +113,6 @@ class Ex5{
         System.out.println("    " + nbFlashInfo + " numéros de Flash Informatique,");
         System.out.println("    " + nbMetro + " tickets de métro,");
         System.out.println("Il vous restera " + argentRestant + " Frs pour votre mère");
+
     }
 }
