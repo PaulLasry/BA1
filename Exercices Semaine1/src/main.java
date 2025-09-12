@@ -55,6 +55,7 @@ class Ex2{
 }
 
 class Ex3{
+    //Calcul de polynômes
     public static void main(String[] args){
         Scanner kyd = new Scanner(System.in);
         System.out.print("Choississez un a :");
@@ -67,5 +68,26 @@ class Ex3{
         double x = kyd.nextDouble();
 
         System.out.println("La valeur du poloynôme est : " + (((a+b)/2)*(x*x*x) + ((a+b)*(a+b))*(x*x) + (a + b + c)));
+        kyd.close();
+    }
+}
+
+class Ex4{
+    public static void main(String[] args){
+        Scanner kyd = new Scanner(System.in);
+        System.out.print("Choisissez un x : ");
+        int x = kyd.nextInt();
+        System.out.print("Choississez un y : ");
+        int y = kyd.nextInt();
+        System.out.println();
+        System.out.println("x avant permutation : " + x);
+        System.out.println("y avant permutation : " + y);
+
+        int z = x;
+        x = y;
+        y = z;
+        System.out.println();
+        System.out.println("x après permutation : " + x);
+        System.out.println("y après permutation : " + y);
     }
 }
