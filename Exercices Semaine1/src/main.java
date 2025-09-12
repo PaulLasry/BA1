@@ -91,3 +91,27 @@ class Ex4{
         System.out.println("y après permutation : " + y);
     }
 }
+
+
+class Ex5{
+    public static void main(String[] args){
+        Scanner kyd = new Scanner(System.in);
+        System.out.print("Combien d'argent avez-vous reçus ? ");
+        int argent = kyd.nextInt();
+        int argentLivres = argent * 3 / 4;
+        int argentRestant = argent - argentLivres;
+
+        int nbCafe = argentRestant/3/2;
+        int nbMetro = argentRestant/3/3;
+        int nbFlashInfo = argentRestant/3/4;
+
+        argentRestant -= nbCafe*2 + nbMetro*3 + nbFlashInfo*4;
+
+        System.out.println("Livre et fournitures : " + argentLivres);
+        System.out.println("Vous pourrez ensuite acheter : ");
+        System.out.println("    " + nbCafe + " cafés,");
+        System.out.println("    " + nbFlashInfo + " numéros de Flash Informatique,");
+        System.out.println("    " + nbMetro + " tickets de métro,");
+        System.out.println("Il vous restera " + argentRestant + " Frs pour votre mère");
+    }
+}
