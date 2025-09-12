@@ -55,5 +55,17 @@ class Ex2{
 }
 
 class Ex3{
+    public static void main(String[] args){
+        Scanner kyd = new Scanner(System.in);
+        System.out.print("Choississez un a :");
+        int a = kyd.nextInt();
+        System.out.print("Choississez un b :");
+        int b = kyd.nextInt();
+        System.out.print("Choississez un c :");
+        int c = kyd.nextInt();
+        System.out.print("Choississez un x :");
+        double x = kyd.nextDouble();
 
+        System.out.println("La valeur du poloynôme est : " + (((a+b)/2)*(x*x*x) + ((a+b)*(a+b))*(x*x) + (a + b + c)));
+    }
 }
