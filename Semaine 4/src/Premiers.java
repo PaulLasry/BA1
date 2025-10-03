@@ -6,12 +6,15 @@ public class Premiers {
 
     private static boolean isPrime(int n){
         boolean premier = true;
-        if(n%2 == 0 && n!=2){
+        if((n%2 == 0 && n!=2) || n == 1){
             premier = false;
         }
         else if(n!=1){
-            for(int i = 2; i <= Math.sqrt(n); i++){
-                if (n % i == 0) premier = false;
+            for(int i = 3; i <= Math.sqrt(n); i+=2){
+                if (n % i == 0){
+                    premier = false;
+                    break;
+                }
             }
         }
         return premier;
