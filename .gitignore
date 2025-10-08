@@ -64,9 +64,9 @@ dependency-reduced-pom.xml
 # 🔧 AUTRES
 # =========================
 # fichiers de configuration temporaires
-*.xml~
-*.properties~
-*.yml~
+*.xml
+*.properties
+*.yml
 *.tmp
 *.bak
 
