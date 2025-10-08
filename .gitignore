@@ -35,8 +35,8 @@ build/
 !gradle/wrapper/gradle-wrapper.jar
 
 # IntelliJ IDEA
-.idea/
-*.iml
+**/.idea/
+**/*.iml
 *.iws
 *.ipr
 out/
