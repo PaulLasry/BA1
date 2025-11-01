@@ -93,3 +93,6 @@ surefire-reports/
 *.swp
 *.swo
 
+
+.gemini/
+gha-creds-*.json
