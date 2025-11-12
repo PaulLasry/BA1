@@ -1,0 +1,55 @@
+% !TEX root = ../Analyse1.tex
+\chapter{Dériviées}
+\section{Définitions et exemples}
+\begin{definition}[Dériviée]
+    Soit $f: D\to\R$ définie au voisinage de $x_0$ ou en $x_0$. Alors $f$ est $\underline{\text{dérivable}}$  ou $\underline{\text{différentiable}}$ en $x_0$ si
+    la limite
+    \[f'(x_0)=\lim_{h\to 0}\frac{f(x_0+h) -f(x_0)}{h}\]
+    existe ($\in \R$).\\
+    \textbf{Notation :} \[f'(x_0) = \frac{df}{dx}(x_0) = \partial_xf(x_0) =\mathcal{D}_x f(x_0) = \dot{f}(x_0)\]
+    On dit :\begin{itemize}
+        \item $f'(x_0)$ est la dérivée de $f$ en $x_0$\\
+        \item $f:D\to\R$ est $\underline{\text{dérivable}}$ si elle est dérivable en tout $x_0 \in D$.
+    \end{itemize}
+\end{definition}
+\begin{remark}
+    Le nombre $f'(x_0)$ est la pentes de la tengente à la courbe $y=f(x)$ au point$(x_0, f(x_0))$.
+\end{remark}
+\begin{example}
+    \begin{align*}
+        f'(x_0)&=\lim_{h\to 0}\frac{f(x_0+h) -f(x_0)}{h}\\
+        &=\lim_{x\to x_0} \frac{f(x)-f(x_0)}{x-x_0}
+    \end{align*}
+\end{example}
+\begin{definition}[La fonction dérivée]
+    La $\underline{\text{fonction dérivée }}$ d'une fonction $f:D\to\R$ est la fonction \(\begin{aligned}[t]
+        f':D(f(x))&\longrightarrow\R\\
+        x&\longmapsto f'(x)
+    \end{aligned}\) où $D(f') = \left\{x\in D | f\text{ est dérivable en } x\right\}$
+\end{definition}
+\begin{example}[1]
+    $f(x) = x^2$. On a \begin{align*}
+        f'(x_0) &=\lim_{h\to 0}\frac{f(x_0+h) -f(x_0)}{h}\\
+        &=\lim_{h\to 0}\frac{(x_0+h)^2 -x_0^2}{h}\\
+        &= \lim_{h\to 0}(2x_0 +h) = 2\cdot x_0.
+    \end{align*}
+    Ainsi, $f(x)=x^2$ est dérivable pour tout $x_0\in\R$. Sa dérivée est $f'(x) = 2x$.
+\end{example}
+\begin{example}[2]
+    $f(x)=\sin(x)$, $x_0\in \R$. On a\begin{align*}
+        f'(x_0) =& \lim_{h\to 0}\frac{\sin(x_0+h)-\sin(x_0)}{h}\\ 
+        =&\lim_{h\to 0}\frac{\sin(x_0)\cos(h)+\cos(x_0)\sin(h)-\sin(x_0)}{h}\\ 
+        =& \sin(x_0)\cdot\lim_{h\to 0} \frac{\cos(h)-1}{h} + \cos(x_0)\cdot\lim_{h\to 0}\frac{\sin(h)}{h}\\ 
+        \implies& \underbrace{-h}_{\to 0} = \frac{1-h^2-1}{h}\geq\underbrace{\frac{\cos(h)-1}{h}}_{\to 0}\geq \frac{0}{h} = \underbrace{0}_{\to 0}\\
+        \implies& \sin(x_0)\cdot 0+\cos(x_0)\cdot1 = \cos(x_0)
+    \end{align*}
+    $\sin$ est dérivable sur $\R$ et $\sin'(x) = \cos(x)$. De manière analogue : $\cos'(x) = -\sin(x)$²
+\end{example}
+\begin{property}
+    Soit $f:D\to\R$
+    \begin{enumerate}
+        \item Si $f$ est dérivable en $x_0$, alors $f$ est aussi continue en $x_0$
+        \item $f$ est dérivable en $x_0$ si et seulement si :\[f(x) = \underbrace{f(x_0)+f'(x_0)\cdot(x-x_0)}_{\text{équation de la tengente}}+ \underbrace{\textcolor{red}{(x-x_0)\cdot\varepsilon(x)}}_{\text{reste}}\]
+            où $\varepsilon(x)$ est une fonction tel que $\lim_{x\to x_0} \varepsilon(x)=0$. Le \textcolor{red}{reste} tend plus vite vers $0$ que $x-x_0$
+    \end{enumerate}
+\end{property}

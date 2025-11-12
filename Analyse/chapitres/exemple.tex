@@ -1,0 +1,77 @@
+% !TEX root = ../Analyse1.tex
+% (Cette ligne aide VSCode à savoir quel fichier maître compiler)
+
+\chapter{Chapitre de Test}
+
+\section{Première Section}
+
+\subsection{Test des Encadrés}
+
+% --- Test de la Définition ---
+% Notez les accolades {} autour du titre, à cause des virgules
+\begin{definition}[{Test de titre, avec virgules}]
+Ceci est une définition (encadré rouge).
+La numérotation devrait être 1.1.1.
+Prenons $a$ t.q. $a \in \mathbb{R}$.
+\end{definition}
+
+% --- Test du Théorème ---
+\begin{theorem}[{Test de Théorème}]
+Ceci est un théorème (encadré violet).
+La numérotation devrait être 1.1.2.
+\end{theorem}
+
+% --- Test de la Propriété ---
+\begin{property}[{Test de Propriété}]
+Ceci est une propriété (encadré bleu).
+La numérotation devrait être 1.1.3.
+\begin{itemize}
+    \item Test
+    \item Test 2 \\
+    cocou
+    \begin{example}[]
+        Test d'un exemple dans une propriété
+    \end{example}
+\end{itemize}
+\end{property}
+
+\subsection{Test des Textes Simples}
+
+% --- Test de la Proposition ---
+% Note: Pas de titre optionnel ici pour tester
+\begin{proposition}
+Ceci est une proposition (texte violet).
+La numérotation devrait être 1.2.1.
+\end{proposition}
+
+% --- Test du Corollaire ---
+\begin{corollary}[{Test de Corollaire}]
+Ceci est un corollaire (texte violet).
+La numérotation devrait être 1.2.2.
+\end{corollary}
+
+% --- Test de la Remarque ---
+\begin{remark}
+Ceci est une remarque (texte bleu).
+La numérotation devrait être 1.2.3.
+\end{remark}
+
+\subsection{Test des Exemples (Non numérotés)}
+
+% --- Test Exemple Unique ---
+\begin{example}
+Ceci est un exemple unique. Le titre doit être "Ex:".
+\end{example}
+
+% --- Test Exemples Multiples ---
+\begin{example}[1]
+Ceci est le premier exemple d'une série. Le titre doit être "Ex 1:".
+\end{example}
+
+\begin{example}[2]
+Ceci est le second exemple d'une série. Le titre doit être "Ex 2:".
+\end{example}
+
+\begin{definition}[Titre de test]
+Ceci est une autre définition pour vérifier la continuité de la numérotation. La numérotation devrait être 1.2.4.
+\end{definition}

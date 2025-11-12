@@ -1,0 +1,455 @@
+% !TEX root = ../Analyse1.tex
+% (Cette ligne aide VSCode à savoir quel fichier maître compiler)
+
+\chapter{Fonctions}
+\section{Rappels}
+\begin{definition}[Fonction majorées]
+    Soit $f : D\to \R$ une foonction réelle. Alors $f$ est $\underline{\text{majorée}}$ sur $A \subseteq D$ si $f(A) = \{f(x) | x \in A\}$ l'est.\\
+    De plus, on pose :
+    $$ \sup_{x \in A} f(x) = \sup f(A) $$
+    Pareil pour inf, max et min (si min et max existent).
+    \begin{example}
+        Pour $f(x) = (x-1)^2 +2$ et $A = \rbrack -1, 4 \lbrack$\\
+        \begin{center}
+            \includegraphics[width=0.8\textwidth]{majorée.png}
+        \end{center}
+        Donc $\forall x \in A$ :
+        \begin{itemize}
+            \item $\inf f(x) = \min f(x) = 2$
+            \item $\sup f(x) = 11$
+        \end{itemize}
+        Et max n'existe pas.
+    \end{example}
+\end{definition}
+\newpage
+\section{Limites}
+\begin{example}
+    $f(x) = \frac{\sin x}{x}$\\
+    \noindent $D(f) = \R^*$. On aimerait définir $\lim_{x \to 0} \frac{\sin (x)}{x} = 0$.\\
+    Il faut deux ingréfiants pour conclure que $\lim_{x \to x_0} f(x) = l$ :
+    \begin{enumerate}
+        \item $f$ doit être définie "un peu autour" de $x_0$
+        \item $f(x)$ doit "s'approcher" de $l$ lorsque $x \to x_0$.
+    \end{enumerate}
+\end{example}
+\begin{definition}[Fonction définie au voisinage]
+    Une fonction $f : D \to \R$ est définie au $\underline{\text{définie au voisinage}}$ de $x_0 \in \R$ s'il existe $d \in \R > 0$ t.q :
+    $$\rbrack x_0 - d , x_0 \lbrack \cup \rbrack x_0, \, x_0 + d \lbrack \subset D$$
+\end{definition}
+\begin{example}[$\frac{\sin x}{x}$]
+        Est définie au voisinage de $x_0 = 0$ même si elle n'est pas définie en $0$.
+    \end{example}
+\begin{definition}[Limite d'une fonction]
+    Soit $x_0 \in \R$ et $f : D \to R$ def au voisinage de $x_0$. Alors, $f$ ademt $l \in \R$ pour $\underline{\text{limite}}$ lorsque $x \to x_0$.\\
+    On note : $ \lim_{x \to x_0} f(x) = l$ si $\forall \varepsilon > 0, \, \exists \delta = \delta_{\epsilon} > 0$ t.q. $\forall x \in D \setminus \{x_0\}$, on a :
+    $$ |x - x_0| \leq \delta \implies |f(x) - l| \leq \varepsilon $$
+\end{definition}
+
+\begin{example}[1]
+    Soit $g(x) = \begin{cases}
+        \frac{\sin(x)}{x} & x \not = 0 \\
+        132 & x = 0
+    \end{cases}$, alors $\lim_{x \to 0} g(x) \not = 132$ car on s'interresse seulement au voisinage de $0$.    
+\end{example}
+\begin{example}[2]
+    Soit $f(x) = 5x - 1, \ x_0 = 0$. Montrons que $\lim_{x \to 2} f(x) = 9$.\\
+    \begin{enumerate}
+        \item $D(f) = \R \implies f$ est def dans tout voisinage de $x_0 = 2$.
+        \item Soit $\varepsilon > 0$, on pose $\delta = \frac{\varepsilon}{5}$ tel que $|x-2| \leq \delta$.\\
+             $$|f(x) - 9| = |5x -10 | = 5|x-2| \leq 5\delta \leq \varepsilon$$
+             Comme $\varepsilon$ est arbitraire, on a montré que :
+             $$\forall \varepsilon > 0, \, \exists \delta > 0 \text{ t.q. si } x \in D \setminus \{2\} \text{ et } |x - 2| \leq \delta, \text{ on a : } $$
+                $$|f(x) - 9| \leq \varepsilon$$
+        
+    \end{enumerate}
+\end{example}
+
+\newpage
+\begin{theorem}[Limites de fonction et suites]
+    Soit $f : D \to \R$ def au voisinage de $x_0 \in \R$. Aloes on peut dire que $\lim_{x \to x_0} f(x) = l \iff \lim_{x \to \infty} f(a_n) = l \; \forall(a_n)_{n\in \N}$ t.q. $\lim_{n \to \infty} a_n = x_0$.\\
+    $\underline{\text{Idée : }}$ $a_n \to x_0$ sont les manière de s'approcher de $x_0$. Donc $f(x) \to l$ si $(a_n) \to l$ pour toutes les façons $(a_n \to x_0)$ de s'approcher de $x_0$. 
+\end{theorem}
+\begin{example}[Redémonstraion de $\lim_{x \to 2} 5x - 10 = 9$]
+        Soit $(a_n)_{n \in \N} \subseteq \R \setminus \{2\}$ une suite t.q. $\lim_{n\to\infty} a_n = 2$.\\
+        Alors on a :
+        $$\lim_{n\to \infty} (5a_n -1) = 5(\lim_{n\to \infty} a_n) -1 = 5 \cdot 2 - 1 = 9$$
+        Comme la suite était arbitraire, on a montré que pour $\underline{\text{TOUTE SUITE}}$ $(a_n)$ : $$\lim_{x \to 2} 5x - 10 = 9$$   
+\end{example}
+\begin{corollary}
+    Si on a trouvé :
+    \begin{itemize}
+        \item Une suite $(a_n) \subset D \setminus \{x_0\}$ t.q. $$\lim_{n \to \infty } f(a_n) \text{  n'existe pas}$$
+        \item Deux suites $(a_n), (b_n) \subseteq D \setminus \{x_0\}$ t.q. $a_n \to x_0$ et $b_n \to x_0$ mais :
+        $$ \lim_{n \to \infty} f(a_n) \neq \lim_{n \to \infty} f(b_n)$$
+    \end{itemize}
+    Alors $\lim_{x \to x_0} f(x)$ n'existe pas.
+\end{corollary}
+\ \
+\begin{example}[Corollaire]
+    Prenons $f(x) = \cos{\frac{1}{x}} \ x_0 = 0$\\
+    $D(f)=\R^* \implies f$ est définie au voisinage de $x_0 = 0$.
+    En effet : 
+    $$a_n = \frac{1}{2n\pi} \to 0 \qquad b_n = \frac{1}{(2n+1)\pi} \to 0$$
+    Mais :
+    $$\lim_{n \to \infty} f(a_n) = \lim_{n \to \infty} \cos(2n\pi ) = 1$$
+    $$\lim_{n \to \infty} f(b_n) = \lim_{n \to \infty} \cos((2n+1)\pi ) = -1$$
+    \begin{remark}
+        On aurait aussi pu considérer la suite : 
+        $$c_n = \frac{1}{n\pi} \to 0$$
+        $$\implies \lim_{n\to \infty} f(c_n) = \cos(\pi n) = \lim_{n \to \infty } (-1)^n \quad \text{ qui n'existe pas}$$
+        Donc $\lim_{x \to 0} \cos(\frac{1}{x})$ n'existe pas.
+    \end{remark}
+\end{example}
+
+\begin{property}[Limites de fonctions] 
+\noindent \\
+Soient $f, g : D \to \R$ définies au voisinage de $x_0 \in \R$ et telles que :
+$\lim_{x \to x_0} f(x), \, \lim_{x \to x_0} g(x)$ existent.
+Alors :
+\begin{enumerate}
+    \item Si $\lim_{x \to x_0} f(x) = l_1$ et $\lim_{x \to x_0} f(x) = l_2$, alors $l_1 = l_2$ $\qquad$ (Unicité de le limite)
+    \item $\forall p, q \in \R$ on a: $$\lim_{x\to x_0} p \cdot f(x) + q \cdot g(x) = p \cdot \lim_{x \to x_0} f(x) + q \cdot \lim_{x \to x_0} g(x )$$
+    \item $$\lim_{x \to x_0} (f(x)\cdot g(x)) = \lim_{x \to x_0} f(x) \cdot \lim_{x \to x_0} g(x)$$
+    \item Si $f(x) \leq g(x)$ au voisinage de $x_0$ alors : $$\lim_{x \to x_0} f(x) \leq \lim_{x \to x_0} g(x)$$
+    \item Si $h : D \to \R$ est t.q. $$f(x) \leq h(x) \leq g(x)$$ au voisinage de $x_0$ et si $\lim_{x \to x_0} f(x) = \lim_{x \to x_0} g(x) = l$, alors : $$\lim_{x \to x_0} h(x) = l$$ (Théorème des deux gendarmes)
+\end{enumerate}
+\end{property}
+
+\section{Calculs de limites}
+Concidérons pour ces exemples $u\in \R$. 
+\begin{enumerate}[start=0]
+    \item $\lim_{x \to x_0} c = c$ où $c$ est une constante.
+        \begin{quote}
+            [Soit $a_n \to u$. On a $f(a_n) = c \to c$]
+        \end{quote}        
+        $\lim_{x \to u} x = u \qquad$ ($f(x) = x$)
+        \begin{quote}
+            [Soit $a_n \to u$. On a $f(a_n) = a_n \to u$]
+        \end{quote}    
+    \item \textbf{Polynômes}
+        Exemple (par produit) : 
+        \[
+            \lim_{x \to u} x^2 = \lim_{x \to u} (x \cdot x) = \left(\lim_{x \to u} x\right) \cdot \left(\lim_{x \to u} x\right) = u \cdot u = u^2
+        \]
+        
+        Par récurrence, on montre que $\lim_{x \to u}x^n = u^n$.
+        \textit{Preuve rapide :}
+        \begin{quote}
+            \textbf{Init. ($n=0$):} $\lim_{x \to u} 1 = 1$. \\
+            \textbf{Hérédité:} $\lim_{x \to u} x^{n+1} = \lim_{x \to u}(x^n \cdot x) = \left(\lim_{x\to u} x^n\right) \cdot \left(\lim_{x \to u}x\right) = u^n \cdot u = u^{n+1}$.
+        \end{quote}
+        Donc pour $P(x) = a_n x^n + a_{n-1}x^{n-1} + \cdots + a_1 x + a_0$, on a :
+        \[\lim_{x \to u} P(x) = P(u)\]
+    \item \textbf{Fonctions rationnelles}: $f(x) = \frac{P(x)}{Q(x)}$. Si $Q(u) \neq 0$, on a :
+        \[\lim_{x \to u} Q(x) = Q(u) \quad \text{ (Point 1)}\]
+        Donc par la propriété 4, on a :
+        \[\lim_{x \to u} f(x) = \frac{P(u)}{Q(u)} \]
+        \begin{example}
+            Ainsi on a :
+            $$\lim_{x \to 1} \frac{x^2 -1}{x +1} = \frac{1-1}{1+1} = \frac{0}{2}$$
+            Mais si on a $Q(u) = 0$, il faut faire un travail supplémentaire :
+            $$\lim_{x \to -1} \frac{x^2 -1}{x +1} = \lim_{x \to - 1} = \frac{(x -1) (x+1)}{x+1} = \lim_{x \to -1} (x-1) = -2$$
+        \end{example}
+    \item \textbf{$\lim_{x \to 0}\frac{\sin x}{x} = 1$, $\lim_{x \to 0}\frac{\cos}{x} = 1$}. Démostration imagée.
+            \begin{center}
+                \includegraphics[width=0.8\textwidth]{sinx／x.png}
+            \end{center}
+        Le triangle bleu est plus petit ou égal au triangle orange lui-même plus petit que le rouge. Ainsi, on a:
+        \begin{align*}
+            &\frac{\sin x}{2} \leq \frac{x}{2} \leq \frac{\tan x}{2}\\
+            \implies& \sin x \leq x \leq \frac{\sin x}{\cos x}\\
+            \implies& \frac{\sin x}{x } \leq 1 \leq \frac{1}{\cos x}\\
+            \implies& \frac{\sin x \cos x}{x} \leq \cos x \leq \frac{\sin x}{x}
+        \end{align*}
+        Finalement, comme $\cos x\in [0, 1]$ on a :
+        $$\cos x \geq \cos ^2 x = 1 - \sin^2 x \geq 1 - x^2$$
+        Donc $$\cos x \geq 1-x^2$$ 
+        On a alors la chaîne d'inégalités :
+        $$1-x^2 \leq \cos x \leq \frac{\sin x}{x} \leq 1$$
+        Ceci est vallable pour $-\frac{\pi}{2} < x < 0$, car toutes les fonctions sont paires.\\
+        Par le théorème des deux gendarmes, on a :
+        $$\lim_{x \to 0} \frac{\sin x}{x} = 1$$
+        et $$\lim_{x \to 0}\cos x = 1$$
+        \begin{example}
+            On peut alors voir :
+            $$\lim_{x \to 0} \sin x = \lim_{x \to 0} \frac{\sin x}{x} \cdot \lim_{x \to 0}x = 1 \cdot 0 = 0$$          
+        \end{example}
+\end{enumerate}
+\begin{property}[Limites de fonctions composées / changement de variable]
+    Soient $f : A \to B, g : B \to \R$ t.q. :
+    \begin{enumerate}
+        \item $\lim_{x\to a} f(x) = b \in \R$
+        \item $\lim_{y\to b} g(y) = c \in \R$
+        \item $f(x) \neq b$ au voisinage de $a$
+    \end{enumerate}
+    Alors : 
+    $$\lim_{x \to a} g(f(x)) = \lim_{y \to b} g(y) = c$$
+\end{property}
+\begin{proof}[Preuve à l'aide des suites]
+    Soit $(x_n)_{n \in \N} \subset A \setminus \{a\}$ t.q. $x_n\to a$.\\
+    On pose $y_n = f(x_n)$. Alors $y_n \to b$ (par 1) et $y_n \neq b$ pour $n$ assez grand (par 3) $\implies (y_n) \subset B \setminus \{b\}$ et $y_n \to b \implies g(y_n) \to c$ (par 2)\\
+\end{proof}
+\begin{example}[1]
+    Soit $f(x)=x^{12}-1$. Alors $\lim_{x \to 1} cos(x^{12}-1)$ vérifie 1 et 2 de la propriété au voisinage de $1$ (dés que $x\neq \pm 1$).
+\end{example}
+\begin{example}[2]
+    On a :
+    $$\lim_{x \to 0}\frac{1-\cos^2x}{3x^2 + \sin^2x} = \lim_{x \to 0}\frac{\left(\frac{\sin x}{x}\right)^2}{3 + \left(\frac{\sin x}{x}\right)^2}$$
+    $$ = \lim_{y\to 1} \frac{y^2}{3 + y^2} = \frac{1}{4}$$
+\end{example}
+Attention : La condition 3 est indispensable, regardons un cas où elle n'est pas vérifiée.
+\begin{example}[3]
+    $f(x)=3$ (constante) et $g(x) = \begin{cases}
+        0 & \text{si } x=3 \\
+        2 & \text{si } x\neq 3
+    \end{cases}$ % <--- Le '\\' a été supprimé ici
+
+    On a $\lim_{x \to 0} g(f(x)) = \lim_{x \to 0}g(3) = 0$.
+
+    Mais : on ne peut pas utiliser la prop car f(x) = 3 dans le voisinage de $0$. Donc:
+    \[ \lim_{x \to 0} g(f(x)) \neq \lim_{y \to 3}g(y) = \lim_{y \to 3} 2 \neq 0 \]
+\end{example}
+\begin{property}[Limites de réciproques]
+    Soit $f : [a, b] \to \R$ strictement monotone\\
+    Soit $u \in [a, b]$ et $v = f(u)$. Alors 
+    $f([a, b]) \to Im(f)$ est bij, et si
+    $f^{-1}(Im(f)) \to [a, b]$est def au vois de $v$, alors :
+    $$\lim_{x \to v} f^{-1}(v) = u$$
+\end{property}
+\begin{corollary}  
+    Pour tout $n\in \N$, $v \geq 0$, $\lim_{x \to v} \sqrt[n]{x} = \sqrt[n]{v}$
+\end{corollary}
+\begin{proof}[Preuve]
+    On pose $f(x) = x^n$, strictement croissante sur $[a, b] \forall b \geq 0$. Ainsi :
+    $$\lim_{x \to u} \sqrt[n]{x} = \lim_{x \to v} f^{-1}(x) = f^{-1}(v) = \sqrt[n]{v}$$
+\end{proof}
+
+\section{Lim à gauche/droite, limites infinies}
+\begin{definition}
+    Soit $f : D \to  \R$ def. dans un voisinage à gauche (resp. à droite) de $u \in \R$, c'est à dire $\lbrack u - d, u\lbrack \; \subseteq D \; \forall d > 0$ (resp. $\lbrack u, u+d\lbrack \subseteq \; D \; \forall d > 0$).\\
+    Alors $f$ admet $l \in \R$ pour limite à gauche (resp. à droite) lorsque $x\to u, \forall \varepsilon > 0\; \exists \delta > 0$ t.q. $$\forall x \in D\setminus \{u\}$$
+    On a $$x \in \lbrack u-\delta, u \lbrack$$ (resp. $x \in \rbrack u, u+\delta \rbrack$) $$\implies |f(x) - l| \leq \varepsilon$$
+    \textbf{Notation :} limites à gauche  : $\lim_{x \to u^-}$, limite à droite : $\lim_{x \to u^+}$\\ 
+\end{definition}
+\begin{example}
+    $f(x) = \frac{|x|}{x}$. Il faut séparer les cas. 
+    $$f(x) = \begin{cases}
+        \frac{x}{x} = 1 & x>0\\
+        \frac{-x}{x}=-1 & x<0
+    \end{cases}$$ Donc :
+    $\lim_{x \uparrow 0} f(x) = \lim_{x \uparrow 0} -1 = \lim_{x\to x^-} -1 = -1$ et $\lim_{x \downarrow 0} f(x) = \lim_{x\to x^+} =1$.
+\end{example}
+\begin{property}[Limites gauche droite]
+    Si $f$ est def au voisinage de $u$, alors :
+    $$\lim_{x \to u}f(x) = l \iff \lim_{x \to u^+}f(x) = l \iff \lim_{x \to u^-}f(x) = l$$
+\end{property}
+\begin{remark}
+    Cela montre que $\lim_{x \to 0} f(x) = \frac{|x|}{x}$ n'existe pas.
+\end{remark}
+\begin{definition}
+    Soit $f : D \to \R$ def au voisinage de $+\infty$ (resp. $-\infty$) c'est à dire $\lbrack a, +\infty\lbrack \subseteq D$ pour un $a\in\R$ (resp. $\rbrack -\infty, a\rbrack \subseteq D$).\\
+    Alors $f(x)$ admet $l\in \R$ comme limite losrque $x \to +\infty$ (resp. $x \to -\infty$) si $\forall \varepsilon > 0 \; \exists c \in \R$ t.q. $\forall x \in D$ on a :
+    $$x \geq c (x \leq c) \implies |f(x) - l|\leq \varepsilon$$
+    \textbf{Notation:} $\lim_{x \to +\infty} f(x) = l$ ou $f(x) \to l$
+\end{definition}
+\begin{example}
+    $\lim_{x\to +\infty} \frac{1}{x} = 0$.
+    \begin{proof}[Preuve avec epsilon]
+        Soit $\varepsilon > 0$. On pose comme $c = \frac{1}{\varepsilon}$. Alors dès que $x\geq 0$ on a :
+        $$|f(x) - 0| = \frac{1}{x} \leq \frac{1}{c} \leq \varepsilon$$
+        Comme $\varepsilon$ était arbitraire, on a bien montré que
+        $$\forall\varepsilon > 0, \, \exists c \in \R \text{ t.q. } \forall x \in D, \, x \geq c \implies |f(x) - 0| \leq \varepsilon$$
+    \end{proof}
+    \begin{proof}[Preuve avec les suites]
+        Soit $(x_n)_{n\in \N}$ une suite t.q. $\lim_{n\to \infty} x_n = \infty$. Alors, 
+        $$\lim_{n \to \infty}f(x_n) = \lim_{n \to \infty} \frac{1}{x_n} = \frac{1}{\infty} = 0$$
+        Comme $(x_n)$ était arbitraire, c'est vrai pour toute suitre. On a donc montré que $\forall(x_n) \to +\infty, \lim_{n\to \infty} f(x_n) =0$
+    \end{proof}
+\end{example}
+\begin{remark}
+    $\lim_{x \to \pm \infty} f(x) = l \iff f(x)$ a une $\underline{\text{asymptote horizontale}}$ d'équation $y=l$
+        \begin{center}
+            \includegraphics[width=0.8\textwidth]{asymptote-horizontal.png}
+        \end{center}
+\end{remark}
+\begin{definition}[Divergence vers l'infini]
+    Soit $f : D \to \R$ def au voisinage de $u \in \R$. Alors $f(x)$ tends vers $+\infty$ (resp. $-\infty$) lorsque $x \to u$ si $\forall A \in \R \; \exists \delta > 0$ t.q. $\forall x \in D \setminus \{u\}$ on a :
+    $$|x-u| \leq \delta \iff f(x) \geq A \quad \text{(resp. } f(x) \geq A \text{)}$$
+    \textbf{Notation :} $\lim_{x \to u} f(x) = +\infty$ (resp. $-\infty$) ou $f(x) \to +\infty$ (resp. $-\infty$)
+\end{definition}
+\begin{example}
+    $\lim_{x \to 0} \frac{1}{x^2} = +\infty$
+    \begin{proof}[Preuve avec epsilon]
+        Soit $A \in \R$. On pose $\delta = \frac{1}{\sqrt{A}}$ (ou $\delta = 1$ si $A < 0$). Alors dès que $|x - 0 | \leq \delta$, on a :
+        $$f(x) = \frac{1}{x^2} \geq \frac{1}{\delta^2} = \frac{1}{\left(\frac{1}{\sqrt{A}}\right)^2} = A$$
+        Comme $A$ était arbitraire, c'est bon.
+    \end{proof}
+\end{example}
+\begin{remark}
+    \noindent\\
+    \begin{itemize}
+        \item On peut combiner ces lumites généralisées. Par exemple :
+            $$\lim_{c\downarrow 0} \frac{1}{x} = +\infty \quad \text{et} \quad \lim_{x\uparrow 0} \frac{1}{x}= -\infty$$
+        \item $\lim_{x \to u^{\pm}} f(x) = \pm \infty \iff f(x)$ admet une asymptote verticale d'eq $x = u$
+        \item Les propriétés algébriques, le théorème des gendarmes, les limites de composées et réciproques, ainsi que les calculs avec $+\infty$ vallable pour les suites restent vrais pour ces limites généralisées.
+        \item Attention aux formes indéterminées :
+            \begin{itemize}
+                \item $+\infty - +\infty$
+                \item $0 \cdot +\infty$
+                \item $\frac{+\infty}{+\infty}$
+                \item $\frac{0}{0}$
+            \end{itemize}
+    \end{itemize}
+\end{remark}
+\begin{example}
+    $$\lim_{x \to +\infty} \frac{x^2 +1}{x+1} = \lim_{x \to +\infty} \frac{x^2\left(1 + \displaystyle\frac{1}{x^2}\right)}{x\left(1 + \displaystyle\frac{1}{x}\right)} = \frac{+\infty}{1} = \infty$$
+\end{example}
+
+\section{Fonctions continues}
+\begin{definition}
+    Soit $f:D\to \R$ def au voisinage de $u\in \R$. Alors $f$ est $\underline{\text{continues en } x=u}$ si :
+    $$\lim_{x \to u} f(x)= f(u)$$  
+\end{definition}
+\newpage
+\begin{remark}[Concéquences de la continuité]
+    Cela implique trois choses 
+    \begin{enumerate}
+        \item $u\in D \implies f$ def au voisinage de $u$ $\underline{\text{et}}$ en $u$.
+        \item la limite $\lim_{x \to u} f(x)$ existe dans $\R$
+        \item tout $f(u)\in \R$
+    \end{enumerate}
+\end{remark}
+\begin{example}[1]
+    Les polynômes, les fonctions rationnelles, $\sqrt[n]{x}$, $\sin x$ (toutes les fonction trigo), $e^x$, $\log x$ etc... sont continues $\underline{\textbf{sur leur domaine}}$.
+\end{example}
+\begin{example}[2]
+    $f(x) = \frac{x^2 +1}{x+1}$ est continues pour tout $x\in \R \setminus \{1\}$. On voit que 
+    $$\lim_{x \to 2} f(x) = \frac{2^2+1}{2-1}=5 = f(2)$$
+    Mais $1 \not \in D \implies f$ n'est pas continue en $x=1$.
+\end{example}
+\begin{remark}
+    Si $f$ est continue en $u\in \R$ et si $a_n \to u$, alors:
+    $$\lim_{n\to \infty} f(a_n) = f(\lim_{n \to \infty} a_n) = f(u)$$
+\end{remark}
+\begin{definition}
+    Soit $f:D\to \R$ def au voisinage $\begin{aligned}
+        &\text{à droite }\\
+        &\text{à gauche}
+    \end{aligned}$ de $u\in \R$. Alors $f$ est $\textbf{continue $\begin{aligned}
+        &\text{à droite }\\
+        &\text{à gauche}
+    \end{aligned}$ en } x = u$ si :
+    \[\begin{aligned} 
+        &\lim_{x \uparrow u} f(x) = f(u)\\ 
+        &\lim_{x \downarrow u} f(x) = f(u)
+    \end{aligned}\]
+\end{definition}
+\begin{example}
+    $f(x) = \begin{cases}
+        2x + 1 & x\geq 0 \\
+        \frac{\sin(x)}{x} & x<0
+    \end{cases} \implies f$ est continue en tout $x \neq 0$. En $x =0$ on a :
+    $$\lim_{x \uparrow 0} f(x) = \lim_{x \uparrow 0} \frac{\sin(x)}{x} =1$$
+    $$\lim_{x \downarrow 0} f(x)  \overset{x>0}{=} \lim_{x \downarrow 0} (2x+1) = 1 = f(0)$$
+    Donc $f$ est continues à gauche et à droite, donc continue en $x=0$ donc continue sur $\R$ 
+\end{example}
+\begin{property}[Opération sur les fonctions continues]
+    Si $f$ et $g$ sont continues en $u$ alors $f+g$, $\,f\cdot g$, $\,\alpha f + \beta g$, $\,\frac{f}{g}$ (si $g(u) \neq 0$) sont aussi continue.\\
+    De plus, si $f$ est continue en $u$ et $g$ continue en $f(u)$, alors $(f\circ g)(x)$ est continues en $u$.
+\end{property}
+\begin{example}
+    $\displaystyle\frac{\sin(x^2 +8x+1)}{\sqrt{x^2 + 5+\cos(x)}}$ est continue sur tout $\R$
+\end{example}
+\begin{definition}[Prolongement par continuité]
+    Si $f : D \to \R$ est def au voisinage de $u$ avec $u\not\in \R$ et tq $\lim_{x \to u}f(x)=l\in\R$ alors, le $\underline{\text{prolongement par continuité}}$
+    de $f$ est :
+    \[
+    \begin{aligned}
+        \hat{f} : D \cup \{u\} &\longrightarrow \R\\
+        x &\longmapsto 
+        % Voici la partie corrigée :
+        \left\{ \begin{array}{cl}
+            f(x) & \text{si } x \neq u \\
+            l    & \text{si } x = u
+        \end{array} \right.
+    \end{aligned}
+    \]
+\end{definition}
+\begin{example}[1]
+    $\displaystyle f(x) = \frac{\sin(x)}{x}$ 
+    \[\hat{f} = \begin{cases}
+        \frac{\sin(x)}{x} & x\neq0\\
+        1 & x = 0
+    \end{cases}\]
+    On appelle cette fonction $\operatorname{sinc}(x)$
+
+\end{example}
+\begin{example}[2]
+    A l'inverse $\cos\left(\frac{1}{x}\right)$ ne peut pas être prolongée par continuité en \(x=0\) car $\displaystyle\lim_{x \to 0}\textstyle\cos\left(\frac{1}{x}\right)$ n'existe pas.
+\end{example}
+\begin{definition}[Fonction continues sur un intervalle]
+    Une fonction $f: [a, b] \to\R$ est $\underline{\text{continue}}$ (jusqu'au bord) si :
+    \begin{enumerate}
+        \item $\lim_{x\to u} f(x)=f(u) \, \forall u\in[a, b]$
+        \item $\lim_{x \to a^+} f(x) = f(a)$ ($f$ est continue à droite en $x=b$)
+        \item $\lim_{x\to b^-} f(x) = f(b) $ ($f$ est continue à gauche en $x=b$)
+
+    \end{enumerate}
+    De manière analogue:
+    \begin{align*}
+        f:& [a, b[ \to \R \text{ est continue } && \text{si 1 + 2}\\
+        &]a,b] \to \R \text{ est continue } && \text{si 1 + 3}\\
+        &]a,b[ \to \R \text{ est continue } && \text{si 1}
+    \end{align*}
+\end{definition}
+\begin{theorem}[Valeur moyenne -- TVI]
+    Soit $f : [a, b] \to \R$ continue. Alors:
+    \[f([a, b]) = \left[\inf_{x \in [a,b]} f(x), \sup_{x \in [a, b]} f(x)\right]\]
+\end{theorem}
+\begin{remark}
+    Cela veut dire que $f$ atteint :
+    \begin{itemize}
+        \item Son $\inf$ est son minimum:\[\inf_{x \in [a,b]} f(x) = \min_{x \in [a, b]} f(x) \in \R\]
+        \item Son $\sup$ est son maximum:\[\sup_{x \in [a,b]} f(x) = \max_{x \in [a, b]} f(x) \in \R\]
+        \item Toutes les veleurs intermédiaires.
+    \end{itemize}
+    Le $\min$ et $\max$ n'est pas $\pm \infty$. De plus, $f([a, b])$ est un intervalle fermé.
+\end{remark}
+\begin{proof}[Preuve que $f$ atteint]
+    Posons $s = \sup_{x \in [a, b]}f(x) = \sup(f(\left[a, b\right]))$. On sait qu'il existe une suite $(y_n) \in f([a, b])$ tel que $y_n \to s$. Ainsi
+    \begin{align*}
+        &f(x_n) &&x_n \in [a, b]\\
+        \implies & \exists (x_{n_k}) \text{ une sous suite de } (x_n) \text{ t.q. } x_{n_k} \to u \in [a, b]\\
+        \implies & f(u) = f(\lim_{k \to \infty} x_{n_k})\\
+        =& \lim_{k \to \infty} f(x_{n_k}) \\ 
+        =& \lim_{k \to \infty} y_{n_k} = s
+    \end{align*}
+\end{proof}
+\begin{example}
+    L'equation $\cos(x)=x$ possède une solution $x_0 \in ]0, \frac{\pi}{2}[$.\\
+    On pose \(\begin{aligned}[t]
+        f: \left[0, \frac{\pi}{2}\right] &\longrightarrow  \R\\
+        x &\longmapsto \cos(x) - x
+    \end{aligned}\) qui est continue. On a $f(0)=\cos(0)-0=1\, \underline{ > 0}$ et $f(\frac{\pi}{2}) = \cos(\frac{\pi}{2}) - \frac{\pi}{2} = -\frac{\pi}{2} \, \underline{< 0}$.\\
+    Par le théorème des valeurs intermédiaires, 
+    \[f\left(\left[0, \frac{\pi}{2}\right]\right) = \left[\underbrace{\min f(x)}_{x < 0},\; \underbrace{\min f(x)}_{x > 0}\right]\] 
+    Ainsi, il existe $x_0 \in \left[0, \frac{\pi}{2}\right]$ tel que $f(x_0)=0$ $\iff \cos(x_0) = x_0$ 
+\end{example}
+\begin{corollary}[TVI -- 1]
+    Si $f: [a, b] \to \R$ est continues et que $f(a)<0$ et $f(b)>0$ (ou l'inverse), alors il existe $u\in ]a, b[$ tel que $f(u) = 0$
+\end{corollary}
+\begin{corollary}[TVI -- 2]
+    Si $f: I\to \R$ et continue, où $I$ est un intervalle, alors $\Im(f) = f(I)$ est aussi un intervalle.
+\end{corollary}
+\begin{corollary}[TVI -- 3]
+    Soit $f: [a, b]\to \R$ continue. Alors $f$ est injective $\iff f$ est strictement monotone. 
+\end{corollary}
+\begin{proof}[Preuve du Corollaire 3]
+    $\underline{\impliedby}$ cf. Chap 0.\\
+    $\underline{\implies}$ Supposons que $f$ n'est pas strictement monotone :
+    \[\exists u < v < w \text{ t.q. } f(u) < f(v) > f(w)\]
+    \begin{center}
+        \includegraphics[width=0.5\textwidth]{TVI.png}
+    \end{center}
+    Ainsi, $f(x_1) = y = f(x_2)$, ce n'est donc pas injectif.
+\end{proof}

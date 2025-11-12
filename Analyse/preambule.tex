@@ -1,0 +1,161 @@
+% !TEX root = Analyse1.tex
+% --- Encodage et Langue ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{geometry}
+\geometry{left=2cm, right=2cm, top=2.5cm, bottom=2.5cm}
+
+% --- Packages Mathématiques ---
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+
+% --- Packages Graphiques et Listes ---
+\usepackage{graphicx}
+\usepackage{enumitem}
+\setlist{itemsep=5pt, parsep=5pt}
+\setlist[itemize,1]{label=\textbullet}
+
+% --- Packages de Style (NOUVELLE MÉTHODE) ---
+\usepackage[svgnames]{xcolor}
+\usepackage{hyperref}
+\usepackage{amsthm}      % Cœur du système de théorèmes
+\usepackage{thmtools}    % Pour styliser
+\usepackage[framemethod=default]{mdframed} % Pour les encadrés
+
+% --- 1. Définition de vos couleurs ---
+\definecolor{customRed}{HTML}{D9534F}
+\definecolor{customOrange}{HTML}{F0AD4E}
+\definecolor{customBlue}{HTML}{428BCA}
+\definecolor{customViolet}{HTML}{9370DB}
+
+\mdfdefinestyle{defstyle}{
+    linecolor=customRed,
+    linewidth=1.5pt,
+    backgroundcolor=customRed!5, % Fond très léger
+    skipabove=10pt,
+    skipbelow=10pt,
+    roundcorner=5pt,
+    nobreak=true
+}
+
+\mdfdefinestyle{thmstyle}{
+    linecolor=customViolet,
+    linewidth=1.5pt,
+    backgroundcolor=customViolet!5,
+    skipabove=10pt,
+    skipbelow=10pt,
+    roundcorner=5pt,
+    nobreak=true
+}
+
+\mdfdefinestyle{propstyle}{
+    linecolor=customBlue,
+    linewidth=1.5pt,
+    backgroundcolor=customBlue!5,
+    skipabove=10pt,
+    skipbelow=10pt,
+    roundcorner=5pt,
+    nobreak=true
+}
+
+% --- 2. Configuration des Environnements (MÉTHODE STABLE) ---
+
+% --- A. Définition des styles ---
+
+% Style pour les textes (Rem, Cor, Prop)
+\declaretheoremstyle[
+    headfont=\bfseries\color{customViolet},
+    bodyfont=\normalfont,
+    headpunct={\ :}, % Ajoute " :" après le titre
+    notefont=\normalfont\itshape, % <-- VOTRE DEMANDE : Titre optionnel en italique
+    spaceabove=6pt,
+    spacebelow=6pt
+]{textstyle_violet}
+
+\declaretheoremstyle[
+    headfont=\bfseries\color{customBlue},
+    bodyfont=\normalfont,
+    headpunct={\ :},
+    notefont=\normalfont\itshape, % <-- VOTRE DEMANDE : Titre optionnel en italique
+    spaceabove=6pt,
+    spacebelow=6pt
+]{textstyle_blue}
+
+% Style pour les boîtes (Def, Thm, Prop)
+\declaretheoremstyle[
+    headfont=\bfseries\color{customRed},
+    bodyfont=\normalfont,
+    headpunct={\ .}, % Point pour les defs/thms
+    notefont=\normalfont\itshape, % <-- VOTRE DEMANDE : Titre optionnel en italique
+    spaceabove=6pt,
+    spacebelow=6pt
+]{textstyle_red_boxed}
+
+\declaretheoremstyle[
+    headfont=\bfseries\color{customViolet},
+    bodyfont=\normalfont,
+    headpunct={\ .}, % Point pour les defs/thms
+    notefont=\normalfont\itshape, % <-- VOTRE DEMANDE : Titre optionnel en italique
+    spaceabove=6pt,
+    spacebelow=6pt
+]{textstyle_violet_boxed}
+
+\declaretheoremstyle[
+    headfont=\bfseries\color{customBlue},
+    bodyfont=\normalfont,
+    headpunct={\ .}, % Point pour les defs/thms
+    notefont=\normalfont\itshape, % <-- VOTRE DEMANDE : Titre optionnel en italique
+    spaceabove=6pt,
+    spacebelow=6pt
+]{textstyle_blue_boxed}
+
+% Style pour les Exemples (gère "Ex 1:")
+\declaretheoremstyle[
+    headfont=\bfseries\color{customOrange},
+    bodyfont=\normalfont,
+    headpunct={\ :}, % Ajouté pour la cohérence
+    spaceabove=6pt,
+    spacebelow=6pt,
+    notebraces = {}{} % Supprime les parenthèses autour du "1"
+]{textstyle_orange}
+
+
+% --- B. Création des environnements ---
+
+% Compteur principal partagé, réinitialisé à chaque \subsection
+\newtheorem{maincounter}{}[section] 
+
+% ENCADRÉS (avec mdframed)
+% On applique les styles "boxed" que nous venons de définir
+\declaretheorem[name=Définition, numberlike=maincounter, style=textstyle_red_boxed]{definition}
+\declaretheorem[name=Théorème, numberlike=maincounter, style=textstyle_violet_boxed]{theorem}
+\declaretheorem[name=Propriété, numberlike=maincounter, style=textstyle_blue_boxed]{property}
+
+% Application des styles de boîtes mdframed
+\surroundwithmdframed[style=defstyle]{definition}
+\surroundwithmdframed[style=thmstyle]{theorem}
+\surroundwithmdframed[style=propstyle]{property}
+
+% TEXTES SIMPLES (avec thmtools)
+% Les styles sont déjà appliqués ici
+\declaretheorem[name=Proposition, numberlike=maincounter, style=textstyle_violet]{proposition}
+\declaretheorem[name=Corollaire, numberlike=maincounter, style=textstyle_violet]{corollary}
+\declaretheorem[name=Remarque, numberlike=maincounter, style=textstyle_blue]{remark}
+
+% EXEMPLE (non numéroté, gestion "Ex 1:")
+\declaretheorem[
+    name=Ex, 
+    style=textstyle_orange, 
+    numbered=no,
+]{example}
+
+%Commande perso
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+
+% --- FIN DU FICHIER PREAMBULE ---

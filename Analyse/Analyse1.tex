@@ -1,0 +1,30 @@
+\documentclass[12pt, a4paper]{report}
+% --- Inclusion du Préambule ---
+% \input permet d'insérer le contenu du fichier
+\input{preambule.tex}
+
+% --- Métadonnées du Document ---
+\title{Notes d'Analyse 1}
+\author{Paul Lasry-Robin}
+\date{\today}
+
+% --- Document ---
+\begin{document}
+
+\maketitle % Crée la page de titre
+\tableofcontents % Crée la table des matières
+
+% --- Inclusion des Chapitres ---
+% \include va les fichiers .tex dans le dossier 'chapitres/'
+% Il force aussi un saut de page avant chaque chapitre
+\graphicspath{{images/}} % Indique où chercher les images
+
+\include{chapitres/chapitre1}
+\include{chapitres/chapitre2}
+\include{chapitres/chapitre3}
+\include{chapitres/chapitre4}
+\include{chapitres/chapitre5}
+% \include{chapitres/chapitre5}
+% etc.
+
+\end{document}
