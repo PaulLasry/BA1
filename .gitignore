@@ -114,3 +114,4 @@ surefire-reports/
 
 .gemini/
 gha-creds-*.json
+GEMINI.md
