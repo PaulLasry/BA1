@@ -41,6 +41,24 @@ build/
 *.ipr
 out/
 
+# =========================
+# 📄 LATEX
+# =========================
+# Ignore common LaTeX generated files
+*.aux
+*.fdb_latexmk
+*.fls
+*.out
+*.synctex.gz
+*.toc
+*.log
+
+# Ignore all files in Analyse/ except .tex, .png, .pdf
+Analyse/
+!Analyse/**/*.tex
+!Analyse/**/*.png
+!Analyse/**/*.pdf
+
 # Eclipse
 .project
 .classpath

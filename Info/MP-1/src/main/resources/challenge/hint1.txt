@@ -1,0 +1,9 @@
+Frequency Analysis
+
+A cryptanalysis method that uses how often letters appear in a language to break ciphers.
+In English, some letters show up far more than others. By matching ciphertext letter frequencies to English ones, you can guess the substitution.
+
+Most common English letters (in order):
+e, t, a, o, i, n, s, h, r, d, l, c … (least common: q, z, x, j)
+
+Hint: To properly view the contents of hint2.txt, make sure you read it with Java as raw bytes, not with a text editor. To that end, be sure to check out the Helper.java file!

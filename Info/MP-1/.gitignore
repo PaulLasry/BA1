@@ -1,0 +1,244 @@
+
+*~
+.\#*
+\#*\#
+# Android studio 3.1+ serialized cache file
+# Annotation Processing
+.apt_generated/
+.apt_generated_test/
+*_archive
+atlassian-ide-plugin.xml
+# AUCTeX auto folder
+/auto/
+# auto-import.
+auto-save-list
+.autotools
+*.aux
+# AWS User-specific
+*.bak
+*.bin
+*/bin
+*bin
+bin/
+# BlueJ files
+build/
+buildNumber.properties
+.buildpath
+## Build tool auxiliary files:
+.cache-main
+.cask/
+# cask packages
+*.cb
+*.cb2
+# CDT- autotools
+# CDT-specific (C/C++ Development Tooling)
+*.class
+*.classpath
+.classpath
+# CMake
+cmake-build-*/
+# Code Recommenders
+com_crashlytics_export_strings.xml
+# Compiled class file
+## Core latex/pdflatex auxiliary files:
+# Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio
+# Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio, WebStorm and Rider
+.cproject
+crashlytics-build.properties
+# Crashlytics plugin (for Android Studio and IntelliJ)
+crashlytics.properties
+# Created by .ignore support plugin (hsz.mobi)
+*.ctxt
+# Cursive Clojure plugin
+dependency-reduced-pom.xml
+## Directory-based project format:
+# directory configuration
+.dir-locals.el
+dist/
+*.ear
+# Eclipse Core
+# Eclipse m2e generated files
+#eclipse settings
+### Eclipse template
+# Editor-based Rest Client
+*.elc
+/elpa/
+# elpa packages
+/.emacs.desktop
+/.emacs.desktop.lock
+### Emacs template
+# eshell files
+/eshell/history
+/eshell/lastdir
+.externalToolBuilders/
+# External tool builders
+fabric.properties
+.factorypath
+*.fdb_latexmk
+# File-based project format
+## File-based project format:
+*.fls
+# Flycheck
+flycheck_*.el
+*_flymake.*
+# flymake-mode
+*.fmt
+*.fot
+# Generated files
+# Gradle
+# Gradle:
+# Gradle and Maven with auto-import
+hs_err_pid*
+# https://github.com/takari/maven-wrapper#usage-without-binary-jar
+.idea/
+# .idea/artifacts
+.idea/**/aws.xml
+.idea/caches/build_file_checksums.ser
+# .idea/compiler.xml
+.idea/**/contentModel.xml
+.idea/**/dataSources/
+# .idea/dataSources.ids
+.idea/**/dataSources.ids
+.idea/**/dataSources.local.xml
+# .idea/dataSources.xml
+.idea/**/dbnavigator.xml
+# .idea/dictionaries
+.idea/**/dictionaries
+# .idea/dynamic.xml
+.idea/**/dynamic.xml
+# .idea/gradle.xml
+.idea/**/gradle.xml
+.idea/httpRequests
+# .idea/*.iml
+# .idea/jarRepositories.xml
+# .idea/libraries
+.idea/**/libraries
+# .idea/modules
+.idea_modules/
+# .idea/modules.xml
+# .idea/mongoSettings.xml
+.idea/**/mongoSettings.xml
+.idea/replstate.xml
+.idea/**/shelf
+.idea/sonarlint/
+# .idea/sqlDataSources.xml
+.idea/**/sqlDataSources.xml
+# .idea/tasks.xml
+.idea/**/tasks.xml
+# .idea/uiDesigner.xml
+.idea/**/uiDesigner.xml
+.idea/**/usage.statistics.xml
+# .idea/workspace.xml
+.idea/**/workspace.xml
+# if you remove the above rule, at least ignore the following:
+# *.iml
+*.iml
+# IntelliJ
+# *.ipr
+*.ipr
+*.iws
+*.jar
+# Java annotation processor (APT)
+### Java template
+# JDT-specific (Eclipse Java Development Tools)
+### JetBrains template
+# JIRA plugin
+# Latex ignore
+*.launch
+.*.lb
+.loadpath
+# Locally stored "Eclipse launch configurations"
+local.properties
+*.lof
+*.log
+# Log file
+*.lot
+### Maven template
+.metadata
+# Mobile Tools for Java (J2ME)
+# -*- mode: gitignore; -*-
+# Mongo Explorer plugin
+# Mongo Explorer plugin:
+# mpeltonen/sbt-idea plugin
+.mtj.tmp/
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
+*.nar
+nbbuild/
+nbdist/
+.nb-gradle/
+**/nbproject/Makefile-*.mk
+**/nbproject/Package-*.bash
+**/nbproject/private/
+### NetBeans template
+# network security
+/network-security.data
+*~.nib
+.org-id-locations
+# Org-mode
+*.out
+/out/
+out/
+# Package Files #
+*.pdfsync
+# PDT-specific (PHP Development Tools)
+## Plugin-specific files:
+pom.xml.next
+pom.xml.releaseBackup
+pom.xml.tag
+pom.xml.versionsBackup
+#.project
+*.project
+.project
+.projectile
+# projectiles files
+# project specific non shared ressources
+*.pydevproject
+# PyDev specific (Python IDE for Eclipse)
+*.rar
+.recommenders
+.recommenders/
+# Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
+# reftex files
+*.rel
+release.properties
+## RENAME THIS FILE AS .gitignore
+replay_pid*
+# sbteclipse plugin
+.scala_dependencies
+# Scala IDE specific (Scala & Java development for Eclipse)
+# Sensitive or high-churn files
+# Sensitive or high-churn files:
+/server/
+# server auth directory
+.settings/
+# since they will be recreated, and may cause churn.  Uncomment if using
+# SonarLint plugin
+.springBeans
+src/main/.settings/org.eclipse.jdt.core.prefs
+# STS (Spring Tool Suite)
+*.swp
+*.synctex
+*.synctex(busy)
+*.synctex.gz
+*.synctex.gz(busy)
+.target
+target/
+*.tar.gz
+# Tern plugin
+.tern-project
+.texlipse
+# TeXlipse plugin
+*.tmp
+tmp/
+*.toc
+tramp
+# Typically, this file would be tracked if it contains build/dependency configurations:
+# Uncomment this line if you wish to ignore the project description file.
+# User-specific stuff
+# User-specific stuff:
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+*.war
+# When using Gradle or Maven with auto-import, you should exclude module files,
+.worksheet
+*.zip
