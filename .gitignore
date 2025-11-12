@@ -53,13 +53,14 @@ out/
 *.toc
 *.log
 
-# Ignore all files in Analyse/ except .tex, .png, .pdf and files in images/
-Analyse/**
-!Analyse/**/
-!Analyse/images/**
-!Analyse/**/*.tex
-!Analyse/**/*.png
-!Analyse/**/*.pdf
+# Ignore LaTeX temporary files specifically inside Analyse
+Analyse/**/*.aux
+Analyse/**/*.fdb_latexmk
+Analyse/**/*.fls
+Analyse/**/*.log
+Analyse/**/*.out
+Analyse/**/*.synctex.gz
+Analyse/**/*.toc
 
 # Eclipse
 .project
