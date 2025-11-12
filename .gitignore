@@ -53,8 +53,10 @@ out/
 *.toc
 *.log
 
-# Ignore all files in Analyse/ except .tex, .png, .pdf
-Analyse/
+# Ignore all files in Analyse/ except .tex, .png, .pdf and files in images/
+Analyse/**
+!Analyse/**/
+!Analyse/images/**
 !Analyse/**/*.tex
 !Analyse/**/*.png
 !Analyse/**/*.pdf
