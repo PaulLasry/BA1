@@ -45,11 +45,154 @@
     \end{align*}
     $\sin$ est dérivable sur $\R$ et $\sin'(x) = \cos(x)$. De manière analogue : $\cos'(x) = -\sin(x)$²
 \end{example}
-\begin{property}
+\begin{proposition}
     Soit $f:D\to\R$
     \begin{enumerate}
         \item Si $f$ est dérivable en $x_0$, alors $f$ est aussi continue en $x_0$
         \item $f$ est dérivable en $x_0$ si et seulement si :\[f(x) = \underbrace{f(x_0)+f'(x_0)\cdot(x-x_0)}_{\text{équation de la tengente}}+ \underbrace{\textcolor{red}{(x-x_0)\cdot\varepsilon(x)}}_{\text{reste}}\]
             où $\varepsilon(x)$ est une fonction tel que $\lim_{x\to x_0} \varepsilon(x)=0$. Le \textcolor{red}{reste} tend plus vite vers $0$ que $x-x_0$
     \end{enumerate}
+\end{proposition}
+\begin{proof}[Preuve de la proposition]
+    \noindent
+    \begin{enumerate}
+        \item On a \[\lim_{x\to x_0} f(x) = f(x_0) + \lim_{x\to x_0} \frac{f(x)-f(x_0)}{x-x_0} \cdot (x-x_0) = f(x_0)-f'(x_0)\cdot0 = f(x_0)\]
+        \item Poser $\varepsilon(x)=\frac{f(x)-f(x_0)-f'(x-0)(x-x_0)}{x-x_0}$ et calculer la limite lorsque $x\to x_0$
+    \end{enumerate}
+\end{proof}
+\begin{remark}
+    $f$ continues $\not \implies$ $f$ dérivable.
+\end{remark}
+\begin{example}
+    $f(x) = |x|$, $x_0=0$. Alors $f$ est continue en $0$ mais on a \[\lim_{h\downarrow0}\frac{f(0+h)-f(0)}{h} = \lim_{h\downarrow0}\frac{|h|}{h} = 1\neq -1 = \lim_{h\uparrow0}\frac{|h|}{h} = \lim_{h\uparrow0}\frac{f(0+h)-f(0)}{h}\]
+    Donc la limite n'existe pas, donc $f$ n'est pas dérivable en $0$.
+\end{example}
+\begin{property}[Opérations algébriques]
+    Soient $f, g : D\to\R$ derivables en $x_0\in D$. Alors :
+    \begin{enumerate}
+        \item $\displaystyle(p\cdot f+q\cdot g)'(x_0) = p\cdot f'(x_0)+q\cdot g'(x_0)$
+        \item $\displaystyle(f\cdot g)'(x_0) = f'(x_0)\cdot g(x_0) + f(x_0)\cdot g'(x_0)$
+        \item $\displaystyle\left(\frac{f}{g}\right)'(x_0) = \frac{f'(x_0)\cdot g(x_0) - f(x_0)\cdot g'(x_0)}{(g(x_0))^2}$, si $g(x_0)\neq 0$
+    \end{enumerate}
 \end{property}
+\begin{property}[Dérivées de fonction usuelles]
+    \noindent
+    \begin{enumerate}[start=0]
+        \item $f(x) = c\in \R \implies f'(x) = 0$
+        \item $f(x) = x^n \implies f'(x) = n\cdot x^{n-1}$ pour $\N^*$
+        \begin{proof}[Preuve]
+            Par récurrence sur $n$.
+            \begin{itemize}
+                \item $n=1$: $f(x) = x$, $f'(x) = 1$.
+                \item Supposons vrai pour $n$, montrons pour $n+1$ :
+                    \begin{align*}
+                        f(x) &= x^{n+1} = x^n \cdot x\\
+                        f'(x) &\overset{\text{Prop 2}}{=} (x^n)' \cdot x + x^n \cdot (x)'\\
+                        &= n\cdot x^{n-1} \cdot x + x^n \cdot 1 = (n+1)\cdot x^n
+                    \end{align*}
+            \end{itemize}   
+        \end{proof}
+        \item $\sin'(x) = \cos(x), \cos'(x) = -\sin(x)$ et \[\tan'(x) = \left(\frac{\sin(x)}{\cos(x)}\right)' \overset{\text{Prop 3}}{=} \frac{\sin'(x)\cos - \sin(x)\cos'(x)}{\cos^2(x)} = \cdots = \frac{1}{\cos^2(x)} \text{ ou } 1 + \tan^2(x)\]
+        \item $f(x)=x^{-n}$, $n\in \N^*, x\neq0$\[\implies f(x)=\frac{1}{x^n} \overset{\text{Prop 3}}{\implies} f'(x) = -n\cdot x^{-n-1}\]
+    \end{enumerate}
+\end{property}
+\begin{property}[Dériviées de composées]
+    Soient $f : A\to B$, $g: B \to \R$, deux fonction telles que $f$ est dérivable en $x_0$ et $g$ est dérivable en $f(x_0)$. Alors:
+    \begin{align*}
+        \left(g(f(x_0))\right)' &= (g\circ f)'(x_0) \\
+        &= g'(f(x_0))\cdot \underbrace{f'(x_0)}_{\text{Dériviée interne}}
+    \end{align*}
+    \begin{proof}[Preuve]
+        Le quotient est \begin{align*}
+            &\frac{g(f(x_0+h)) - g(f(x_0))}{h} \\
+            =& \frac{g(f(x_0+h)) - g(f(x_0))}{f(x_0+h) - f(x_0)} \cdot \frac{f(x_0+h) - f(x_0)}{h}
+        \end{align*}
+        En prenant la limite lorsque $h\to 0$, on obtient le résultat voulu.
+    \end{proof}
+\end{property}
+\begin{property}[Dériviées des réciproques]
+    Soit $f: A\to B$ bijective et dérivable sur $A$, un intervalle ouvert. Si $f'(x)\neq 0$ pour tout $x\in A$, alors
+    \[\left(f^{-1}\right)'(x) = \frac{1}{f'(f^{-1(x)})}\]
+    \begin{proof}[Preuve]
+        On admet que $f^{-1}$ est dérivable sur tout $B$. On dérive l'equation $f(f^{-1}(x)) = x$ des deux cotés :
+        \begin{align*}
+            1 &= (f\circ f^{-1})'(x) = f'\left(f^{-1}(x)\right)\\ 
+            \implies& \frac{1}{f'\left(f^{-1}(x)\right)} = (f^{-1})'(x)
+        \end{align*}
+    \end{proof}
+\end{property}
+\begin{example}[1]
+    $f(x) = \sqrt[n]{x} = f^{-1}(x)$ où $f(x)=x^n$, où $x>0$
+    \begin{align*}
+        x &= f(g(x)) = \left(\sqrt[n]{x}\right)^n\\
+        &\implies 1 = n(\sqrt[n]{x})^{n-1}\cdot (\sqrt[n]{x})'\\
+        &\implies (\sqrt[n]{x})' = \frac{1}{n(\sqrt[n]{x})^{n-1}} = \frac{1}{n}x^{\frac1n -1}
+    \end{align*} 
+    On montre de manière analogue que $\left(x^{\frac{p}{q}}\right) = \frac{p}{q}x^{\frac{p}{q}-1}$ pour tout $\frac{p}{q} \in \Q$ et on verra que c'est aussi vrai pour tout réel.
+\end{example}
+\begin{example}[2]
+    $\arcsin'(x) = \frac{1}{\cos(\arcsin(x))}, x\in ]-1,1[$
+        \begin{center}
+            \includegraphics[width=0.8\textwidth]{derivee_arcsin.png}
+        \end{center}        
+    \[\implies arcsin'(x) = \frac{1}{\sqrt{1-x^2}}\]
+\end{example}
+\begin{definition}
+    $\lim_{h \downarrow 0}\frac{f(x+h)-f(h)}{h}$ est la dérivée à droite, si $h\uparrow 0$, c'est la dérivée à gauche.
+\end{definition}
+\begin{property}
+    $f$ est dérivable en $x_0$ si et seulement si les deux dérivées latérales existent et sont égales.
+\end{property}
+\begin{example}[1]
+    $f(x) = \left|x\right|$. On a:
+    \begin{align*}
+        f'_{\text{doite}} (0) = 1 \neq -1 = f'_{\text{gauche}}(0)
+    \end{align*} 
+    Donc $f$ n'est pas dérivable en $0$.
+\end{example}
+\begin{example}[2]
+    $f(x) = \sqrt[3]{x}$. On a:
+    \[\lim_{h\to 0}\frac{f(0+h)-f(0)}{h} = \lim_{x\to 0}\frac{\sqrt[3]{h}}{h} = \lim_{h \to 0}\frac{1}{\left(\sqrt[3]{n}\right)^2} = \frac{1}{0^+} = +\infty\]
+    $f'(0)$ n'existe pas, mais les deux dérivées latérales sont égales à $+\infty$.
+\end{example}
+\begin{definition}[Dériviée d'ordre supérieur]
+    La \underline{dérivée seconde} de $f$ est \[f''(x)=f^{(2)}(x)=\left(f'(x)\right)'\]
+    La \underline{dérivée d'ordre n} de $f$ est définie par récurrence : \[f^{(n)}(x) = \left(f^{(n-1)}(x)\right)'\]
+\end{definition}
+\begin{definition}[Clsses de fonctions dérivables]
+    Soit $I$ un intervalle. Alors
+    \begin{align*}
+        &D^n(I) = \left\{f : I\to \R | \,f \text{ est $n$ fois dérivable sur } I\right\}\\
+        &C^n(I) = \left\{f : I\to \R | \,f \text{ est $n$ fois dérivable sur et $f^{(n)}$ est continue sur } I\right\}
+    \end{align*}
+    On pose $C^{\infty}(I) = \left\{f : I\to\R\, |\, f^{(n)}\text{ existe pour tour } n\in \N\right\}$.
+\end{definition}
+\begin{remark}
+    \noindent
+    \begin{itemize}
+        \item $C^0(I)$ est l'ensemble des fonctions continues sur $I$.
+        \item Les fonction polynomiales, trigonométriques, exponentielles, logarithmes, rationnelles sont dans $C^{\infty}$ sur leur domaine de définition.
+        \item $C^0(I) \supseteq D^1(I)\supseteq C^1(I) \supseteq D^2(I) \supseteq C^2(I) \supseteq \cdots D^{\infty} \supseteq C^{\infty}$
+    \end{itemize}
+\end{remark}
+\begin{center}
+    \includegraphics[width=0.8\textwidth]{classes_derivee.png}
+
+\end{center}
+\begin{remark}
+    \noindent
+    \begin{itemize}
+        \item $x^n|x|$ est dans $C^{n}(\R)\setminus D^{n+1}(\R)$
+        \item $x|x| \begin{aligned}[t]
+            &\in C^{\infty}(]0, +\infty[)\\
+            &\in C^{\infty}(]-\infty, 0[)
+        \end{aligned}$
+    \end{itemize}
+\end{remark}
+\begin{example}[$D^1\setminus C^1$]
+    On a $f(x)=\begin{cases}
+        x^2\cos\left(\frac{1}{x}\right) & x\neq 0\\
+        0 & x=0
+    \end{cases}$. Alors \[f'(x) = 2x\cos\left(\frac1x\right)+\sin\left(\frac{1}{x}\right) \; \text{si x $\neq 0$}\]
+    et \[f'(0) = \lim_{h\to 0}\frac{f(h)-f(0)}{h} = \lim_{h\to 0} h\cos\left(\frac1h\right) = 0\]
+\end{example}
