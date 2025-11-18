@@ -1,28 +1,30 @@
-% !TEX root = Analyse1.tex
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{epfl-style}[2025/11/18 EPFL Custom LaTeX Style]
+
 % --- Encodage et Langue ---
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage[french]{babel}
-\usepackage{geometry}
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[T1]{fontenc}
+\RequirePackage[french]{babel}
+\RequirePackage{geometry}
 \geometry{left=2cm, right=2cm, top=2.5cm, bottom=2.5cm}
 
 % --- Packages Mathématiques ---
-\usepackage{amsmath}
-\usepackage{amssymb}
-\usepackage{amsfonts}
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
+\RequirePackage{amsfonts}
 
 % --- Packages Graphiques et Listes ---
-\usepackage{graphicx}
-\usepackage{enumitem}
+\RequirePackage{graphicx}
+\RequirePackage{enumitem}
 \setlist{itemsep=5pt, parsep=5pt}
 \setlist[itemize,1]{label=\textbullet}
 
-% --- Packages de Style (NOUVELLE MÉTHODE) ---
-\usepackage[svgnames]{xcolor}
-\usepackage{hyperref}
-\usepackage{amsthm}      % Cœur du système de théorèmes
-\usepackage{thmtools}    % Pour styliser
-\usepackage[framemethod=default]{mdframed} % Pour les encadrés
+% --- Packages de Style ---
+\RequirePackage[svgnames]{xcolor}
+\RequirePackage{hyperref}
+\RequirePackage{amsthm}      % Cœur du système de théorèmes
+\RequirePackage{thmtools}    % Pour styliser
+\RequirePackage[framemethod=default]{mdframed} % Pour les encadrés
 
 % --- 1. Définition de vos couleurs ---
 \definecolor{customRed}{HTML}{D9534F}
@@ -65,61 +67,61 @@
 % --- A. Définition des styles ---
 
 % Style pour les textes (Rem, Cor, Prop)
-\declaretheoremstyle[
+\declaretheoremstyle[{
     headfont=\bfseries\color{customViolet},
     bodyfont=\normalfont,
     headpunct={\ :}, % Ajoute " :" après le titre
-    notefont=\normalfont\itshape, % <-- VOTRE DEMANDE : Titre optionnel en italique
+    notefont=\normalfont\itshape, % Titre optionnel en italique
     spaceabove=6pt,
     spacebelow=6pt
-]{textstyle_violet}
+}]{textstyle_violet}
 
-\declaretheoremstyle[
+\declaretheoremstyle[{
     headfont=\bfseries\color{customBlue},
     bodyfont=\normalfont,
     headpunct={\ :},
-    notefont=\normalfont\itshape, % <-- VOTRE DEMANDE : Titre optionnel en italique
+    notefont=\normalfont\itshape, % Titre optionnel en italique
     spaceabove=6pt,
     spacebelow=6pt
-]{textstyle_blue}
+}]{textstyle_blue}
 
 % Style pour les boîtes (Def, Thm, Prop)
-\declaretheoremstyle[
+\declaretheoremstyle[{
     headfont=\bfseries\color{customRed},
     bodyfont=\normalfont,
     headpunct={\ .}, % Point pour les defs/thms
-    notefont=\normalfont\itshape, % <-- VOTRE DEMANDE : Titre optionnel en italique
+    notefont=\normalfont\itshape, % Titre optionnel en italique
     spaceabove=6pt,
     spacebelow=6pt
-]{textstyle_red_boxed}
+}]{textstyle_red_boxed}
 
-\declaretheoremstyle[
+\declaretheoremstyle[{
     headfont=\bfseries\color{customViolet},
     bodyfont=\normalfont,
     headpunct={\ .}, % Point pour les defs/thms
-    notefont=\normalfont\itshape, % <-- VOTRE DEMANDE : Titre optionnel en italique
+    notefont=\normalfont\itshape, % Titre optionnel en italique
     spaceabove=6pt,
     spacebelow=6pt
-]{textstyle_violet_boxed}
+}]{textstyle_violet_boxed}
 
-\declaretheoremstyle[
+\declaretheoremstyle[{
     headfont=\bfseries\color{customBlue},
     bodyfont=\normalfont,
     headpunct={\ .}, % Point pour les defs/thms
-    notefont=\normalfont\itshape, % <-- VOTRE DEMANDE : Titre optionnel en italique
+    notefont=\normalfont\itshape, % Titre optionnel en italique
     spaceabove=6pt,
     spacebelow=6pt
-]{textstyle_blue_boxed}
+}]{textstyle_blue_boxed}
 
 % Style pour les Exemples (gère "Ex 1:")
-\declaretheoremstyle[
+\declaretheoremstyle[{
     headfont=\bfseries\color{customOrange},
     bodyfont=\normalfont,
     headpunct={\ :}, % Ajouté pour la cohérence
     spaceabove=6pt,
     spacebelow=6pt,
-    notebraces = {}{} % Supprime les parenthèses autour du "1"
-]{textstyle_orange}
+    notebraces = {}{}
+}]{textstyle_orange}
 
 
 % --- B. Création des environnements ---
@@ -158,11 +160,6 @@
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\C}{\mathbb{C}}
 
-\usepackage[
-    backend=biber,     % Utilise biber (plus moderne que bibtex)
-    style=apa,         % LE STYLE APA 7 !
-    sorting=nyt        % Trie par nom, puis année (standard APA)
-]{biblatex}
 
-\addbibresource{sources.bib}
-% --- FIN DU FICHIER PREAMBULE ---
+
+\endinput
