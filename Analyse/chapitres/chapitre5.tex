@@ -197,3 +197,146 @@
     et \[f'(0) = \lim_{h\to 0}\frac{f(h)-f(0)}{h} = \lim_{h\to 0} h\cos\left(\frac1h\right) = 0\]
     donc $f(x)$ appartient à $D^1(\R)$. Cependant, \[\lim_{x\to 0} f'(x) \text{ n'existe pas}\] donc $f'(x)$ n'est pas continue en $0$. Donc $f(x)\not\in C^1(\R)$.
 \end{example}
+
+\section{Dérivée et croissance}
+\begin{theorem}[Théorhème de Rolle]
+    Soit $f:[a,b]\to\R$ continue sur $[a,b]$ et dérivable sur $]a,b[$. On suppose que $f(a)=0=f(b)$. Alors $\exists u\in ]a, b[$ tel que $f'(u)=0$.
+        \centering
+        \includegraphics[width=0.5\textwidth]{rolle.png}    
+\end{theorem}
+\begin{proof}[Preuve par le TVI]
+    Par le TVI, $f$ atteint son max $M=\max_{x\in[a,b]} f(x)$, on le suppose supérieur à $0$. Alors $\exists u\in ]a, b[$ tel que :
+    \begin{align*}
+        f(u)=M \implies f'(u)=f'_{\text{droite}}(u)&=\lim_{x\to u^+}\frac{f(x)-f(u)}{x-u}\leq 0\\ 
+        \text{et}\quad f'(u) = f'_{\text{gauche}}(u) &= \lim_{x\to u^-}\frac{f(x)-f(u)}{x-u} \geq 0\\
+    \end{align*}
+    Donc $f'(u)=0$.
+\end{proof}
+\begin{theorem}[Théorhème des acroissements finis (TAF)]
+    Soit $f:[a, b]\to \R$ continue, dérivable sur $]a, b[$. Alors $\exists u\in ]a, b[$ tel que :
+    \begin{align*}
+        f'(u)=\frac{f(b)-f(a)}{b-a}
+    \end{align*}
+    \centering
+    \includegraphics[width=0.5\textwidth]{TAF.png}
+\end{theorem}
+\begin{proof}[Preuve]
+    En exercice.
+\end{proof}
+\begin{property}[Application du TAF]
+    Soit $f:[a,b]\to\R$ continue sur $[a,b]$ et dérivable sur $]a,b[$.
+    \begin{enumerate}
+        \item Si $f'(x)=0$ pour tout $x\in ]a,b[$, alors $f$ est constante sur $[a,b]$.
+        \begin{proof}[Preuve]
+            Le sens "$\impliedby$" est évident. Pour le sens "$\implies$", si $f$ n'est pas constante, on trouve $c, d \in [a, b]$ tels que $c<d$ et  $f(c) \neq f(d)$. 
+            Par le TAF, $\exists u\in ]c,d[$ tel que \[f'(u) = \frac{f(d)-f(c)}{d-c} \neq 0\] ce qui est une contradiction.
+        \end{proof}
+        \item Si $g:[a, b]\overset{\text{continue}}{\longrightarrow }\R$ dérivable sur $]a,b[$ et $f'(x)=g'(x)$ pour tout $x\in ]a,b[$, alors $f(x) = g(x) + c$ pour un certain $c\in \R$ et tout $x\in [a,b]$.
+        \item Si $f'(x)\geq 0$ pour tout $x\in ]a,b[$, alors $f$ est croissante sur $[a,b]$.
+        \item Si $f'(x)\leq 0$ pour tout $x\in ]a,b[$, alors $f$ est décroissante sur $[a,b]$.
+        \item Si $f'(x)>0$ pour tout $x\in ]a,b[$, alors $f$ est strictement croissante sur $[a,b]$.
+        \item Si $f'(x)<0$ pour tout $x\in ]a,b[$, alors $f$ est strictement décroissante sur $[a,b]$.
+    \end{enumerate}
+\end{property}
+\begin{remark}
+    Attention au point 5 et 6, la réciproques est en général fausse. Par exemple, $f(x) = x^3$ est strictement croissante sur $\R$ mais $f'(0)=0$.
+\end{remark}
+\subsection{La fonction exponentielle (et logarithmes)}
+\begin{theorem}
+    Il existe une \underline{unique} fonction $f:\R\to\R$ telle que :
+    \begin{align*}
+        f'(x) = f(x) \; \forall x\in\R \quad \text{ et } \quad f(0) = 1 
+    \end{align*}
+\end{theorem}
+\begin{proof}[Preuve]
+    La preuve de l'existence se fera plus tard.\\ 
+    Pour l'unicité, la preuve se fait en deux étapes :
+    \begin{enumerate}
+        \item $f(x)\neq0 \;\forall x\in \R$. On pose $h(x)=f(x)\cdot f(-x)$. On calcule la dérivée de $h$:
+            \begin{align*}
+                h'(x) &= f'(x)\cdot f(-x)+ f(x)\cdot \underbrace{f'(-x)}_{=f(-x)}(-1)\\
+                &= 0
+            \end{align*}
+            Donc $h$ est constante ! Comme $h(0) = f(0)\cdot f(0) = 1$, on a \[h(x) = \underbrace{f(x)}_{\neq 0}\cdot f(-x) = 1\]
+        \item \textbf{Unicité : } Soit $g(x)$ une (autre) fonction telle que $g'(x)=g(x)$ et $g(0)=1$. On pose $h(x) = \frac{g(x)}{f(x)}$. On calcule $h'(x)$ :
+            \begin{align*}
+                h'(x) = \frac{g'\cdot f - g\cdot f'}{f^2} = \frac{g\cdot f - g\cdot f}{f^2} = 0
+            \end{align*}
+            Donc $h$ est constante. Comme $h(0) = \frac11 = 1$ on a que $h(x)=1=\frac{g(x)}{f(x)} = 1 \implies g(x) = f(x)$ 
+    \end{enumerate} 
+\end{proof}
+
+\begin{definition}[Foonction exponentielle]
+    Cette fonction s'appelle la fonction \\ \underline{exponentielle}. Notée \[\exp(x) \quad \text{ (plus tard } e^x)\]
+\end{definition}
+\begin{property}[$\exp(x)$]
+    \noindent
+    \begin{enumerate}
+        \item $\exp'(x) = \exp(x)$ et $\exp(0)=1$ nous donne \[\exp \in C^\infty(\R)\]
+        \item $\exp(x)\neq 0 \; \forall x\in \R$ et $\exp(-x) = \displaystyle\frac{1}{\exp(x)}$
+        \item $\exp$ est strictement croissante
+        \item $\exp(x+y) = \exp(x)\cdot\exp(y) \; \forall x\in\R$
+        \item $\lim_{x\to +\infty} \exp(x)=+\infty$, $\lim_{x\to 0} \exp(x)=0$
+            \begin{proof}[Preuve]
+                $\exp(x) \geq x$. En effet, si $g(x) = \exp(x)-x$, on a 
+                \begin{align*}
+                    g'(x) =& \exp(x)-1 > 0 (x > 0)\\
+                    \implies& g \text{ est strictement croissante sur } [0, +\infty[
+                \end{align*}  
+                Comme $g(0)=1$, donc $g(x)\geq 0$
+            \end{proof}
+        \item $\exp(1) =\displaystyle \lim_{n\to \infty}\left(1+\frac{1}{n}\right)^n$
+    \end{enumerate}
+    Ainsi : $\exp(2) = \exp(1+1) = \exp(1)\cdot\exp(1) = e^2$ et 
+    \[\exp(n) = e^n \quad \forall x\in\R\]
+    De plus $\exp(-n) = \frac{1}{\exp(n)} = \frac{1}{e^n} = e^{-n}$ et on vérifie que $\left(1+\frac{1}{n}\right)^n = e$. Donc :
+    \[\exp\left(\frac{p}{q} = e^{\frac{p}{q}}\right) \quad \forall \textstyle\frac{p}{q}\in\Q\]
+\end{property}
+\begin{definition}
+    Pour $x\in\R$, on pose que \[e^x = \exp(x)\]
+\end{definition}
+\begin{remark}
+    La fonction exponentielle est 
+    \begin{itemize}
+        \item injective (car strictement croissante)
+        \item surjective (coréstraintes à $]0, +\infty[$)
+    \end{itemize}
+    Donc $\exp(x)$ est bijective !
+\end{remark}
+\begin{definition}[Logarithme]
+    Le \underline{logarithme} est la réciproque que la fonction exponentielle. Donc :
+    \begin{align*}
+        \log : \; ]0, + \infty[ &\longrightarrow \R\\
+        x &\longmapsto \log(x) = \ln(x)
+    \end{align*}
+\end{definition}
+\begin{property}[Logarithme]
+    \noindent
+    \begin{enumerate}
+        \item $\mathcal{D}(\ln) = \;]0, + \infty[$ et $\Im(\ln) = \R$. 
+        \item $\ln(1) = 0$. On a :
+            \begin{align*}
+                &x = \exp(\ln(x)) \\
+                \iff& 1 = \exp'(\ln(x))\cdot\ln'(x) = x\ln'(x)\\
+                \implies& \ln'(x) = \frac{1}{x}\\
+                \implies& \ln \in C^\infty\left(]0, +\infty[\right)
+            \end{align*} 
+        
+        \item $\log$ est strictement croissante.
+        \item $\lim_{x\to+\infty}\log(x)=+\infty$ et $\lim_{x\to 0^+}\log(x)=-\infty$.
+    \end{enumerate}
+\end{property}
+\begin{definition}[Autres bases]
+    Pour $a\in\R > 0$\begin{align*}
+        \exp_a(x) &\overset{\text{def}}{=} \exp(\log(a)\cdot x) = a^x\\ 
+        \log_a(x) &= \text{ réciproque }\\ 
+        &= \frac{\ln(x)}{\ln(a)}
+    \end{align*}
+\end{definition}
+\begin{remark}
+    Pour $x, u\in\R$ et $x>0$, on a :
+    \begin{align*}
+        &x^u = \exp(\log(x)\cdot u)\\
+        \implies& (x^u)'=\cdots = ux^{u-1}
+    \end{align*} 
+\end{remark}
