@@ -336,7 +336,152 @@
 \begin{remark}
     Pour $x, u\in\R$ et $x>0$, on a :
     \begin{align*}
-        &x^u = \exp(\log(x)\cdot u)\\
-        \implies& (x^u)'=\cdots = ux^{u-1}
+        x^u &= \exp(\log(x)\cdot u)\\
+        \implies (x^u)'&= \exp(\log(x)\cdot u)\cdot(\log(x)\cdot u)' = ux^{u-1}
     \end{align*} 
 \end{remark}
+\begin{definition}[Fonctions trigonométriques hyperboliques]
+    On défini :
+    \begin{align*}
+        \sinh(x)&=\frac{e^x-e^{-x}}{2}
+        \cosh(x)&=\frac{e^x+e^{-x}}{2}
+        \tanh(x)&=\frac{\sinh(x)}{\cosh(x)} 
+    \end{align*}
+\end{definition}
+\begin{theorem}[Règle de Bernouilli-l'Hospital]
+    Soit $x_0$ et $f, g: A\to\R$, où $A=]x_0-d, x_0+d[\setminus{x_0}$ est un voisinage de $x_0$. Si :
+    \begin{enumerate}
+        \item $\displaystyle \frac{\lim_{x\to x_0}f(x)}{\lim_{x\to x_0}g(x)} = \frac{0}{0} \text{ ou } \frac{\infty}{\infty}$
+        \item $\displaystyle \frac{f'(x)}{g'(x)} = l \in\R\cup \{\pm \infty\}$
+    \end{enumerate}
+    Alors $\lim_{x\to x_0} \frac{f(x)}{g(x)} = \lim_{x\to x_0}\frac{f'(x)}{g'(x)}$
+\end{theorem}
+\begin{proof}[Preuve]
+    En exercices (Application du TAF)
+\end{proof}
+\begin{remark}
+    Ce théorème marche aussi pour limite à droite et à gauche.
+\end{remark}
+\begin{example}[1]
+    Grâce a l'Hostpital, on a : \[\lim_{x\to 0}\frac{\sin(x)}{x} \overset{\text{B-H}}{=} \lim_{x\to 0} \frac{\cos(x)}{x} = 1\]
+\end{example}
+\begin{example}[2]
+    \begin{align*}
+        \lim_{x\to +\infty} \frac{x^p}{\log(x)} &\overset{\text{B-H}}{=} \lim_{x\to + \infty} \frac{px^{p-1}}{\frac{1}{x}}\\
+        &= \lim_{x\to +\infty} px^p = \begin{cases}
+            +\infty & p>0\\
+            0 & p \leq 0
+        \end{cases}
+    \end{align*}
+    Cela montre que $\log(x)$ croît moins vite que tout polynôme.
+\end{example}
+\begin{example}[3]
+    \begin{align*}
+        \lim_{x\to 0}\cos(2x)^{\frac{3}{x^2}} &= \lim_{x\to 0}\exp(\frac{\log(\cos(2x)\cdot3)}{x^2})\\ 
+        &= \exp\left(\lim_{x\to 0}\left(\frac{3}{\cos(2x)}\cdot\frac{-\sin(2x)}{2x}\cdot2\right)\right)\\
+        &= \exp\left(\frac{3}{\cos(0)}\cdot\lim_{y\to 0} \frac{-\sin(y)}{y}\cdot2\right) \\
+        &= \exp(-6) = e^{-6}
+    \end{align*}
+\end{example}
+\begin{remark}
+    \textbf{Attention :} Si la limite du quotient des dérivées n'existe pas ($\notin \R\cup\{\pm \infty\}$), alors B-H ne marche pas.
+\end{remark}
+\begin{property}[Finction $C^1$ par morceaux]
+    Soient $f, g \in C^1(I = \text{intervalle})$ et $x_0\in I$. On suppose que $f(x_0)=g(x_0)$, et on pose \begin{align*}
+        h : I&\to\R\\
+        x&\mapsto\begin{cases}
+            f(x)&x\leq x_0\\
+            g(x)&x\geq x_0
+        \end{cases}
+    \end{align*}
+    Alors $h$ est dérivable en $x_0$ si et seulement si $f'(x_0)=g'(x_0)$ et dans ce cas, $h\in C^1(I)$.
+\end{property}
+\begin{proof}[Preuve]
+    On calcule \begin{align*}
+        h'_{\text{gauche}}(x_0) &\overset{x<x_0}{=}\lim_{x\uparrow x_0}\frac{h(x)-h(x_0)}{x-x_0}\\
+        &\overset{\text{def de } h}{=}\lim_{x\uparrow x_0}\frac{f(x)-f(x_0)}{x-x_0}\\
+        &\overset{\text{B-H}}{=} \lim_{x\to x_0}\frac{f'(x)}{1} \\
+        &= f'(x_0)
+    \end{align*}
+    Similaire pour $h'_{droite}(x_0) = g'(x_0)$. La limites à gauche et à droite coïncindent si et seulement si $f'(x_0)=g'(x_0)$. Dans ce cas, on a :
+    \begin{align*}
+        h'(x) = \begin{cases}
+            f'(x) & x\leq 0\\
+            g'(x) & x\geq 0
+        \end{cases} \implies h' \text{ est continue en} x_0
+    \end{align*}
+    Dans ce cas, $h'$ est continue sur $I$ ($h\in C^1$)
+\end{proof}
+\begin{remark}
+    Cette propriété peut être utilisée récursivement
+    \begin{itemize}
+        \item La preuve montre : $\begin{aligned}[t]
+            &f'_{\text{gauche}}(x_0) = \lim_{x\to x_0^-}f'(x)\\
+            &f'_{\text{droite}}(x_0) = \lim_{x\to x_0^+}f'(x)
+        \end{aligned}$\\ si les limites existent
+    \end{itemize}
+\end{remark}
+\begin{example}
+    Soit $f(x) = \begin{cases}
+        \sinh(x) &x\leq 0\\
+        \sin(x)&x>0
+    \end{cases}$.
+    Alors: \begin{itemize}
+        \item $f$ est continue en $0$ car $\sinh(0) = 0 = \sin(0)$
+        \item de classe $C^1$ sur $\R$, car $\sinh'(0)=\cosh(0)=1$ et $sin'(0)=\cos(0)=1$
+        \item $\in C^2$ car $\sinh''(0)=\sinh(0)=0 = -\sin(0)=\sin''(0)$
+        \item $\notin C^3$ car $\sinh'''(0)=\cosh(0)=1 \neq \sin'''(0) = -1$
+    \end{itemize}
+    Donc $f(x) \in C^2(\R)\setminus D^3(\R)$
+\end{example}
+
+\section{Etude de fonctions}
+Slides
+\section{Application : convergence de suites définies par récurrence}
+\noindent\textbf{Rappel :} Une suite définie par récurrence est une suite $(a_n)_{n\in\N}$ définie par $a_0 = \text{valeur fixée}$ et $a_{n+1} = g(a_n)$, pour une fonction $g:D\to\R$.
+\begin{remark}[Important]
+    \textcolor{red}{Si} $(a_n)$ converge, disons $a_n\to l\in\R$, alors: \begin{align*}
+        l &= \lim_{n\to\infty}a_{n+1} = \lim_{n\to\infty}g(a_n)\\
+        &\overset{g\text{ est cont.}}{=}g(\lim_{n\to\infty} a_n) = g(l)
+    \end{align*}
+    Donc $l$ est foncément une sol de l'équation $\underline{x = g(x)}$. On supposera en général que $g(x)$ est continue et même $C^1$ sur un intervalle. 
+\end{remark}
+\begin{example}
+    Soit $a_0 = \frac13$, $a_{n+1} = a_n^2 = g(a_n)$ où $g(x)=x^2$. Condidats pour $l$ : $x = g(x)=x^2$, donc $l = 0$ ou $l =1$. On calcule quelques valeurs :
+    \begin{align*}
+        a_0 = \frac13, a_1 = \frac{1}{9}, a_2 = \frac{1}{81}, \ldots \to 0
+    \end{align*}
+    En revanche, si $a_0 = 3$, on a :
+    \begin{align*}
+        (a_n) = (3, 9, 81, 81^2, \ldots)\to +\infty
+    \end{align*}
+    De plus, si $a_0=-1$, alors :
+    \begin{align*}
+        (a_n) = (-1, 1, 1, 1, \ldots)\to 1
+    \end{align*}
+    Dans un cas simple comme celui-là, on peut montrer par récurrence que :
+    \begin{align*}
+        a_n = (a_n)^2 \quad \forall n\in\N
+    \end{align*}
+    Donc :
+    \[\begin{cases}
+        a_n \to 0 & |a_0|<1\\
+        a_n \to 1 & a_0 = \pm1\\
+        a_n \to +\infty & |a_0| > 1
+    \end{cases}\]
+    Dans le cas général, une étude de la fonction $g(x)$ peut nous aider si \begin{align}\label{eq:recurrence_condition}
+        a_0 \geq a \text{ et }a \leq g(x)\leq x \quad \forall x \geq a
+    \end{align}
+    alors:
+    \begin{itemize}
+        \item $a_1 = g(a_0) = g(a_0)\geq a$, $a_2 = g(a_1) \geq a$. Par récurrence : $a_{n+1} =g(a_n) \geq a$, donc $a_n\geq a$ pour tout $n\in\N$ donc $(a_n)$ est \underline{minorée}.
+        \item $a_1 = g(a_0) \leq a_0 \implies \ldots \implies a_{n+1} = g(a_n) \leq a_n$ et par récurrence, $(a_n)$ est \underline{décroissante}
+    \end{itemize}
+    Ainsi, dans ce as $(a_n)$ converge ver un candidat $l$ par décroissance minorée.
+\end{example}
+\begin{remark}
+    Equation \ref{eq:recurrence_condition} se généralise
+\end{remark}
+\begin{theorem}[Récurrence linéaire]
+    Soit $(a_n)$ définie par récurrence via \[\] où $g(x) = qx+b$, où $q, b\in\R$ et $q\neq 1$. Alors $(a_n)$ converge vers l'unique solution $l$ de l'equation $g(x)=x$ si et seulement si \[|q|<1 \quad \text{ou}\quad a_0=l\]
+\end{theorem}
