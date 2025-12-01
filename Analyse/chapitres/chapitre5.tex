@@ -115,16 +115,7 @@
     \[\left(f^{-1}\right)'(x) = \frac{1}{f'(f^{-1(x)})}\]
     \begin{proof}[Preuve]
         On admet que $f^{-1}$ est dérivable sur tout $B$. On dérive l'equation $f(f^{-1}(x)) = x$ des deux cotés :
-        \begin{align*}
-            1 &= (f\circ f^{-1})'(x) = f'\left(f^{-1}(x)\right)\\ 
-            \implies& \frac{1}{f'\left(f^{-1}(x)\right)} = (f^{-1})'(x)
-        \end{align*}
-    \end{proof}
-\end{property}
-\begin{example}[1]
-    $f(x) = \sqrt[n]{x} = f^{-1}(x)$ où $f(x)=x^n$, où $x>0$
-    \begin{align*}
-        x &= f(g(x)) = \left(\sqrt[n]{x}\right)^n\\
+        \begin{align*} 1 &= (f\circ f^{-1})'(x) = f'\left(f^{-1}(x)\right)\\ \implies& \frac{1}{f'\left(f^{-1}(x)\right)} = (f^{-1})'(x) \end{align*} \end{proof} \end{property} \begin{example}[1] $f(x) = \sqrt[n]{x} = f^{-1}(x)$ où $f(x)=x^n$, où $x>0$ \begin{align*} x &= f(g(x)) = \left(\sqrt[n]{x}\right)^n\\
         &\implies 1 = n(\sqrt[n]{x})^{n-1}\cdot (\sqrt[n]{x})'\\
         &\implies (\sqrt[n]{x})' = \frac{1}{n(\sqrt[n]{x})^{n-1}} = \frac{1}{n}x^{\frac1n -1}
     \end{align*} 
@@ -343,13 +334,13 @@
 \begin{definition}[Fonctions trigonométriques hyperboliques]
     On défini :
     \begin{align*}
-        \sinh(x)&=\frac{e^x-e^{-x}}{2}
-        \cosh(x)&=\frac{e^x+e^{-x}}{2}
+        \sinh(x)&=\frac{e^x-e^{-x}}{2},\\
+        \cosh(x)&=\frac{e^x+e^{-x}}{2},\\
         \tanh(x)&=\frac{\sinh(x)}{\cosh(x)} 
     \end{align*}
 \end{definition}
 \begin{theorem}[Règle de Bernouilli-l'Hospital]
-    Soit $x_0$ et $f, g: A\to\R$, où $A=]x_0-d, x_0+d[\setminus{x_0}$ est un voisinage de $x_0$. Si :
+    Soit $x_0$ et $f, g: A\to\R$, où $A=]x_0-d, \, x_0+d[\setminus{\{x_0\}}$ est un voisinage de $x_0$. Si :
     \begin{enumerate}
         \item $\displaystyle \frac{\lim_{x\to x_0}f(x)}{\lim_{x\to x_0}g(x)} = \frac{0}{0} \text{ ou } \frac{\infty}{\infty}$
         \item $\displaystyle \frac{f'(x)}{g'(x)} = l \in\R\cup \{\pm \infty\}$
@@ -408,7 +399,7 @@
         h'(x) = \begin{cases}
             f'(x) & x\leq 0\\
             g'(x) & x\geq 0
-        \end{cases} \implies h' \text{ est continue en} x_0
+        \end{cases} \implies h' \text{ est continue en } x_0
     \end{align*}
     Dans ce cas, $h'$ est continue sur $I$ ($h\in C^1$)
 \end{proof}
@@ -437,7 +428,7 @@
 
 \section{Etude de fonctions}
 Slides
-\section{Application : convergence de suites définies par récurrence}
+\subsection{Applications : convergence de suites définies par récurrence}
 \noindent\textbf{Rappel :} Une suite définie par récurrence est une suite $(a_n)_{n\in\N}$ définie par $a_0 = \text{valeur fixée}$ et $a_{n+1} = g(a_n)$, pour une fonction $g:D\to\R$.
 \begin{remark}[Important]
     \textcolor{red}{Si} $(a_n)$ converge, disons $a_n\to l\in\R$, alors: \begin{align*}
@@ -469,19 +460,207 @@ Slides
         a_n \to 1 & a_0 = \pm1\\
         a_n \to +\infty & |a_0| > 1
     \end{cases}\]
-    Dans le cas général, une étude de la fonction $g(x)$ peut nous aider si \begin{align}\label{eq:recurrence_condition}
-        a_0 \geq a \text{ et }a \leq g(x)\leq x \quad \forall x \geq a
+    Dans le cas général, une étude de la fonction $g(x)$ peut nous aider. Si \begin{align}\label{eq:recurrence_condition}
+        a_0 \geq l \text{ et }l \leq g(x)\leq x \quad \forall x \geq l
     \end{align}
     alors:
     \begin{itemize}
-        \item $a_1 = g(a_0) = g(a_0)\geq a$, $a_2 = g(a_1) \geq a$. Par récurrence : $a_{n+1} =g(a_n) \geq a$, donc $a_n\geq a$ pour tout $n\in\N$ donc $(a_n)$ est \underline{minorée}.
+        \item $a_1 = g(a_0) \geq l$, $a_2 = g(a_1) \geq l$. Par récurrence : $a_{n+1} =g(a_n) \geq l$, donc $a_n\geq l$ pour tout $n\in\N$ donc $(a_n)$ est \underline{minorée}.
         \item $a_1 = g(a_0) \leq a_0 \implies \ldots \implies a_{n+1} = g(a_n) \leq a_n$ et par récurrence, $(a_n)$ est \underline{décroissante}
     \end{itemize}
-    Ainsi, dans ce as $(a_n)$ converge ver un candidat $l$ par décroissance minorée.
+    Ainsi, dans ce as $(a_n)$ converge vers un candidat $l$ par décroissance minorée.
 \end{example}
 \begin{remark}
     Equation \ref{eq:recurrence_condition} se généralise
 \end{remark}
 \begin{theorem}[Récurrence linéaire]
-    Soit $(a_n)$ définie par récurrence via \[\] où $g(x) = qx+b$, où $q, b\in\R$ et $q\neq 1$. Alors $(a_n)$ converge vers l'unique solution $l$ de l'equation $g(x)=x$ si et seulement si \[|q|<1 \quad \text{ou}\quad a_0=l\]
+    Soit $(a_n)$ définie par récurrence via \[a_0 = a, a_{n+1} = g(a_n)\] où $g(x) = qx+b$, où $q, b\in\R$ et $q\neq 1$. Alors $(a_n)$ converge vers l'unique solution $l$ de l'equation $g(x)=x$ si et seulement si \[|q|<1 \quad \text{ou}\quad a_0=l\]
+    Donc \[l\leq g(x)\leq x\]
 \end{theorem}
+\begin{proof}
+    \textbf{Illustration :}
+    \begin{center}
+        \includegraphics[width=0.8\textwidth]{convergence_lin.png}
+    \end{center}
+    On voi que dans le cas $(1)$, la fonction converge vers le seul candidat : $l$. Dans le cas $(2)$, la fonction converge aussi. Dans le cas $(3)$, la fonction diverge.
+    Si $q\leq0$, on pose \begin{align*}
+        b_k &= a_{2k}\\
+        c_k &= a_{2k+1}
+    \end{align*}
+    Ces suites sont définies par récurrence : $b_0 = a_0$, $b_{k+1}=a_{2k+2} = g(g(a_{2k})) = h(b_k)$ où $h(x)=g(g(x)) = g\circ g(x) = g(qx+b)= q^2x + qb+b$. Pareil pour $c_n$ :
+    \begin{align*}
+        c_0 = a_1, c_{n+1}=g(g(a_{2k+1})) = h(c_k)
+    \end{align*} 
+    Si $-1<q\leq0$, alors, $0\leq q^2 <1$, donc $b_k$ et $c_k$ convergent par le cas précédent vers $l$.\\
+    Si $q<-1, q^2 >1$, donc les suites $b_n$ et $c_n$ divergent par le cas précédent, donc $a_n$ diverge également.
+\end{proof}
+\begin{example}[Non linéaire]
+    $a_0 = $ fixé $\in \R^*$, $a_{n+1} = \frac{1}{2}\left(a_n+\frac{3}{a_n}\right) = g(a_n)$ où $g(x) = \frac{1}{2}\left(x + \frac{1}{3}\right)$. Les candidats pour $l$ sont $x = \sqrt{3}$ ou $x=-\sqrt{3}$.
+    \begin{center}
+    \begin{tabular}{c|cccc}
+    $x$ & $(-\infty,-\sqrt{3})$ & $(-\sqrt{3},0)$ & $(0,\sqrt{3})$ & $(\sqrt{3},+\infty)$ \\ \hline
+    $3-x^2$ & $-$ & $+$ & $+$ & $-$ \\
+    $x$ & $-$ & $-$ & $+$ & $+$ \\
+    $g(x)-x=\dfrac{3-x^2}{2x}$ & $+$ & $-$ & $+$ & $-$ \\
+    Comparaison & $g(x)>x$ & $g(x)<x$ & $g(x)>x$ & $g(x)<x$
+    \end{tabular}
+    \end{center}
+    Donc on a \begin{itemize}
+        \item si $a_0\in [\sqrt{3}, +\infty[$, on a \[\sqrt{3}\leq g(x)\leq x\] et $a_n\to \sqrt{3}$
+        \item si $a_0\in ]0, \sqrt{3}[$, $a_1 = g(a_0)\geq \sqrt{3}$ alors $a_1$ est dans la région précédente, donc $a_n \to \sqrt{3}$
+        \item si $a_0 <0, a_n\to -\sqrt{3}$
+    \end{itemize}
+    Donc on conclut que si $a_0 > 0, a_n\to\sqrt{3}$ et si $a_0 <0, a_n\to -\sqrt{3}$.
+\end{example}
+\section{Développements limités}
+Le but est d'approximer une fonction par un polynôme. 
+\begin{definition}
+    Soit $f\in C^n(I)$ où $I$ est un intervalle ouvert et $x_0\in I$. Le polynôme de Taylor de $f$ d'ordre $n$ en $x_0$ est l'unique polynôme $p(x)$ de degré $ \leq n$ dont les dérivées en $x_0$ sont les mêmes que celles de $f$ jusqu'à l'ordre $n$.
+\end{definition}
+\begin{example}
+    Soit $f(x) = \sin(x)$, $x_0=0$. On a 
+    \begin{itemize}
+        \item $p_1(x)=x$ car $\sin(0) = 0 = p_1(0), \sin'(0) = 1 = p_1'(0)$.
+        \item $p_2(x)=x$ car $\sin''(0) = 0 = p_2''(0)$.
+        \item $p_3(x)=x-\frac{1}{6}x^3$ car $p_3'(x)=-1-\frac{3}{6}x^2, p_3''(x)=\frac{-6}{6}x, p_3'''(x)=-1 = \sin'''(0)$
+    \end{itemize}
+\end{example}
+Ainsi, la formule pour trouver le $p_n$ polynôme est \begin{align*}
+    p_n(x)=\sum_{k=0}^{n} a_k(x-x_0)^k
+\end{align*} où $a_k = \frac{f^{(k)}(x_0)}{k!}$
+\begin{definition}[Développement limité]
+    Soit $f:I\to\R$, où $I$ est un intervalle ouvert, $x_0\in I$. Alors, $f$ admet un développement limité d'ordre $n$ en $x_0$ si 
+    \begin{align*}
+        f(x) = \text{ polynôme de degré $\leq n$ } + \text{ reste } r_n(x)
+    \end{align*}
+    pour tout $x\in I$ où $r_n(x)$ vérifie
+     \begin{itemize}
+        \item Pour tout $c > 0$, $|r_n(x)| \leq c|x-x_0|^n$ dans un voisinage de $x_0$.
+        \item $\displaystyle\lim_{x\to x_0} \frac{r_n(x)}{(x-x_0)^n} = 0$
+        \item $r_n(x) = (x-x_0)^n\varepsilon(x)$, où $\varepsilon : I\to\R$ est telle que $\displaystyle\lim_{x\to x_0}\varepsilon(x)=0$
+    \end{itemize}
+\end{definition}
+\begin{theorem}[Formule de Taylor]
+    Soit $f\in C^n(I)$, où $I$ est un intervalle ouvert, $x_0\in I$. Alors $f$ admet un $DL_n$ en $x_0$ donné par \[f(x)=p_n(x)+(x-x_0)^n\varepsilon(x)\]
+\end{theorem}
+\begin{proof}
+    On applique B-H $n$ fois.    
+\end{proof}
+\begin{remark}
+    Soit $f:I\to\R$, $x_0\in I$ ouvert. Alors \begin{itemize}
+        \item Si $f$ admet un $DL_n$, il est unique.
+        \item Si $f$ est continue en $x_0$, alors $f$ admet un $DL_0$ en $x_0$, de plus l'autre sens en vrai aussi si on suppose que $\varepsilon (x)=0$.
+        \item Si $f$ est continue en $x_0$ alors $f$ admet un $DL_1$ en $x_0$ si et seulement si $f$ est dérivable. 
+    \end{itemize}
+\end{remark}
+\begin{example}
+    On va voir que $\sin(x)$ admet un développement limité d'ordre $3$ en $x_0 = 0$ donné par $\sin(x) = x - \frac{1}{6}x^3 + x^3\varepsilon(x)$. La seule chose à montrer est 
+    \begin{align*}
+        &\lim_{x\to 0} \varepsilon(x)=0\\
+        \iff& \lim_{x\to 0} \frac{\sin(x)-x+\frac{1}{6}x^2}{x^3}\overset{\text{B-H}}{=} 0
+    \end{align*}
+    On a donc que le $DL_2$ en $x_0=0$ est \[x+x^2\varepsilon (x)\]
+\end{example}
+\begin{remark}[Estimation du reste]
+    On dit que
+    $|r_n(x)|\leq f^{(n+1)}(u)=\frac{|x-x_0|^{n+1}}{n!}$
+\end{remark}
+\subsection{Applications : Calculs de limites}
+
+\begin{itemize}
+    \item Calculons la limite suivante : $\lim_{x\to 0}\frac{\sin(x)-x}{x^3}$
+        \begin{align*}
+            &=\lim_{x\to 0} \frac{x - \frac{1}{6}x^3+x^3\varepsilon(x)-x}{x^3}\\
+            &=\lim_{x\to 0}\left(-\frac{1}{6}+\varepsilon(x) = -\frac{1}{6}\right)
+        \end{align*}
+        On voit qu'avec un $DL_1$ ca ne marche pas. Donc :
+        \begin{align*}
+            \lim_{x\to 0}\frac{\sin(x)-x}{x^3} &= \lim_{x\to 0}\frac{x+x\varepsilon(x)-x}{x^3}\\
+            &=\lim_{x\to 0}\frac{\varepsilon(x)}{x^2}
+        \end{align*}
+        Donc il a fallu prendre un développement limité d'ordre plus grand.
+    \item $\lim_{x\to 0}\frac{x^2 - 2 + 2\cos(x)}{x^4}$ \begin{align*}
+            &=\lim_{x\to 0} \frac{1}{x^4}\left(x^2-2+2\left(1-\frac{x^2}{2}+\frac{x^4}{24}+x^4\varepsilon(x)\right)\right)\\
+            &=\lim_{x\to 0}\frac{1}{12+\varepsilon(x)} = \frac{1}{12}
+        \end{align*}
+    \item $\sum_{n=1}^{\infty}\left(1-\cos\left(\frac{1}{n}\right)\right)$ : \begin{align*}
+        =\sum_{n=1}^{\infty}\left(1-\left(1-\frac{\left(\frac{1}{n}\right)^2}{2} + \left(\frac{1}{n}\right)^2 \varepsilon(x)\right)\right)\\
+        =\sum_{n=1}^{\infty}\frac{\left(\frac{1}{n}\right)^2}{n}-\left(\frac{1}{n}\right)^2\varepsilon\left(\frac{1}{n}\right)\leq \sum_{n = 1}^{\infty}\left(\frac{1}{n}\right)^2
+    \end{align*}
+    Comme $c$ est supérieur à $0$, cette série converge et la série originale aussi, par comparaison.
+\end{itemize}
+\begin{example}[Calculs de $DL$]
+    Tant qu'on écrit le rest, on peut tout faire.
+\end{example}
+\begin{example}[Le $DL_2$ en $x_0 = 0$ de $f(x)=\sin(x)\cos(x)$] 
+    On utilise le $DL_2$ de $\sin(x)$ et le $DL_1$ de $\cos(x)$. Donc \begin{align*}
+        \sin(x)\cos(x)&=\left(x+x^2\varepsilon(x)\right)\left(1+x\varepsilon(x)\right)\\
+        &=x+x^2\varepsilon(x)+x^2\varepsilon(x)+x^3\varepsilon(x)\varepsilon(x)\\
+        &=x+x^2\left(\underbrace{\varepsilon(x) + \varepsilon(x)+ x\varepsilon(x)\varepsilon(x)}_{\to 0}\right)\\
+        &=x+x^2\varepsilon(x)
+    \end{align*}
+\end{example}
+\begin{example}Le $DL_1$ en $x_0$ de $f(x)=e^{\cos(x)}$. On utiliser les $DL_1$ de $\cos(x)$ et $e^x$. \begin{align*}
+    e^{\cos(x)} &=1 + \cos(x)+ \cos(x)\varepsilon\left(\underbrace{\cos(x)}_{\to 1}\right)
+\end{align*}
+On voit que $\varepsilon(x)$ ne tend pas vers $0$. \\
+\textbf{Solution : } Méthode (i) : il faut réécrire l'expression pour avoit quelque chose qui tend vers $0$. Donc : \begin{align*}
+    e^{\cos(x)} &= e ^{1+x\varepsilon(x)} = e\cdot e^{c\varepsilon(x)}\\
+    &= e\left(1+x\varepsilon(x)+x\varepsilon(x)\varepsilon(x\varepsilon(x))\right)\\
+    &= e + x\left(e\varepsilon(x) + e\varepsilon(x)\cdot\varepsilon(x\varepsilon(x))\right)
+\end{align*}
+Methode (ii) : Combiner le $DL_1$ en $x_0 = 0$ et de $\cos(x)$ avec le $DL_1$ en $x_0 = \cos(0) = 1$ de $e^x$. Donc : \begin{align*}
+    e^x&=e+e(x-1)+(x-1)\underbrace{\tilde{\varepsilon}(x)}_{\to 0 \text{ lorsque } x\to1}\\
+    \implies & e^{\cos(x)} = e + e\left(\cos(x)-1\right)+\left(\cos(x)-1\right)\tilde{\varepsilon}(x)\\
+    &= e+ e(x\varepsilon(x))+(x\varepsilon(x))\tilde{\varepsilon}(\cos(x))\\
+    &=e+x\left(e\varepsilon(x)\right) + \varepsilon(x)\tilde{\varepsilon}(\cos(x))
+\end{align*}
+\end{example}
+
+\subsection{Séries de Taylor}
+Si $f \in C^n(I)$, avec $I$ un intervalle ouvert, $x_0\in I$, on a \[f(x)=\sum_{k=0}^{n}\frac{f^{(n)}(x_0)}{k!} (x-x_0)^k + r_n(x)\]
+Question : si $f\in C^\infty(I)$, a-t-on $f(x)=\sum_{k=0}^{\infty}\frac{f^{(n)}(x_0)}{k!} (x-x_0)^k$ ? Quand on a $n\to \infty$, il faut que :
+\begin{enumerate}
+    \item La série converge
+    \item Le reste $r_n(x) \longrightarrow 0$ lorsque $n\to \infty$
+\end{enumerate}
+\begin{definition}
+    Pour $f\in C^\infty(I)$ avec $I$ un intervalle ouvert, $x_0\in I$, la série de Taylor de $f$ centrée en $x_0$ est la série \[\sum_{k = 0}^{\infty}\frac{f^{(n)}(x_0)}{k!}(x-x_0)^k\]
+\end{definition}
+\begin{remark}
+    \noindent\begin{itemize}
+        \item Cette série est définie quelque soit $f\in C^\infty(I)$ (même si $r_n(x) \nrightarrow  0$)
+        \item Si x$_0 = 0$, elle s'appelle aussi série de Maclaurin.
+        \item C'est une série entière ! (cf. Chap. 3.3 $\rightsquigarrow $ centre $=x_0$, rayon de convergence pas connu)
+    \end{itemize}
+\end{remark}
+\begin{example}[1]
+    $f(x) = e^x\in C^\infty(\R), x_0 = 0$. Le $DL_n$ de $f$ donne \[e^x =\sum_{k = 0}^{\infty}\frac{x^k}{k!}+x^n\varepsilon(x)\] 
+    Donc la série de Taylor (en $x_0 = 0$) est donc $\sum_{k = 0}^{\infty}\frac{x^k}{k!}$. Cette série converge pour tout $x\in\R$. Il reste à voir que $\lim_{x\to \infty}r_n(x) = 0$. On a :
+    \[|r_n(x)| \leq f^{(n+1)} (u) \frac{|x|^{n+1}}{n!} = e^u\frac{|x|^{n+1}}{n !} \leq \frac{e ^{|x|} |x|^{n+1}}{n!} \longrightarrow 0 \text{ lorsque } n\to \infty \]
+    Ainsi la limite du ret et bien $0$. Donc $e^x$ est égale à sa série de Taylor en $x_0 = 0$ pour tout $x\in\R$ :
+    \[e^x = \sum_{k = 0}^{\infty}\frac{x^k}{k!}\] 
+    \begin{remark}
+        En fait, $e^x = \sum_{k = 0}^{\infty}\frac{e^{x_0}}{k!}(x-x_0)^n$
+    \end{remark}
+\end{example}
+
+\begin{example}[2]
+    Cela marche aussi pour $\sin$, $\cos$, $\sinh$, $\cosh$ ! 
+    \begin{align*}
+        \implies & \sin(x) = \sum_{k = 0}^{\infty}\frac{(-1)^k}{(2k+1)!} x^{2k+1}\\
+        \implies & \cos(x) = \sum_{k = 0}^{\infty}\frac{(-1)^k}{(2k)!} x^{2k}
+    \end{align*}
+    pour tout $x\in\R$.
+    \begin{remark}
+        Cela donne enfin une raison pour la formule $e^{ix} = \cos(x) + i\sin(x)$. En effet \begin{align*}
+            e^{ix}&=\sum_{k = 0}^{\infty}\frac{(ix)^k}{k!} = \sum_{k = 0}^{\infty}\frac{(ix)^2}{(2k)!} + \sum_{k = 0}^{\infty} \frac{(ix)^{2k+1}}{(2k+1)!}\\
+            &= \sum_{k = 0 }^{\infty}\frac{(-1)^{k}}{(2k)!} x^{2k} + i \sum_{k=0}^{\infty}\frac{(-1)^k}{(2k+1)!}x^{2k+1}\\
+            &= \cos(x)+i\sin(x)
+        \end{align*}
+    \end{remark}
+\end{example}
+\begin{property}[Dériviées de série entières]
+    Si $f(x) = \sum_{k = 0}^{\infty}b_k(x-x_0)^k$, alors \[f'(x) = \sum_{k = 0}^{\infty}k\cdot b_k(x-x_0)^{k-1} = \sum_{k = 0}^{\infty}(k+1)b_{k+1}(x-x_0)\] et les rayons de convergences sont les mêmes ! Par example, on a 
+    \[e^x = \sum_{k = 0}^{\infty}\frac{x^k }{k!}\]
+\end{property}
