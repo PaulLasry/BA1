@@ -1,0 +1,460 @@
+\input{preambule.tex} % Importe toutes les configurations et paquets
+
+\begin{document}
+
+% ===================================================================
+% SECTION 1: BASES ET PIÈGES
+% ===================================================================
+\section{Bases et Pièges Classiques}
+
+\subsection{Comparaison}
+\begin{itemize}
+    \item \textbf{Primitifs} (\lstinline!int, double, boolean!) : Utiliser \lstinline!==!.
+    \item \textbf{Objets} (\lstinline!String, Tableaux, Instances!) : 
+    \begin{itemize}
+        \item \lstinline!a == b! : Compare les \textbf{références} (adresses mémoire).
+        \item \lstinline!a.equals(b)! : Compare le \textbf{contenu} (si redéfini).
+    \end{itemize}
+    \item \textbf{String Pool :} \lstinline!"A" == "A"! (true), mais \lstinline!new String("A") == "A"! (false). Toujours utiliser \lstinline!.equals()! pour les Strings !
+\end{itemize}
+
+\subsection{Tableaux vs ArrayList}
+\begin{table}[!h]
+    \centering
+    \begin{tabular}{|>{\raggedright\arraybackslash}p{3.5cm}|>{\raggedright\arraybackslash}p{3.5cm}|}
+    \hline
+    \textbf{Tableau (Fixe)} & \textbf{ArrayList (Dynamique)} \\
+    \hline
+    \lstinline!int[] t = new int[5];! & \lstinline!ArrayList<Integer> l = ... ;! \\
+    \hline
+    \lstinline!t.length! (attribut) & \lstinline!l.size()! (méthode) \\
+    \hline
+    \lstinline!t[i]! & \lstinline!l.get(i)! \\
+    \hline
+    \lstinline!t[i] = val! & \lstinline!l.set(i, val)! \\
+    \hline
+    Immuable en taille & \lstinline!l.add(val)!, \lstinline!l.remove(i)! \\
+    \hline
+    \end{tabular}
+    \caption{Tableau de comparaison entre les liste de taille fixe et dynamique}   
+\end{table}
+
+
+
+% ===================================================================
+% SECTION 2: POO
+% ===================================================================
+\section{Programmation Orientée Objet}
+
+\subsection{Constructeurs}
+\begin{itemize}
+    \item \textbf{Par défaut :} Fourni par Java \textit{si aucun autre constructeur n'existe}. Initialise à \lstinline!0/null/false!.
+    \item \textbf{Chainage (this)} : \lstinline!this(...)! appelle un autre constructeur de la \textbf{même classe}. Doit être la \textbf{1ère ligne}.
+    \item \textbf{Chainage (super)} : \lstinline!super(...)! appelle le constructeur de la \textbf{super-classe}. C'est la manifestation du \textbf{polymorphisme en construction} : l'objet se construit "de la base vers le dérivé".
+    \item \textbf{Piège de la résolution dynamique} : Si un constructeur de la super-classe appelle une méthode qui est redéfinie dans la sous-classe, c'est la version de la \textbf{sous-classe} qui est exécutée, \textit{même si le constructeur de la sous-classe n'a pas encore été appelé}. Attention aux \lstinline!NullPointerException! si la méthode redéfinie utilise des champs initialisés uniquement dans le constructeur fils.
+    \item \textbf{Règle d'or} : Si la 1ère ligne n'est pas \lstinline!this(...)! ou \lstinline!super(...)!, Java ajoute implicitement \lstinline!super()! (vide). Si le parent n'a pas de constructeur par défaut $\rightarrow$ Erreur de compilation.
+    \item \textbf{Récursivité} : Un constructeur \textbf{ne peut pas} s'appeler lui-même (ni directement, ni indirectement). Le compilateur l'interdit pour éviter une boucle d'initialisation infinie. Il peut cependant appeler une méthode externe qui est, elle, récursive.
+\end{itemize}
+
+\subsection{Encapsulation \& Visibilité}
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{|l|c|c|c|c|}
+    \hline
+    Modifier & Classe & Pkg & Sous-Cl & Monde \\
+    \hline
+    \lstinline!public! & Oui & Oui & Oui & Oui \\
+    \hline
+    \lstinline!protected! & Oui & Oui & Oui & Non \\
+    \hline
+    \lstinline!(défaut)! & Oui & Oui & Non & Non \\
+    \hline
+    \lstinline!private! & Oui & Non & Non & Non \\
+    \hline
+    \end{tabular}
+    \caption{Tableau de visibilité des modificateurs}
+\end{table}
+
+
+Lors de la redéfinition d'une méthode héritée, il est \textbf{interdit de réduire la visibilité} de la méthode par rapport à sa version dans la super-classe. La visibilité peut être maintenue ou étendue (ex: de \lstinline!protected! à \lstinline!public!), mais jamais restreinte (ex: de \lstinline!public! à \lstinline!protected! ou \lstinline!private!).
+
+\subsection{Static vs Final}
+\begin{itemize}
+    \item \lstinline!static! : Appartient à la classe, pas à l'instance. Partagé par tous les objets.
+    \begin{itemize}        
+        \item \textbf{Variable static} : Partagée par toutes les instances de la classe. Accès via \lstinline!Classe.variable!.
+        \item \textbf{Méthode static} : Appel via \lstinline!Classe.methode()!. N'a pas accès à \lstinline!this! ni à \lstinline!super! (pas d'instance).
+        \item \textbf{Attention Sacha } : Une methde statique comme \lstinline|main| n'a pas accès aux attributs non statiques.
+    \end{itemize}
+    \item \lstinline!final! (variable) : Constante, assignée 1 seule fois (référence).
+    \begin{itemize}
+        \item \textbf{Primitif} : Valeur fixe.
+        \item \textbf{Objet} : Référence fixe, mais contenu modifiable (sauf pour les objet immuable (\lstinline!String!)).
+    \end{itemize}
+\item \lstinline!final! (méthode) : Ne peut pas être redéfinie (\lstinline!@Override! interdit).
+    \item \lstinline!final! (classe) : Ne peut pas avoir de sous-classes.
+\end{itemize}
+
+\subsection{Classes Imbriquées (Nested Classes)}
+Une classe définie à l'intérieur d'une autre classe. Il en existe 4 types.
+
+\subsubsection{Classe Interne (Inner Class)}
+\begin{itemize}
+    \item Définie sans le mot-clé \lstinline!static!.
+    \item Liée à une instance de la classe externe. Ne peut exister sans elle.
+    \item A accès à \textbf{tous} les membres de la classe externe, y compris \lstinline!private!.
+    \item Syntaxe pour l'instancier depuis l'extérieur : \lstinline!Outer.Inner inner = outerInstance.new Inner();!
+\end{itemize}
+\begin{figure}[h!]
+    \begin{lstlisting}
+        class Outer {
+            private int x = 10;
+            class Inner {
+                void display() {
+                    System.out.println("x = " + x); // Accès direct
+                }
+            }
+        }
+    \end{lstlisting}
+    \caption{Illustration d'une classe interne}
+\end{figure}
+
+
+\subsubsection{Classe Statique Imbriquée (Static Nested Class)}
+\begin{itemize}
+    \item Déclarée avec le mot-clé \lstinline!static!.
+    \item Pas liée à une instance de la classe externe. C'est une classe de haut niveau "rangée" dans une autre.
+    \item A accès uniquement aux membres \textbf{statiques} de la classe externe.
+    \item Syntaxe pour l'instancier : \lstinline!Outer.Nested nested = new Outer.Nested();!
+\end{itemize}
+\begin{figure}[h!]
+    \begin{lstlisting}[language=Java]
+    class Outer {
+        private static int y = 20;
+        static class Nested {
+            void display() {
+                System.out.println("y = " + y); // Accès au static
+            }
+        }
+    }
+    \end{lstlisting}
+    \caption{Illustration d'une classe imbriquée statique}
+\end{figure}
+
+
+\newpage
+\subsection{Type énuméré (Enum)}
+Un type énuméré est une classe spéciale qui représente un groupe de \textbf{constantes}. C'est la manière la plus propre et sûre de modéliser un ensemble fixe de valeurs (ex: jours de la semaine, états, couleurs).
+\begin{itemize}
+    \item \textbf{Type-Safe} : Le compilateur garantit qu'une variable de type \texttt{Jour} ne peut contenir que les valeurs définies (LUNDI, MARDI, etc.), évitant les erreurs liées à l'utilisation de \lstinline!String! ou \lstinline!int!.
+    \item \textbf{Plus qu'un simple nom} : Une énumération est une vraie classe. Elle peut avoir des \textbf{attributs}, des \textbf{méthodes} et un \textbf{constructeur}.
+    \item \textbf{Constructeur privé} : Le constructeur d'un enum est implicitement \textbf{privé}. On ne peut pas créer de nouvelles instances avec \lstinline!new!.
+    \item \textbf{Utilisation} : On y accède via \lstinline!NomEnum.VALEUR! (ex: \lstinline!Feux.ROUGE!). Idéal pour les instructions \lstinline!switch!.
+\end{itemize}
+Voici un exemple d'énumération avec des attributs et des méthodes :
+\begin{figure}[h!]
+    \begin{lstlisting}
+        public enum Feu {
+            VERT("Vert", false),
+            ORANGE("Orange", false),
+            ROUGE("Rouge", true);
+
+            private final String nom;
+            private final boolean arretRequis;
+            
+            // Constructeur est implicitement private
+            Feux(String nom, boolean arretRequis) {
+                this.nom = nom;
+                this.arretRequis = arretRequis;
+            }
+
+            public String getNom() {
+                return nom;
+            }
+
+            public boolean doitArreter() {
+                return arretRequis;
+            }
+        }
+
+        // Utilisation
+        Feux monFeu = Feux.VERT;
+        if (monFeu.doitArreter()) {
+            // ...
+        }
+    \end{lstlisting}
+    \caption{Illustration de le déclaration et de l'utilisation d'un type énuméré}
+\end{figure}
+
+% ===================================================================
+% SECTION 3: HÉRITAGE & POLYMORPHISME
+% ===================================================================
+\newpage
+\section{Héritage et Polymorphisme}
+
+\subsection{Définitions}
+\begin{itemize}
+    \item \textbf{Surcharge (Overload)} : Même nom, \textbf{paramètres différents}. Résolu à la \textbf{compilation} (type statique).
+    \item \textbf{Redéfinition (Override)} : Même signature, comportement différent dans sous-classe. Résolu à l'\textbf{exécution} (type dynamique).
+\end{itemize}
+
+\subsection{Résolution des liens}
+Soit \lstinline!A a = new B();! (B étend A).
+\begin{enumerate}
+    \item \textbf{Type Statique} (A) : Détermine ce qu'on a le \textit{droit} d'appeler. Si la méthode n'existe pas dans A $\rightarrow$ Erreur compil.
+    \item \textbf{Type Dynamique} (B) : Détermine quelle version est exécutée. Si B redéfinit la méthode, c'est celle de B qui tourne.
+    \item \textbf{Attributs} : Toujours liés au type \textbf{statique} (Pas de polymorphisme sur les attributs !).
+    \item Les méthodes \lstinline!static! sont des liens résolus statiquement.
+\end{enumerate}
+
+\begin{figure}[h!]
+    \begin{lstlisting}
+        class Animal {
+            public void manger() {
+                System.out.println("L'animal mange.");
+            }
+        }
+
+        class Chien extends Animal {
+            @Override
+            public void manger() {
+                System.out.println("Le chien mange sa gamelle.");
+            }
+
+            public void aboyer() {
+                System.out.println("Woof !");
+            }
+        }
+
+        public class TestPolymorphisme {
+            public static void main(String[] args) {
+                // Type statique: Animal, Type dynamique: Chien
+                Animal monAnimal = new Chien();
+
+                // OK: manger() existe dans Animal.
+                // La version de Chien est appelée.
+                monAnimal.manger();
+
+                // ERREUR DE COMPILATION: aboyer() n'existe pas dans Animal.
+                // monAnimal.aboyer();
+
+                // Pour y accéder, il faut une référence de type Chien.
+                Chien monChien = (Chien) monAnimal;
+                monChien.aboyer(); // OK après cast.
+            }
+        }
+    \end{lstlisting}
+    \caption{Exemple dévelopé pour le point 1 de la résolution des liens}
+\end{figure}
+
+
+\subsection{Classes Abstraites vs Interfaces}
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|>{\raggedright\arraybackslash}p{3.5cm}|>{\raggedright\arraybackslash}p{3.5cm}|}
+    \hline
+    \textbf{Classe Abstraite} & \textbf{Interface} \\
+    \hline
+    \lstinline!extends! (1 seule) & \lstinline!implements! (N) \\
+    \hline
+    Peut avoir état (attributs) & Pas d'attributs (sauf constantes static final) \\
+    \hline
+    Constructeurs possibles & Pas de constructeurs \\
+    \hline
+    Méthodes privées/protected OK & Méthodes public par défaut \\
+    \hline
+    Relation "EST-UN" & Relation "SE COMPORTE COMME" \\
+    \hline
+    \end{tabular}
+    \caption{Différences entre classe abstraite et interface.}
+\end{table}
+
+\textit{Java 8+} : Les interfaces peuvent avoir des méthodes \lstinline!default! (avec corps) et \lstinline!static!.
+\newline\textbf{Attention aussi :} Une méthode \lstinline!default! dans une interface \textbf{ne peut pas} être déclarée \lstinline!final!. Une méthode \lstinline!default! est conçue pour être redéfinie, ce qui est incompatible avec le modificateur \lstinline!final!.
+\newline\textbf{Attention :} Les variables dans une interface sont \textbf{toujours} \lstinline!public static final! (des constantes), on ne peut pas avoir de variable d'instance ou avec la visibilité \lstinline!default!.
+
+
+% ===================================================================
+% SECTION 4: EXCEPTIONS
+% ===================================================================
+\section{Exceptions}
+
+\subsection{Hiérarchie des Exceptions et Règle Fondamentale}
+
+La règle de base du compilateur est la suivante : toute classe qui hérite de \lstinline|Throwable| est considérée comme \textbf{checked}, \underline{sauf} :
+\begin{itemize}
+    \item La classe \lstinline|Error| et ses descendantes (erreurs système graves).
+    \item La classe \lstinline|RuntimeException| et ses descendantes (erreurs de programmation).
+\end{itemize}
+
+C'est pourquoi \textbf{\lstinline|throw new Exception()|} est une opération \textit{checked} : la classe \lstinline|Exception| n'est ni une \lstinline|Error|, ni une \lstinline|RuntimeException|. Le schéma ci-dessous clarifie cette hiérarchie et la distinction.
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[
+        treenode/.style = {align=center, inner sep=3pt, text centered, font=\sffamily, rectangle, rounded corners, draw},
+        level 1/.style={sibling distance=5.5cm, level distance=1.5cm},
+        level 2/.style={sibling distance=4.5cm, level distance=1.5cm},
+        level 3/.style={level distance=1.8cm},
+        level 4/.style={}
+        edge from parent/.style={draw, -latex}
+    ]
+    \node[treenode, fill=yellow!20] {Throwable}
+        child { node[treenode, fill=gray!30] {\lstinline|Error|} }
+        child { node[treenode, fill=blue!20] (E) {Exception \lstinline|Exception|}
+            child { node[treenode, fill=blue!20] {\lstinline|IOException|, \lstinline|SQLException|, etc.\\ \textbf{(Checked)}} }
+            child { node[treenode, fill=red!20] {\lstinline|RuntimeException| \\ \textbf{(Unchecked)}}
+                child { node[treenode, fill=red!20, font=\sffamily\small] {\lstinline|NullPointerException| \\ \lstinline|IllegalArgumentException| \\ etc. \\ \textbf{(Unchecked)}} }
+            }
+        };
+    \end{tikzpicture}
+    \caption{Illustration de hiérarchie de classe}
+\end{figure}
+
+
+
+\begin{itemize}
+    \item \textbf{Throwable} : Classe racine de tout ce qui peut être "lancé".
+    \item \textbf{Error} : Erreurs graves (ex: \lstinline!OutOfMemoryError!), non destinées à être attrapées.
+    \item \textbf{Exception} : Erreurs applicatives.
+    \begin{itemize}
+        \item \textbf{Branche `RuntimeException` (Unchecked)} : Erreurs de logique qui ne demandent pas de \lstinline!try-catch! obligatoire (ex: \lstinline!NullPointerException!). Le compilateur les ignore.
+        \item \textbf{Les autres branches (Checked)} : Erreurs prévisibles que le compilateur \textbf{force} à gérer (ex: \lstinline!IOException!).
+    \end{itemize}
+\end{itemize}
+
+\subsection{Rôle du Compilateur }
+Le compilateur Java applique une règle stricte pour les \textbf{checked exceptions} : la règle du "Catch or Specify" (Attraper ou Déclarer).
+
+Si un morceau de code peut lever une \textit{checked exception}, le compilateur \textbf{refusera de compiler} tant que vous n'aurez pas fait l'une des deux choses suivantes :
+\begin{enumerate}
+    \item \textbf{Attraper (Catch)} : Encadrer le code à risque dans un bloc \lstinline!try-catch!. C'est vous qui gérez le problème.
+    \item \textbf{Déclarer (Specify)} : Ajouter \lstinline!throws NomDeLException! à la signature de la méthode. Vous déléguez ainsi la responsabilité de la gestion à la méthode appelante.
+\end{enumerate}
+
+\textbf{Question clé :} Le compilateur râle-t-il si on utilise \lstinline!throw! sans \lstinline!throws! ?
+\begin{itemize}
+    \item \textbf{OUI}, si l'exception est \textit{checked}. Le code ci-dessous ne compile pas car \lstinline!Exception! est checked et non déclarée.
+    \begin{lstlisting}[language=Java]
+// ERREUR DE COMPILATION !
+void methode() {
+    throw new Exception("Ceci est une checked exception");
+}
+    \end{lstlisting}
+    Pour corriger : \lstinline!void methode() throws Exception { ... }!
+
+    \item \textbf{NON}, si l'exception est \textit{unchecked} (\lstinline!RuntimeException! ou une de ses filles). Le code ci-dessous compile parfaitement.
+    \begin{lstlisting}[language=Java]
+// OK, COMPILE !
+void methode() {
+    throw new RuntimeException("Ceci est une unchecked exception");
+}
+    \end{lstlisting}
+\end{itemize}
+
+\subsection{Blocs de Gestion}
+\begin{itemize}
+    \item \textbf{try} : Contient le code qui peut lever une exception.
+    \item \textbf{catch} : Attrape et gère une exception. On peut avoir plusieurs blocs \lstinline!catch! pour différents types d'exceptions. \textbf{Important :} Toujours attraper les exceptions les plus spécifiques avant les plus générales.
+    \item \textbf{finally} : Bloc de code \textbf{exécuté dans tous les cas}, qu'une exception soit levée ou non, et même si un \lstinline!return! est présent dans le bloc \lstinline!try!. Très utilisé pour libérer des ressources (ex: fermer un fichier).
+    \item \textbf{throw} : Pour lancer manuellement une exception (\lstinline!throw new MyException();!).
+    \item \textbf{throws} : Dans la signature d'une méthode pour déclarer les \textit{checked exceptions} qu'elle peut lancer.
+\end{itemize}
+\begin{figure}[H]
+    \begin{lstlisting}
+    void readFile() throws IOException {
+        FileReader reader = null;
+        try {
+            reader = new FileReader("file.txt");
+            // ... code de lecture
+        } catch (FileNotFoundException e) {
+            // Gérer le cas où le fichier n'existe pas
+            System.out.println("Fichier non trouvé !");
+        } finally {
+            if (reader != null) {
+                reader.close(); // Libération des ressources
+            }
+        }
+    }
+    \end{lstlisting}
+    \caption{Exemple de bloc de gestion des examens}
+\end{figure}
+
+
+
+% ===================================================================
+% SECTION 5: MODÈLES DE CONCEPTION
+% ===================================================================
+\section{Modèles de Conception (Exam)}
+
+\subsection{Checklist Exercice Conception}
+Si on demande de "modéliser" (ex: Termites) :
+\begin{enumerate}
+    \item \textbf{Identifier les classes} : Noms communs (Termite, Brindille).
+    \item \textbf{Héritage} : "Est un type de..." $\rightarrow$ \lstinline!extends!.
+    \item \textbf{Interface} : "Peut être..." ou "Se comporte comme..." $\rightarrow$ \lstinline!implements!.
+    \item \textbf{Encapsulation} : Attributs \lstinline!private!. Accès via Getters/Setters \textbf{si nécessaire}.
+    \item \textbf{Collections} : "Contient plusieurs..." $\rightarrow$ \texttt{ArrayList<Type>}.
+\end{enumerate}
+
+\subsection{Copie Profonde}
+Pour copier un objet qui contient des objets (références) :
+\begin{lstlisting}
+    public class MaClasse1{
+        private MaClasse2 objet;
+        private int primitif;
+
+        public MaClasse(MaClasse1 autre) {
+            this.primitif = autre.primitif;
+            // COPIE PROFONDE:
+            this.objet = new MaClasse2(autre.objet); //Il faut que MaClasse2 ait un constructeur de copie
+            
+            //Remarque : on peut faire autre.objet même si l'attribut est private car on est dans la même classe et Java autorise l'accès aux attributs privés entre instances de la même classe!
+        }
+    }
+
+\end{lstlisting}
+Ne jamais faire \lstinline|this.objet = autre.objet| (copie de surface, danger !).
+
+
+% ===================================================================
+% SECTION 6: ASTUCES DIVERSES
+% ===================================================================
+\section{Astuces du Corrigé 18-19}
+\begin{itemize}
+    \item \textbf{Passage de paramètres (Toujours par valeur)} : Le passage de paramètres à une méthode en Java se fait toujours ``par valeur''. Cependant, le comportement diffère entre les types primitifs et les objets.
+    \begin{itemize}
+        \item \textbf{Types primitifs} (\lstinline|int|, \lstinline|double|, etc.) : La \emph{valeur} de la variable est copiée. Toute modification de la copie à l'intérieur de la méthode n'affecte pas la variable originale.\\[\medskipamount]
+        \begin{minipage}{\linewidth}
+        \begin{lstlisting}[language=Java]
+void method(int i) {
+    i = 10; // Ne change pas la variable originale à l'extérieur
+}
+        \end{lstlisting}
+        \end{minipage}
+
+        \item \textbf{Objets} (\lstinline!String!, \texttt{A}, etc.) : La \emph{valeur de la référence} (l'adresse de l'objet) est copiée. Les deux références (originale et copie) pointent vers le \textbf{même objet}.
+        \begin{itemize}
+            \item Si on \textbf{modifie l'état} de l'objet via cette référence copiée (ex: \texttt{a.setA(5)}), la modification est visible à l'extérieur.
+            \item Si on \textbf{réassigne la référence} dans la méthode (ex: \texttt{a = new A(10)}), seule la copie de la référence est changée pour pointer vers un nouvel objet. La variable originale à l'extérieur continue de pointer vers l'objet initial.
+        \end{itemize}
+
+        \begin{minipage}{\linewidth}
+        \begin{lstlisting}[language=Java]
+void m(A a_param, int i_param) {
+    ++i_param; // Ne change pas l'original
+    a_param.setA(a_param.getA() + 1); // CHANGE l'objet original
+    a_param = new A(10); // NE CHANGE PAS la variable originale
+}
+        \end{lstlisting}
+        \end{minipage}
+    \end{itemize}
+    \item \textbf{Math} : \texttt{1/2 = 0} (entiers), \texttt{1.0/2 = 0.5}.
+    \item \textbf{Immutable} : String est immuable. \texttt{s.toUpperCase()} ne change pas s, il renvoie un nouveau String.
+    \item \textbf{ArrayList} : \texttt{List<Truc> l = new ArrayList<>();} (Coder vers l'interface List, pas l'implémentation ArrayList).
+\end{itemize}
+\begin{itemize}
+   \item Pour déclarer une variable : \lstinline!int i = 0;!
+   \item Pour appeler une méthode : \lstinline!obj.methode(); i++!
+\end{itemize}
+\end{document}

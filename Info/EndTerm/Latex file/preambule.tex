@@ -1,0 +1,48 @@
+%!TEX root = CheatSheet.tex
+
+% --- PAQUETS DE BASE ---
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc} % Encodage des caractères
+\usepackage[T1]{fontenc}      % Encodage des polices
+\usepackage[french]{babel}    % Règles typographiques françaises
+\usepackage[left=1cm, right=1cm, top=1cm, bottom=2.5cm]{geometry} % Marges de la page
+
+% --- MISE EN PAGE & OUTILS ---
+\usepackage{multicol}     % Texte sur plusieurs colonnes
+\usepackage{xcolor}       % Gestion des couleurs
+\usepackage{graphicx}     % Pour inclure des images
+\usepackage{enumitem}     % Personnalisation des listes
+\usepackage{titlesec}     % Personnalisation des titres de section
+\usepackage{array}        % Amélioration des tableaux
+\usepackage{tikz}         % Pour dessiner des diagrammes
+\usepackage{float}        % Pour un placement précis des flottants (ex: tables, figures)
+\usetikzlibrary{arrows}   % Pour les flèches dans les diagrammes
+\usepackage{lstautogobble} % Pour la gestion automatique de l'indentation dans les listings
+
+% --- POUR LE CODE ---
+\usepackage{listings}     % Pour insérer du code source
+
+% --- CONFIGURATION DU CODE JAVA (listings) ---
+\definecolor{javared}{rgb}{0.6,0,0} % for strings
+\definecolor{javagreen}{rgb}{0.25,0.5,0.35} % comments
+\definecolor{javapurple}{rgb}{0.5,0,0.35} % keywords
+\definecolor{javadocblue}{rgb}{0.25,0.35,0.75} % javadoc
+
+\lstset{
+  language=Java,
+  basicstyle=\ttfamily\normalsize,
+  keywordstyle=\color{javapurple}\bfseries,
+  stringstyle=\color{javared},
+  commentstyle=\color{javagreen},
+  morecomment=[s][\color{javadocblue}]{/**}{*/},
+  literate={é}{{\'{e}}}1 {à}{{\`{a}}}1 {è}{{\`{e}}}1 {ç}{{\c{c}}}1 {ê}{{\^{e}}}1 {ë}{{\¨{e}}}1 {ï}{{\¨{i}}}1 {ô}{{\^{o}}}1 {û}{{\^{u}}}1 {ù}{{\`{u}}}1,
+  autogobble=true,
+  numbers=none,
+  tabsize=2,
+  breaklines=true,
+  frame=single,
+  showstringspaces=false % Ne pas montrer les espaces dans les chaînes
+}
+
+% --- COMMANDES PERSONNELLES (Optionnel, pour plus tard) ---
+% Exemple : \newcommand{\motcle}[1]{\textbf{#1}}

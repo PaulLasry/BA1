@@ -1,0 +1,317 @@
+% !TEX root = ../Analyse1.tex
+\chapter{Intégrales}
+\section{Primitives et intégrales }
+\begin{definition}[Primitive]
+    Soit $f:I\to\R$ une fonction continue où $I$ est intervalle. Une \underline{primitive} de $f$ est une fonction $F:I\to\R$ telle que \[F'(x)=f(x), \quad \forall x\in I.\]
+\end{definition}
+\begin{remark}
+    Si $F, G$ sont deux primitives de la même fonction $f$, alors :
+    \[F(x) - G(x) = f(x) - f(x) = 0\]
+    Donc $F$ et $G$ diffèrent d'une constante : il existe $c\in\R$ tel que \[F(x) = G(x) + c, \quad \forall x\in I.\]
+\end{remark}
+\textbf{Notation :} $\int f(x) dx$ est l'ensemble de \underline{toutes} les primitives de $f$. Donc :
+\[\int f(x)dx = \{F(x)+c | c\in\R\}\] où $F$ est une primitive de $f$. Alors la notation \[\int f(x) dx = F(x)+c\]
+\begin{remark}
+    L'intégrale $\int f(x)dx$ s'appelle \underline{intégrale indéfinie} de $f$.
+\end{remark}
+Changeons de point de vue, pour $f : [a,b]\to\R$.
+\begin{center}
+    \includegraphics[width=0.8\textwidth]{int_approx.png}
+\end{center}
+Approx 1 :
+\[\text{Aire } \gtrsim  \sum_{i = 1}^{n} (x_i - x_{i-1}) \cdot (\inf_{x\in[x_{i-1}, x_i]} f(x))\]
+Approx 2 :
+\[\text{Aire } \lesssim  \sum_{i = 1}^{n} (x_i - x_{i-1}) \cdot (\sup_{x\in[x_{i-1}, x_i]} f(x))\]
+\begin{definition}[Intégrale de Riemann]
+    Soit $f:[a,b]\to\R$ est \underline{intégrale} (au sens de Riemann) si \[\sup\{\text{ Approx 1 }\} = \inf\{\text{ Approx 2 }\} = A \in\R\]
+    Dans ce cas, on note \[\int_a^b f(x) dx = A\]
+    Dans ce cas, on parle d'intégrale définie de $f$ entre $a$ et $b$.
+\end{definition}
+\begin{remark}
+    On dit que $\int_a^b f(x)dx$ donne l'aire signée sous la courbe. Par convention, on dit que $\int_a^a = 0$ et que $\int_b^a f(x) dx = -\int_a^b f(x) dx$.
+\end{remark}
+\begin{theorem}
+    Si $f : [a,b]\to\R$ est continue, monotone, ou continue partout sauf en un nombre finis de points, alors $f$ est intégrable (au sens de Riemann) sur $[a,b]$.
+\end{theorem}
+\begin{proof}[Preuve]
+    Technique (Ex : monotone)
+\end{proof}
+\begin{example}[Contre exemple]
+    Soit $f : [0,1]\to\R$ définie par \[f(x) = \begin{cases}
+        1 & x\in\Q\\
+        0 & x\notin\Q
+    \end{cases}\]
+    Alors $f$ n'est pas intégrable sur $[0,1]$. En effet, pour toute subdivision $0 = x_0 < x_1 < \ldots < x_n = 1$, on a
+    \[\text{Approx 1} = \sum_{i=1}^n (x_i - x_{i-1}) \cdot 0 = 0\]
+    car dans chaque intervalle $[x_{i-1}, x_i]$ il existe des réels irrationnels. De même,
+    \[\text{Approx 2} = \sum_{i=1}^n (x_i - x_{i-1}) \cdot 1 = 1\]
+    car dans chaque intervalle $[x_{i-1}, x_i]$ il existe des rationnels. Donc \[\sup\{\text{Approx 1}\} = 0 \neq 1 = \inf\{\text{Approx 2}\}\] et $f$ n'est pas intégrable au sens de Riemann.
+\end{example}
+\begin{remark}
+    Cette fonction est intégrable au sens de Lebesgue mais ce n'est pas le sujet de ce cours.
+\end{remark}
+\begin{property}[Intégrale de Riemann]
+    Les fonctions intégrables au sens de Riemann ont ces propriétés. Soient $f, g : [a,b]\to\R$ intégrables et $\alpha, \beta \in\R$. Alors :
+    \begin{enumerate}
+        \item $\displaystyle\int_{a}^{b}(\alpha f(x) + \beta g(x)) dx = \alpha \int_a^b f(x) dx + \beta \int_a^b g(x) dx$ (linéarité)
+        \item Si $a <u <b$, alors : $\displaystyle\int_a^b f(x) dx = \int_a^u f(x) dx + \int_u^b f(x) dx$ (additivité) 
+        \item Si $f(x)\leq g(x), \forall x\in[a,b]$, alors $\displaystyle\int_a^b f(x) dx \leq \int_a^b g(x) dx$ (monotonie)
+    \end{enumerate}
+\end{property}
+\begin{proof}[Preuve]
+    Technique, mais :
+    \begin{enumerate}
+        \item Linéarité : \[\sup_{x\in [x_{i-1}, x_i]} (\alpha f(x) + \beta g(x)) \leq \alpha \sup_{x\in [x_{i-1}, x_i]} f(x) + \beta \sup_{x\in [x_{i-1}, x_i]} g(x)\]
+    \end{enumerate}
+\end{proof}
+\begin{remark}
+    On peut écrire l'intégrale avec n'importe quelle variable : \[\int_{a}^{b} f(x)dx = \int_{a}^{b}f(y)dy\]
+    On a aussi :\[-\left|f(x)\right|\leq f(x)\leq\left|f(x)\right|\implies \left|\int_{a}^{b} f(x)dx\right| \leq \int_{a}^{b}\left|f(x)\right|dx\]
+\end{remark}
+\begin{theorem}[Théorème de la moyenne]
+    Soit $f:[a, b]\to\R$ continue. Alors il existe $u\in]a, b[$ tel que : \[\int_{a}^{b}f(x)dx = f(u)\cdot(b-a)\]
+\end{theorem}
+\begin{proof}
+    On prend $m = \min_{x\in[a, b]} f(x)\leq f(x) \leq M = \max_{x\in[a, b]} f(x)$. Donc :
+    \[m(b-a) \leq \int_{a}^{b} f(x) dx \leq M(b-a)\]
+    Ainsi : \[m \leq \frac{1}{b-a} \int_{a}^{b}f(x)dx\leq M\]
+    Par le théorème des valeurs intermédiaires, il existe $u\in]a, b[$ tel que $f(u) = \frac{1}{b-a} \int_{a}^{b}f(x)dx$.
+\end{proof}
+\begin{remark}
+    Donc $f(u)$ est la valeur moyenne de $f$ sur $[a, b]$.
+\end{remark}
+\begin{theorem}[Théorème fondamental du calcul intégrale]
+    Soit $f : [a, b]\to \R$ continue. Alors 
+    \begin{enumerate}
+        \item La fonction $G : [a, b]\to \R$ définie par \[G(x) = \int_{a}^{x} f(t) dt\] est une primitive de $f$ sur $[a, b]$.
+        \item Si $F$ est une primitive de $f$ sur l'intervalle $[a, b]$, alors : \[\int_{a}^{b}f(x)dx = F(b)-F(a)\]
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+    
+    \textbf{Parie 1 :} On dérive $G$ : \begin{align*}
+        G'(x) &= \lim_{h\to0}\frac{G(x+h)-G(x)}{h} = \lim_{h\to 0}\frac{1}{h}\left(\int_{a}^{x+h}f(t)dt - \int_{a}^{x} f(t)dt\right)\\
+        &= \lim_{h\to 0}\frac{1}{h} \underbrace{\int_{x}^{x+h}f(t)dt}_{f(u)h \text{ thm de la moyenne}}\\
+        &= \lim_{h\to 0} \frac{1}{h}\underbrace{f(u)h}_{\in]x, x+h[} = \lim_{u\to x}f(x)
+    \end{align*}
+    \textbf{Partie 2 :} On a $F(x) = G(x) + c$, donc :
+    \begin{align*}
+        F(b) - F(a) &= (G(b) + c) - (G(a) + c)\\
+        &= G(b) - G(a) = \int_{a}^{b} f(t) dt - \int_{a}^{a}f(t)dt\\
+        &= \int_{a}^{b} f(t) dt
+    \end{align*} 
+\end{proof}
+\textbf{Notation : } On note $F(x)\Big|_{a}^{b} = \Big[F(x)\Big]_a^b= F(b) - F(a)$.
+
+\section{Calculs d'intégrale}
+\begin{example}[Facile]
+    \noindent On calcule.
+    \begin{enumerate}
+        \item $\displaystyle\int_0^\pi \sin(x)dx = \Big[-\cos(x)\Big]_0^\pi = -\cos(\pi) + \cos(0) = 2$. Mais attention : aire signée ! Donc $ \displaystyle\int_0^{2\pi} \sin(x)dx = \Big[-\cos(x)\Big]_0^{2\pi} = -\cos(2\pi) + \cos(0) = 0$
+        \item $\displaystyle\int (3x+1)dx = \frac{3}{2}x^2 + x + c$
+        \item $\displaystyle\int a^x dx = \int e^{\ln(a)x} dx = \frac{1}{\ln(a)} e^{\ln(a)x} + c = \frac{a^x}{\ln(a)} + c$
+        \item $\displaystyle\int f(x)f'(x)dx = \frac{1}{2}f(x)^2 + c$ (vérifier en dérivant). Ex : \[\int \sin(x)\cos(x)dx = \frac{1}{2} \sin^2(x) + c\] 
+        \item $\displaystyle\int\frac{f'(x)}{f(x)}dx = \ln|f(x)| + c$ (vérifier en dérivant). Ex : \[\int \frac{-\sin(x)}{\cos(x)} dx = -\ln|\cos(x)| + c\]
+        \item $\displaystyle\int_{0}^{\frac{\pi}{2}}\cos^2(x)dx = \int_{0}^{\frac{\pi}{2}}\frac{1+\cos(2x)}{2}dx = \Bigg[\frac{x}{2}+\frac{\sin(2x)}{4}\Bigg]_0^{\frac{\pi}{2}}$
+    \end{enumerate}
+\end{example}
+\begin{property}[Changement de variable/substitution]
+    Soit $f: [a, b] \to \R$ une fonction continue et $\varphi : [u, v]\to [a, b]$ une fonction de la classe $C$ telle que $\varphi (u) = a, \varphi (v) = b$. Alors :
+    \[\int_{a}^{b} f(x)dx \underset{x = \varphi(t)}{=} \int_{u}^{v} f(\varphi(t)) \varphi'(t)dt\]
+\end{property}
+\begin{remark}
+    Si $\varphi$ est bijective, alors on peut écrire :
+    \begin{align*}
+        F(x)=F(\varphi(\varphi^{-1}(x))) = G(\varphi^{-1}(x))
+    \end{align*}
+    Donc $\int f(x)dx = \int f(\varphi(t)) \varphi'(t) dt$.
+\end{remark}
+\begin{example}
+    On pose $\int_{0}^{1}\sqrt{1 - x^2} dx$. En posant on pose :
+    \begin{align*}
+        \varphi : [0, \frac{\pi}{2}] &\longrightarrow [0, 1]\\
+        t &\longmapsto \sin(t)
+    \end{align*}
+    Cette fonction est de classe $C^1$, $\varphi(0) = 0$ et $\varphi(\frac{\pi}{2}) = 1$. Donc :
+    \begin{align*}
+        \int_{0}^{1}\sqrt{1-x^2}\; dx &= \int_{0}^{\frac{\pi}{2}} \sqrt{1-\sin^2(t)} \cos(t) \;dt\\
+        &= \int_{0}^{\frac{\pi}{2}}\sqrt{\cos^2(t)}\cos(t) \;dt\\
+        &= \int_{0}^{\frac{\pi}{2}} \cos^2(t)\;dt = \frac{\pi}{4} \quad \text{ cf exemple précédent}
+    \end{align*}
+\end{example}
+\begin{example}[indéfinie]
+    On reprend $\int\sqrt{1-x^2}$. On pose :
+    \begin{align*}
+        \varphi : [-\frac{\pi}{2}, \frac{\pi}{2}] &\to [-1, 1]\\
+        t &\mapsto \sin(t)
+    \end{align*}
+    $\varphi$ est bijective. Donc : 
+    \begin{align*}
+        \int\sqrt{1-\sin^2(t)}\cos(t)\; dt &= \int cos^2(t)\; dt\\
+        &= \frac{t}{2}+\frac{1}{4}\sin(2t)+c
+    \end{align*}
+    On évalue en $t = \arcsin(x)$ :
+    \begin{align*}
+        \int \sqrt{1-x^2} \; dx = \frac{\arcsin(x)}{2} + \frac{1}{2}x\sqrt{1-x^2}+c
+    \end{align*}
+\end{example}
+\begin{remark}
+    On peut aussi exprimer $t$ en fonction de $x$. 
+\end{remark}
+\begin{example}[remaeque]
+    On pose $\int e^{x^2} dx$. Donc $t = x^2$, $\frac{dt}{dx} = 2x$ :
+    \begin{align*}
+        \int e^{x^2} dx &= \frac{1}{2}\int e^{t}\; dt = \frac{1}{2}e^t +c\\
+        &= \frac{1}{2}e^{x^2} + c 
+    \end{align*}
+\end{example}
+Comment bien choisir \underline{la} substitution ? C'est dur ! Voici quelques exemples :
+\begin{itemize}
+    \item $\displaystyle\int e^{x^2} dx$ : $t = x^2$
+    \item $\displaystyle\int\frac{x}{1+x^2}dx, \int\frac{\sin(x)}{(1+\cos(x))^3} dx$ : $t =1+\cos(x)$, ou $t = 1+x^2$. Il faut prendre ce qu'il ya "sous" le dénominateur, ou mieux "dedans dessous".
+    \item $\begin{aligned}[t]
+            \displaystyle\int\sqrt{1-x^2} dx\\
+            x = \sin(t)
+        \end{aligned}, \begin{aligned}[t]
+            \int\sqrt{1+x^2}dx\\
+            x = \sinh(t)
+        \end{aligned}$
+    \item En cas de forces majeures, pour les fonction rationnelles en $\sin$ ou $\cos$ comme : \[\int\frac{1}{\sin(x)}dx, \int\frac{1}{\sin^4(x)}dx\] on pose 
+    \begin{quote}
+        $t = \tan(x)$ donc $\sin(x) = \displaystyle\frac{t}{\sqrt{1+t^2}}$ et $\cos(x) = \displaystyle\frac{1}{\sqrt{1+t^2}}$.\\
+        ou $t = \tan(\frac{x}{2})$, donc $\displaystyle\sin(x)=\frac{2t}{1+t^2}, \cos(x) = \frac{1-t^2}{1+t^2}, dx = \frac{2dt}{1+t^2}$.
+    \end{quote}
+\end{itemize}
+\begin{example}
+    $\displaystyle\int \frac{1}{\sin^4(x)} dx$.
+    \begin{align*}
+        \int\frac{1}{\sin^4(x)}dx &\overset{t = \tan(x)}{=} \int\frac{\left(1+t^2\right)^2}{t^4} \frac{1}{1+t^2} dt\\
+        &=\int t^{-4} + 2t^{-2} + 1\; dt = \frac{t^{-3}}{-3} + \frac{t^{-1}}{-1}+c\\
+        &= -\frac{1}{3\tan^3(x)} - \frac{1}{\tan(x)} + c
+    \end{align*}
+\end{example}
+\begin{example}
+    $\displaystyle\int \frac{1}{\sin(x)}dx$. 
+    \begin{align*}
+        \int\frac{1}{\sin(x)} dx &\overset{t = \tan\left(\frac{x}{2}\right)}{=} \int \frac{1+t^2}{2t} \cdot \frac{2}{1+t^2} dt\\
+        &= \int \frac{1}{t} dt = \ln|t| + c = \ln\left|\tan\left(\frac{x}{2}\right)\right| + c
+    \end{align*} 
+\end{example}
+\begin{property}[Intégrale par parties]
+    Soit $f \in C^0([a, b])$ et $g \in C^1([a, b])$ et $F$ une primitive de $f$. Alors \[\int_{a}^{b}f(x)dx = \Big[F(x)g(x)\Big]_a^b -\int_{a}^{b} F(x)g'(x)dx\]
+\end{property}
+\begin{proof}
+    On a $\left(Fg\right)' = F'g+Fg' = fg+Fg$, donc :
+    \begin{align*}
+        \int_{a}^{b}f(x)g(x)dx &= \int_{a}^{b} \left(F(x)g(x)\right)' dx - \int_{a}^{b} F(x)g'(x) dx\\
+        &= \Big[F(x)g(x)\Big]_a^b - \int_{a}^{b} F(x)g'(x) dx
+    \end{align*}
+\end{proof}
+\begin{remark}
+    La preuve montre que c'est pareil pour les intégrales indéfinies.
+\end{remark}
+\begin{example}[1]
+    \[\int e^xdx = e^xx-\int e^x \cdot 1 dx = e^x(x-1)+c\]
+\end{example}
+\begin{example}[2]
+    \begin{align*}
+        \int \ln(x)dx &= \int \ln(x)\cdot 1dx \\ 
+        &= \ln(x)x - \int \frac{1}{x}x dx\\
+        &= x\ln(x) - x + c \\
+        &= x(\ln(x) - 1) + c
+    \end{align*}
+\end{example}
+\begin{example}[3]
+    \begin{align*}
+        \underbrace{\int \cos^2(x)dx}_{I} &= \int \cos(x)\cdot \cos(x) dx\\ 
+        &= \sin(x)\cos(x) - \int \sin(x) \cdot \left(-\sin(x)\right)dx\\
+        &= \sin(x)\cos(x) + \int \sin^2(x)dx\\
+        &= \sin(x)\cos(x) + \int 1 dx - \underbrace{\int \cos^2(x)dx}_{I}\\
+        &\implies 2I = \sin(x)\cos(x)+x - I\\
+        &\implies 2I = \sin(x)\cos(x)+x+c\\
+        &\implies I = \frac{1}{2}\left(\sin(x)\cos(x) + x\right) + c
+    \end{align*}
+\end{example}
+\begin{example}[4]
+    (Intégrale par récurrence)
+    \begin{align*}
+        A_n &= \int_{0}^{\frac{\pi}{2}} \cos^{2n}(x)dx\\
+        \implies A_0 &=\int_{0}^{\frac{\pi}{2}}1dx = \frac{\pi}{2}\\
+        \intertext{Pour  $n\geq 1$ :}
+        A_n &= \int_{0}^{\frac{\pi}{2}} \cos(x)\cos^{2n-1}(x)dx\\ 
+        &= \Big[\sin(x)\cos^{2n-1}(x)\Big]_0^{\frac{\pi}{2}} - \int_{0}^{\frac{\pi}{2}}\sin(x)(2n-1)\cos^{2n-2}(x)(-sin(x))dx\\
+        &= (2n-1)\int_{0}^{\frac{\pi}{2}}\sin^2(x)\cos^{2(n-1)}(x)dx\\
+        &= (2n-1)\int_{0}^{\frac{\pi}{2}}\cos^{2(n-1)}(x)dx - (2n-1)\int_{0}^{\frac{\pi}{2}}\cos^{2n}(x)dx\\
+        \implies A_n &= (2n-1)A_{n-1} - (2n-1)A_n\\
+        \implies 2nA_n &= (2n-1)A_{n-1}\\
+        \implies A_n &= \frac{2n-1}{2n}A_{n-1}
+    \end{align*}
+\end{example}
+\subsection{Intégration de fonctions rationnelles}
+Les fonctions rationnelles sont des fonctions de la forme $\frac{p(x)}{q(x)}$ où $p, q$ sont des polynômes. Pour intégrer ces fonctions, on utilise la décomposition en éléments simples.
+\subsubsection{Building blocks}
+\begin{enumerate}[label=\roman*), ref=\text{\roman*}]
+    \item $\displaystyle\int \frac{1}{x}dx = \log|x| + c$. Ainsi : \[\int \frac{1}{ax+b}dx = \int \frac{1}{u}\frac{1}{a}du = \frac{1}{a}\log|ax+b| +c\] avec $u = ax+b \implies du = a dx\implies dx = \frac{1}{a}du$.
+    \item $\displaystyle\int \frac{1}{x^k}dx = \int x^{-k}dx = \frac{x^{-k+1}}{-k+1}+c = \frac{x^{1-k}}{1-k} + c$, ainsi :
+        \[\int\frac{1}{\left(ax+b\right)^k}dx = \frac{1}{a}\int \frac{1}{u^k}du = \frac{1}{a}\frac{u^{1-k}}{1-k} + c = \frac{1}{a}\frac{\left(ax+b\right)^{1-k}}{1-k}+c\]
+    \item \label{prop:3} $\displaystyle\int \frac{1}{x^2+1}dx = \arctan(x) + c$. Si $q(x) = ax^2 +bx+c$ est tel que $\Delta < 0$, alors on peut "completer le carré" :
+        \begin{align*}
+            q(x)&= a\left(\left(x+\frac{b}{2a}\right)^2 + \frac{-\Delta}{4a^2}\right)\\
+            \intertext{On pose $d^2 = \frac{-\Delta}{4a^2} > 0$, donc :}
+            &= ad^2\left(\left(\frac{x+\frac{b}{2na}}{d}\right)+1\right)\\
+            \intertext{On pose $u = \frac{x+\frac{b}{2na}}{d} \implies du = \frac{1}{d}dx \implies dx = d\cdot du$, donc :}
+            \int \frac{1}{ax^2+bx+c}dx &= \frac{1}{ad^2}\int\frac{1}{u^2+1}d\cdot du \\
+            &= \frac{1}{ad}\arctan(u) + c = \frac{1}{ad}\arctan\left(\frac{x+\frac{b}{2na}}{d}\right) + c
+        \end{align*}
+    \item $\displaystyle\int \frac{x}{ax^2+bx+c}dx = I$. On a alors :
+        \begin{align*}
+            I &= \frac{1}{2a}\int\frac{2ax+b}{ax^2+bx+c}dx - \frac{b}{2a}\int \frac{1}{q(x)}dx\\
+            &= \frac{1}{2a}\log|ax^2+bx+c| + (\ref{prop:3}) + c
+        \end{align*}
+    \item $\displaystyle\int \frac{2ax+b}{\left(ax^2+bx+c\right)^k}dx = \int \frac{1}{u ^k}du$ avec $u = ax^2+bx+c \implies du = (2ax+b)dx$. Donc :
+        \[\int \frac{2ax+b}{\left(ax^2+bx+c\right)^k}dx = \frac{(ax^2+bx+c)^{-k+1}}{-k+1} + c\]
+    \item $\displaystyle\int \frac{1}{\left(ax^2+bx+c\right)^k}dx$. En exercices.
+\end{enumerate}
+A l'aide de ces 6 building blocks, ont peut intégrer tout $f(x) = \frac{p(x)}{q(x)}$ avec le décomposition en éléments simples.
+\subsubsection{Méthode 1}
+\begin{enumerate}
+    \item Si $\deg(p)\geq deg(q)$, faire la division polynomiale !
+        \begin{example}
+            Prenons $\int\frac{3x^4+6}{x^4-x^3-x+1}dx$. On fait la division polynomiale :
+            \[= \int \frac{3(x^4 - x^3-x+1)}{x^4-x^3-x+1}dx + \int\frac{3x^3+3x+3}{x^3 -x^3-x+1}dx\]\[=\int 3dx + \int\frac{\ldots}{q(x)}dx = 3x + \int \frac{3x^3+3x+3}{x^4-x^3-x+1}dx\]
+        \end{example}
+    \item Factoriser le dénominateur $q(x)$ et décomposer. On a $q(x)=(x-u)^k\cdot(ax^2+bx+c)(x-v)$. Ainsi on peut écrire : 
+        \[\frac{p(x)}{q(x)} = \frac{A}{x-u}+ \frac{A_2}{(x-u)^2}+\frac{A_k}{(x-u)^k}+\frac{Bx+C}{ax^2+bx+c}\]
+        \begin{example}
+            $q(x) = x^4 -x^3 -x +1 = (x-1)^2(x^2+x+1)$. Donc :
+            \begin{align*}
+                \frac{p(x)}{q(x)} &= \frac{3x^3+3x+3}{x^4 - x^3 - x + 1} = \frac{A_1}{x-1} + \frac{A_2}{(x-1)^2} + \frac{Bx+C}{x^2+x+1}\\
+                &= \frac{(A_1+B)x^3 + (A_2-2B+C) x^2 + (A_2 + B - 2C) x + (-A_1+A_2+C)}{x^4 - x^3 -x + 1}
+                \intertext{On pose alors le système :}
+                \implies &\begin{cases}
+                    A_1 + B = 3\\
+                    A_2 - 2B + C = 0\\
+                    A_2 + B - 2C = 3\\
+                    -A_1 + A_2 + C = 3
+                \end{cases}\\
+                \iff& \begin{cases}
+                    A_1 = 1\\
+                    B = 2\\
+                    A_2 = 3\\
+                    C = 1
+                \end{cases}
+                \intertext{Donc :}
+                &\frac{3x^3 + 3x + 3}{x^4- x^3-x+1} = \frac{1}{x-1} + \frac{3}{(x-1)^2} + \frac{2x+1}{x^2+x+1} 
+            \end{align*}
+        \end{example}
+    \item Intégrer les éléments simples à l'aide des building blocks.
+        \begin{example}
+            \begin{align*}
+                \int \frac{1}{x - 1}dx &= \log|x-1| + c\\
+                \int \frac{3}{\left(x-1\right)^2}dx &= \int 3(x-1)^{-2}dx = \frac{-3}{x-1}+c\\
+                \int \frac{2x+1}{x^2+x+1}dx &= \log|x^2+x+1| + c 
+                \intertext{Ainsi :}
+                \int \frac{3x^4+ 6}{x^4-x^3-x + 1}dx &= 3x + \log|x-1| - \frac{3}{x-1} + \log|x^2+x+1| + c
+            \end{align*}
+        \end{example}
+\end{enumerate}
