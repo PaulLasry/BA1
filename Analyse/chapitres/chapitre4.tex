@@ -4,12 +4,12 @@
 \chapter{Fonctions}
 \section{Rappels}
 \begin{definition}[Fonction majorées]
-    Soit $f : D\to \R$ une foonction réelle. Alors $f$ est $\underline{\text{majorée}}$ sur $A \subseteq D$ si $f(A) = \{f(x) | x \in A\}$ l'est.\\
+    Soit $f : D\to \R$ une fonction réelle. Alors $f$ est $\underline{\text{majorée}}$ sur $A \subseteq D$ si $f(A) = \{f(x) | x \in A\}$ l'est.\\
     De plus, on pose :
     $$ \sup_{x \in A} f(x) = \sup f(A) $$
     Pareil pour inf, max et min (si min et max existent).
     \begin{example}
-        Pour $f(x) = (x-1)^2 +2$ et $A = \rbrack -1, 4 \lbrack$\\
+        Pour $f(x) = (x-1)^2 +2$ et $A = \left] -1, 4 \right[$
         \begin{center}
             \includegraphics[width=0.8\textwidth]{majorée.png}
         \end{center}
@@ -21,10 +21,9 @@
         Et max n'existe pas.
     \end{example}
 \end{definition}
-\newpage
 \section{Limites}
 \begin{example}
-    $f(x) = \frac{\sin x}{x}$\\
+    $\displaystyle f(x) = \frac{\sin x}{x}$\\
     \noindent $D(f) = \R^*$. On aimerait définir $\lim_{x \to 0} \frac{\sin (x)}{x} = 0$.\\
     Il faut deux ingréfiants pour conclure que $\lim_{x \to x_0} f(x) = l$ :
     \begin{enumerate}
@@ -33,11 +32,11 @@
     \end{enumerate}
 \end{example}
 \begin{definition}[Fonction définie au voisinage]
-    Une fonction $f : D \to \R$ est définie au $\underline{\text{définie au voisinage}}$ de $x_0 \in \R$ s'il existe $d \in \R > 0$ t.q :
+Une fonction $f : D \to \R$ est  \uline{définie au voisinage} de $x_0 \in \R$ s'il existe $d \in \R > 0$ t.q :
     $$\rbrack x_0 - d , x_0 \lbrack \cup \rbrack x_0, \, x_0 + d \lbrack \subset D$$
 \end{definition}
-\begin{example}[$\frac{\sin x}{x}$]
-        Est définie au voisinage de $x_0 = 0$ même si elle n'est pas définie en $0$.
+\begin{example}
+        $\frac{\sin x}{x}$ est définie au voisinage de $x_0 = 0$ même si elle n'est pas définie en $0$.
     \end{example}
 \begin{definition}[Limite d'une fonction]
     Soit $x_0 \in \R$ et $f : D \to R$ def au voisinage de $x_0$. Alors, $f$ ademt $l \in \R$ pour $\underline{\text{limite}}$ lorsque $x \to x_0$.\\
@@ -52,44 +51,37 @@
     \end{cases}$, alors $\lim_{x \to 0} g(x) \not = 132$ car on s'interresse seulement au voisinage de $0$.    
 \end{example}
 \begin{example}[2]
-    Soit $f(x) = 5x - 1, \ x_0 = 0$. Montrons que $\lim_{x \to 2} f(x) = 9$.\\
+    Soit $f(x) = 5x - 1$, $x_0 = 0$. Montrons que $\lim_{x \to 2} f(x) = 9$.
     \begin{enumerate}
         \item $D(f) = \R \implies f$ est def dans tout voisinage de $x_0 = 2$.
-        \item Soit $\varepsilon > 0$, on pose $\delta = \frac{\varepsilon}{5}$ tel que $|x-2| \leq \delta$.\\
-             $$|f(x) - 9| = |5x -10 | = 5|x-2| \leq 5\delta \leq \varepsilon$$
-             Comme $\varepsilon$ est arbitraire, on a montré que :
-             $$\forall \varepsilon > 0, \, \exists \delta > 0 \text{ t.q. si } x \in D \setminus \{2\} \text{ et } |x - 2| \leq \delta, \text{ on a : } $$
-                $$|f(x) - 9| \leq \varepsilon$$
-        
+        \item Soit $\varepsilon > 0$, on pose $\delta = \displaystyle\frac{\varepsilon}{5}$ tel que $|x-2| \leq \delta$.
+            \[|f(x) - 9| = |5x -10 | = 5|x-2| \leq 5\delta \leq \varepsilon\]
+            Comme $\varepsilon$ est arbitraire, on a montré que pour tout $\varepsilon > 0$, il existe $\delta > 0$ tel que si $x \in D \setminus \{2\}$ et $|x - 2| \leq \delta$, on a :
+            \[|f(x) - 9| \leq \varepsilon\]
     \end{enumerate}
 \end{example}
-
-\newpage
 \begin{theorem}[Limites de fonction et suites]
-    Soit $f : D \to \R$ def au voisinage de $x_0 \in \R$. Aloes on peut dire que $\lim_{x \to x_0} f(x) = l \iff \lim_{x \to \infty} f(a_n) = l \; \forall(a_n)_{n\in \N}$ t.q. $\lim_{n \to \infty} a_n = x_0$.\\
-    $\underline{\text{Idée : }}$ $a_n \to x_0$ sont les manière de s'approcher de $x_0$. Donc $f(x) \to l$ si $(a_n) \to l$ pour toutes les façons $(a_n \to x_0)$ de s'approcher de $x_0$. 
+    Soit $f : D \to \R$ définie au voisinage de $x_0 \in \R$. Alors on peut dire que $\lim_{x \to x_0} f(x) = l$ si et seulement si $\lim_{x \to \infty} f(a_n) = l$ pour toute $(a_n)_{n\in \N}$ telle que $\lim_{n \to \infty} a_n = x_0$.\\
+    \underline{Idée : } $a_n \to x_0$ sont les manières de s'approcher de $x_0$. Donc $f(x) \to l$ si $f(a_n) \to l$ pour toutes les façons $(a_n \to x_0)$ de s'approcher de $x_0$. 
 \end{theorem}
-\begin{example}[Redémonstraion de $\lim_{x \to 2} 5x - 10 = 9$]
-        Soit $(a_n)_{n \in \N} \subseteq \R \setminus \{2\}$ une suite t.q. $\lim_{n\to\infty} a_n = 2$.\\
-        Alors on a :
-        $$\lim_{n\to \infty} (5a_n -1) = 5(\lim_{n\to \infty} a_n) -1 = 5 \cdot 2 - 1 = 9$$
-        Comme la suite était arbitraire, on a montré que pour $\underline{\text{TOUTE SUITE}}$ $(a_n)$ : $$\lim_{x \to 2} 5x - 10 = 9$$   
+\begin{example}
+    Redémonstraion de $\lim_{x \to 2} 5x - 10 = 9$. Soit $(a_n)_{n \in \N} \subseteq \R \setminus \{2\}$ une suite telle que $\lim_{n\to\infty} a_n = 2$.\\
+    Alors on a :
+    \[\lim_{n\to \infty} (5a_n -1) = 5(\lim_{n\to \infty} a_n) -1 = 5 \cdot 2 - 1 = 9\]
+    Comme la suite était arbitraire, on a montré que pour $\underline{\text{TOUTE SUITE}}$ $(a_n)$ : $$\lim_{x \to 2} 5x - 10 = 9$$   
 \end{example}
-\begin{corollary}
+\begin{corollary}\label{cor:limite_suites}
     Si on a trouvé :
     \begin{itemize}
-        \item Une suite $(a_n) \subset D \setminus \{x_0\}$ t.q. $$\lim_{n \to \infty } f(a_n) \text{  n'existe pas}$$
+        \item Une suite $(a_n) \subseteq D \setminus \{x_0\}$ t.q. $$\lim_{n \to \infty } f(a_n) \text{  n'existe pas}$$
         \item Deux suites $(a_n), (b_n) \subseteq D \setminus \{x_0\}$ t.q. $a_n \to x_0$ et $b_n \to x_0$ mais :
         $$ \lim_{n \to \infty} f(a_n) \neq \lim_{n \to \infty} f(b_n)$$
     \end{itemize}
     Alors $\lim_{x \to x_0} f(x)$ n'existe pas.
 \end{corollary}
-\ \
-\begin{example}[Corollaire]
-    Prenons $f(x) = \cos{\frac{1}{x}} \ x_0 = 0$\\
-    $D(f)=\R^* \implies f$ est définie au voisinage de $x_0 = 0$.
-    En effet : 
-    $$a_n = \frac{1}{2n\pi} \to 0 \qquad b_n = \frac{1}{(2n+1)\pi} \to 0$$
+\begin{example}[Corollaire \ref{cor:limite_suites}]
+    Prenons $f(x) = \cos\left(\frac{1}{x}\right)$, $x_0 = 0$. $D(f)=\R^*$, donc $f$ est définie au voisinage de $x_0 = 0$.En effet : 
+    \[a_n = \frac{1}{2n\pi} \to 0 \qquad b_n = \frac{1}{(2n+1)\pi} \to 0\]
     Mais :
     $$\lim_{n \to \infty} f(a_n) = \lim_{n \to \infty} \cos(2n\pi ) = 1$$
     $$\lim_{n \to \infty} f(b_n) = \lim_{n \to \infty} \cos((2n+1)\pi ) = -1$$
@@ -107,25 +99,28 @@ Soient $f, g : D \to \R$ définies au voisinage de $x_0 \in \R$ et telles que :
 $\lim_{x \to x_0} f(x), \, \lim_{x \to x_0} g(x)$ existent.
 Alors :
 \begin{enumerate}
-    \item Si $\lim_{x \to x_0} f(x) = l_1$ et $\lim_{x \to x_0} f(x) = l_2$, alors $l_1 = l_2$ $\qquad$ (Unicité de le limite)
+    \item Si $\displaystyle\lim_{x \to x_0} f(x) = l_1$ et $\displaystyle\lim_{x \to x_0} f(x) = l_2$, alors $l_1 = l_2$ \itemtitle{Unicité de la limite}
     \item $\forall p, q \in \R$ on a: $$\lim_{x\to x_0} p \cdot f(x) + q \cdot g(x) = p \cdot \lim_{x \to x_0} f(x) + q \cdot \lim_{x \to x_0} g(x )$$
-    \item $$\lim_{x \to x_0} (f(x)\cdot g(x)) = \lim_{x \to x_0} f(x) \cdot \lim_{x \to x_0} g(x)$$
+    \item $\displaystyle\lim_{x \to x_0} (f(x)\cdot g(x)) = \lim_{x \to x_0} f(x) \cdot \lim_{x \to x_0} g(x)$
     \item Si $f(x) \leq g(x)$ au voisinage de $x_0$ alors : $$\lim_{x \to x_0} f(x) \leq \lim_{x \to x_0} g(x)$$
-    \item Si $h : D \to \R$ est t.q. $$f(x) \leq h(x) \leq g(x)$$ au voisinage de $x_0$ et si $\lim_{x \to x_0} f(x) = \lim_{x \to x_0} g(x) = l$, alors : $$\lim_{x \to x_0} h(x) = l$$ (Théorème des deux gendarmes)
+    \item Si $h : D \to \R$ est telle que $f(x) \leq h(x) \leq g(x)$ au voisinage de $x_0$ et si $\displaystyle\lim_{x \to x_0} f(x) = \lim_{x \to x_0} g(x) = l$, alors : \[\lim_{x \to x_0} h(x) = l\]
+        \begin{proof}
+            Théorème des deux gendarmes
+        \end{proof}
 \end{enumerate}
 \end{property}
 
 \section{Calculs de limites}
-Concidérons pour ces exemples $u\in \R$. 
+\noindent Concidérons pour ces exemples $u\in \R$. 
 \begin{enumerate}[start=0]
     \item $\lim_{x \to x_0} c = c$ où $c$ est une constante.
-        \begin{quote}
-            [Soit $a_n \to u$. On a $f(a_n) = c \to c$]
-        \end{quote}        
+        \begin{proof}
+            Soit $a_n \to u$. On a $f(a_n) = c \to c$
+        \end{proof}        
         $\lim_{x \to u} x = u \qquad$ ($f(x) = x$)
-        \begin{quote}
-            [Soit $a_n \to u$. On a $f(a_n) = a_n \to u$]
-        \end{quote}    
+        \begin{proof}
+            Soit $a_n \to u$. On a $f(a_n) = a_n \to u$
+        \end{proof}
     \item \textbf{Polynômes}
         Exemple (par produit) : 
         \[
@@ -133,11 +128,11 @@ Concidérons pour ces exemples $u\in \R$.
         \]
         
         Par récurrence, on montre que $\lim_{x \to u}x^n = u^n$.
-        \textit{Preuve rapide :}
-        \begin{quote}
+        \begin{proof}[Preuve rapide]
             \textbf{Init. ($n=0$):} $\lim_{x \to u} 1 = 1$. \\
             \textbf{Hérédité:} $\lim_{x \to u} x^{n+1} = \lim_{x \to u}(x^n \cdot x) = \left(\lim_{x\to u} x^n\right) \cdot \left(\lim_{x \to u}x\right) = u^n \cdot u = u^{n+1}$.
-        \end{quote}
+        \end{proof}
+
         Donc pour $P(x) = a_n x^n + a_{n-1}x^{n-1} + \cdots + a_1 x + a_0$, on a :
         \[\lim_{x \to u} P(x) = P(u)\]
     \item \textbf{Fonctions rationnelles}: $f(x) = \frac{P(x)}{Q(x)}$. Si $Q(u) \neq 0$, on a :
@@ -176,17 +171,17 @@ Concidérons pour ces exemples $u\in \R$.
         \end{example}
 \end{enumerate}
 \begin{property}[Limites de fonctions composées / changement de variable]
-    Soient $f : A \to B, g : B \to \R$ t.q. :
+    Soient $f : A \to B, g : B \to \R$ telle que :
     \begin{enumerate}
-        \item $\lim_{x\to a} f(x) = b \in \R$
-        \item $\lim_{y\to b} g(y) = c \in \R$
+        \item $\displaystyle\lim_{x\to a} f(x) = b \in \R$
+        \item $\displaystyle\lim_{y\to b} g(y) = c \in \R$
         \item $f(x) \neq b$ au voisinage de $a$
     \end{enumerate}
     Alors : 
-    $$\lim_{x \to a} g(f(x)) = \lim_{y \to b} g(y) = c$$
+    \[\lim_{x \to a} g(f(x)) = \lim_{y \to b} g(y) = c\]
 \end{property}
 \begin{proof}[Preuve à l'aide des suites]
-    Soit $(x_n)_{n \in \N} \subset A \setminus \{a\}$ t.q. $x_n\to a$.\\
+    Soit $(x_n)_{n \in \N} \subset A \setminus \{a\}$ t.q. $x_n\to a$.
     On pose $y_n = f(x_n)$. Alors $y_n \to b$ (par 1) et $y_n \neq b$ pour $n$ assez grand (par 3) $\implies (y_n) \subset B \setminus \{b\}$ et $y_n \to b \implies g(y_n) \to c$ (par 2)\\
 \end{proof}
 \begin{example}[1]
@@ -219,25 +214,24 @@ Attention : La condition 3 est indispensable, regardons un cas où elle n'est pa
 \begin{corollary}  
     Pour tout $n\in \N$, $v \geq 0$, $\lim_{x \to v} \sqrt[n]{x} = \sqrt[n]{v}$
 \end{corollary}
-\begin{proof}[Preuve]
+\begin{proof}
     On pose $f(x) = x^n$, strictement croissante sur $[a, b] \forall b \geq 0$. Ainsi :
     $$\lim_{x \to u} \sqrt[n]{x} = \lim_{x \to v} f^{-1}(x) = f^{-1}(v) = \sqrt[n]{v}$$
 \end{proof}
 
 \section{Lim à gauche/droite, limites infinies}
 \begin{definition}
-    Soit $f : D \to  \R$ def. dans un voisinage à gauche (resp. à droite) de $u \in \R$, c'est à dire $\lbrack u - d, u\lbrack \; \subseteq D \; \forall d > 0$ (resp. $\lbrack u, u+d\lbrack \subseteq \; D \; \forall d > 0$).\\
-    Alors $f$ admet $l \in \R$ pour limite à gauche (resp. à droite) lorsque $x\to u, \forall \varepsilon > 0\; \exists \delta > 0$ t.q. $$\forall x \in D\setminus \{u\}$$
-    On a $$x \in \lbrack u-\delta, u \lbrack$$ (resp. $x \in \rbrack u, u+\delta \rbrack$) $$\implies |f(x) - l| \leq \varepsilon$$
-    \textbf{Notation :} limites à gauche  : $\lim_{x \to u^-}$, limite à droite : $\lim_{x \to u^+}$\\ 
+    Soit $f : D \to  \R$ définie dans un voisinage à gauche (resp. à droite) de $u \in \R$, c'est à dire $\left[ u - d, u\right[ \subseteq D$ pour tout $d > 0$ (resp. $\left[ u, u+d\right[ \subseteq D \; \forall d > 0$).\\
+    Alors $f$ admet $l \in \R$ pour limite à gauche (resp. à droite) lorsque $x\to u,$ si, pour tout $\varepsilon > 0$ il existe $\delta > 0$ tel que pour tout $x \in D\setminus \{u\}$, on a $x \in \left[ u-\delta, u \right[$ (resp. $x \in \rbrack u, u+\delta \rbrack$) :
+    \[\implies |f(x) - l| \leq \varepsilon\]
+    \textbf{Notation :} limites à gauche  : $\lim_{x \to u^-}$, limite à droite : $\lim_{x \to u^+}$
 \end{definition}
 \begin{example}
     $f(x) = \frac{|x|}{x}$. Il faut séparer les cas. 
     $$f(x) = \begin{cases}
         \frac{x}{x} = 1 & x>0\\
         \frac{-x}{x}=-1 & x<0
-    \end{cases}$$ Donc :
-    $\lim_{x \uparrow 0} f(x) = \lim_{x \uparrow 0} -1 = \lim_{x\to x^-} -1 = -1$ et $\lim_{x \downarrow 0} f(x) = \lim_{x\to x^+} =1$.
+    \end{cases}$$ Donc : $\displaystyle\lim_{x \uparrow 0} f(x) = \lim_{x \uparrow 0} -1 = \lim_{x\to x^-} -1 = -1$ et $\lim_{x \downarrow 0} f(x) = \lim_{x\to x^+} =1$.
 \end{example}
 \begin{property}[Limites gauche droite]
     Si $f$ est def au voisinage de $u$, alors :
@@ -247,9 +241,9 @@ Attention : La condition 3 est indispensable, regardons un cas où elle n'est pa
     Cela montre que $\lim_{x \to 0} f(x) = \frac{|x|}{x}$ n'existe pas.
 \end{remark}
 \begin{definition}
-    Soit $f : D \to \R$ def au voisinage de $+\infty$ (resp. $-\infty$) c'est à dire $\lbrack a, +\infty\lbrack \subseteq D$ pour un $a\in\R$ (resp. $\rbrack -\infty, a\rbrack \subseteq D$).\\
-    Alors $f(x)$ admet $l\in \R$ comme limite losrque $x \to +\infty$ (resp. $x \to -\infty$) si $\forall \varepsilon > 0 \; \exists c \in \R$ t.q. $\forall x \in D$ on a :
-    $$x \geq c (x \leq c) \implies |f(x) - l|\leq \varepsilon$$
+    Soit $f : D \to \R$ def au voisinage de $+\infty$ (resp. $-\infty$) c'est à dire $\left[ a, +\infty\right[ \subseteq D$ pour un $a\in\R$ (resp. $\left] -\infty, a\right] \subseteq D$).\\
+    Alors $f(x)$ admet $l\in \R$ comme limite losrque $x \to +\infty$ (resp. $x \to -\infty$) si pour tout $\varepsilon > 0$ il existe $c \in \R$ tel que pour tout $x \in D$ on a :
+    $$x \geq c \;(\text{resp. } x\leq c) \implies |f(x) - l|\leq \varepsilon$$
     \textbf{Notation:} $\lim_{x \to +\infty} f(x) = l$ ou $f(x) \to l$
 \end{definition}
 \begin{example}

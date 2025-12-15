@@ -31,7 +31,7 @@ Approx 2 :
     On dit que $\int_a^b f(x)dx$ donne l'aire signée sous la courbe. Par convention, on dit que $\int_a^a = 0$ et que $\int_b^a f(x) dx = -\int_a^b f(x) dx$.
 \end{remark}
 \begin{theorem}
-    Si $f : [a,b]\to\R$ est continue, monotone, ou continue partout sauf en un nombre finis de points, alors $f$ est intégrable (au sens de Riemann) sur $[a,b]$.
+    Si $f : [a,b]\to\R$ est continue, monotone, bornée et continue partout sauf en un nombre finis de points, alors $f$ est intégrable (au sens de Riemann) sur $[a,b]$.
 \end{theorem}
 \begin{proof}[Preuve]
     Technique (Ex : monotone)
@@ -127,9 +127,9 @@ Approx 2 :
     Donc $\int f(x)dx = \int f(\varphi(t)) \varphi'(t) dt$.
 \end{remark}
 \begin{example}
-    On pose $\int_{0}^{1}\sqrt{1 - x^2} dx$. En posant on pose :
+    On pose $\int_{0}^{1}\sqrt{1 - x^2} dx$. En posant :
     \begin{align*}
-        \varphi : [0, \frac{\pi}{2}] &\longrightarrow [0, 1]\\
+        \varphi : \left[0, \frac{\pi}{2}\right] &\longrightarrow [0, 1]\\
         t &\longmapsto \sin(t)
     \end{align*}
     Cette fonction est de classe $C^1$, $\varphi(0) = 0$ et $\varphi(\frac{\pi}{2}) = 1$. Donc :
@@ -315,3 +315,132 @@ A l'aide de ces 6 building blocks, ont peut intégrer tout $f(x) = \frac{p(x)}{q
             \end{align*}
         \end{example}
 \end{enumerate}
+
+\section{Intégrale généralisée ou impropres}
+On sait que si $f: [a, b]\overset{\text{ continue }}{\longrightarrow} \R$ alors l'intégrale est l'air sous la courbe. On généralise à $f : ]a,b [\to \R$, $f : ]-\infty, +\infty[ \to \R$.
+\begin{example}
+    On pourrait s'intérresser à $\int_0^1 \log(x)dx$ (qui a une asymptote verticale en $x=0$). Ou encors $\int_0^{+\infty} e^{-x}dx$.
+\end{example}
+\textbf{Problème : } L'approximation est toujours $\pm\infty$.\\
+\textbf{Solution : } On restreint à un intervalle fermé, puis on utilise les limites. 
+\begin{definition}[Intégrales généralisées]
+    \begin{enumerate}
+        \item Si $f : [a, b[ \to \R$ continue, $b \in \R \cup \{+\infty\}$, alors :
+            \[\int_{a}^{b^-} f(x)dx = \lim_{u \to b^-}\int_{a}^{u}f(x)dx\]
+        \item Si $f : ]a, b] \to \R$ continue, $a \in \R \cup \{-\infty\}$, alors :
+            \[\int_{a^+}^{b} f(x)dx = \lim_{u \to a^+}\int_{u}^{b} f(x)dx\]
+        \item Si $f : ]a, b[ \to \R$ continue, alors :
+            \[\int_{a^+}^{b^-} f(x)dx = \lim_{u \to a^+} \int_{u}^{w} f(x)dx + \lim_{v \to b^-}\int_{w}^{u} f(x)dx\]  
+            où $w \in ]a, b[$ est quelconque.
+    
+    \end{enumerate}
+\end{definition}
+\begin{remark}
+    \begin{itemize}
+        \item Ce sont les intégrales généralisées (ou impropres) de $f$.
+        \item On dit que l'intégrale converge si la (les !) limites existe(nt) ($\in\R$), et l'intégrale diverge sinon.
+        \item Pour le point 3), on peut montrer que le résultat ne dépend pas du $w$ choisi.
+    \end{itemize}
+    Ce sont les intégrales généralisées (ou impropres) de $f$.
+\end{remark}
+\textbf{Notation : } \[\int_{a}^{+\infty^-} = \int_{a}^{+\infty} \quad, \quad \int_{-\infty^+}^{b} = \int_{-\infty}^{b}\]
+\begin{example}[1]
+    \begin{align*}
+        \int_{0^+}^{1}\log(x)dx &= \lim_{u\to 0^+} \int_{u}^{1}\log(x)dx=\lim_{u\to 0^+} \Big[x\log(x)-x\Big]_{x = u}^{x = 1}\\
+        &= \lim_{x \to 0^+}(-1-u\log(u) + u) = -1+\lim_{u\to 0^+}\frac{-\log(x)}{\frac{1}{u}}\\
+        &\overset{\text{B-H}}{=} -1 + \lim_{u\to 0^+}\frac{\frac{1}{u}}{-\frac{1}{u^2}} = -1
+    \end{align*}
+\end{example}
+\begin{example}[2]
+    \begin{align*}
+        \int_{0}^{+\infty}e^{-x}dx &= \lim_{u\to +\infty} \int_{0}^{u} e^{-x}dx = \lim_{u\to +\infty} \Big[-e^{-x}\Big]_0^u\\
+        &= \lim_{uti+\infty}(1-e^{-u}) = 1
+    \end{align*}
+\end{example}
+\begin{example}[3]
+    Pour $r > 0$, on a $\displaystyle \int_{0^+}^{1}\frac{1}{x^r}dx = \begin{cases}
+        \frac{1}{1- r} & r < 1\\
+        +\infty & r \geq 1
+    \end{cases}$. Aussi $\displaystyle \int_{1}^{+\infty}\frac{1}{x^r}dx = \begin{cases}
+        \frac{1}{1- r} & r > 1\\
+        +\infty & r \leq 1
+    \end{cases}$. Exemple :
+    \begin{align*}
+        I = \int_{0^+}^{1}\frac{1}{x^r}dx &= \lim_{u\to 0^+}\int_{u}^{1}\frac{1}{x^r}dx = \begin{cases}
+            \lim_{u\to 0^+}(-\log(u)) = +\infty & r = 1\\
+            \lim_{u\to 0^+} \Big[\frac{x^{1-r}}{1-r}\Big]_{x = u}^{x = 1} & r\neq 1
+        \end{cases}\\
+        \intertext{Calculons $\Big[\frac{x^{1-r}}{1-r}\Big]_{x = u}^{x = 1}$ :}
+        &\Big[\frac{x^{1-r}}{1-r}\Big]_{x = u}^{x = 1} = \frac{1}{1-r} + \frac{1}{r-1}\lim_{u\to 0^+}u^{1-r}
+        \intertext{Et ceci diverge si $r > 1$ et converge vers $\frac{1}{1-r}$ si $r<1$}
+        &\implies I = \begin{cases}
+           \frac{1}{1- r} & r < 1\\
+            +\infty & r \geq 1 
+        \end{cases}
+    \end{align*}
+\end{example}
+\begin{example}[4]
+    On étudie :$\displaystyle\int_{-\infty}^{+\infty}\frac{1}{1+x^2}dx$. On coupe en $w = 0$ : 
+    \begin{align*}
+        \int_{-\infty}^{+\infty}\frac{1}{1+x^2}dx &=\lim_{u\to -\infty}\Big[\arctan(x)\Big]_{x = u}^0 + \lim_{u\to +\infty}\Big[\arctan(x)\Big]^{x = u}_0\\
+        &= \pi
+    \end{align*}
+\end{example}
+\begin{remark}
+    Si $\int_{-\infty}^{+\infty}f(x)dx$ converge, i.e. si les deux limites existent, alors cette inégrae vaut : \[\underbrace{\lim_{u\to + \infty}\int_{-u}^{u} f(x)dx}_{\textstyle\text{veleur de cauchy}}\]
+\end{remark}
+\begin{example}[5]
+    \begin{align*}
+        \int_{-\infty}^{+\infty} xdx &= \int_{-\infty}^{0} xdx + \int_{0}^{+\infty}xdx\\
+        &= \lim_{u\to -\infty}\frac{-u^2}{2} + \lim_{v\to +\infty}\frac{v^2}{2}
+    \end{align*}
+    L'intégrale diverge ! En revenche, sa valeur principale de Cauchy est $\lim_{u\to +\infty}\int_{-u}^{u}xdx = 0$. On voit alors que la valeur principale de Cauchy $\neq \int_{-\infty}^{+\infty}$.
+\end{example}
+\begin{property}[Comparaison d'intégrales]
+    Soient $f, g : [a, b[\to\R$ sontinues telles que $0\leq f(x) \leq g(x)$ pour tout $x \in [a, b[$. Alors : 
+    \begin{enumerate}
+        \item $\label{prop:comp_int_1}\int_{a}^{b^-} f(x)dx$ converge $\impliedby \int_{a}^{b ^-}g(x)dx$ converge.
+            \begin{proof}
+                Théorème du gendarme seul!
+            \end{proof}
+    \end{enumerate}
+\end{property}
+\begin{example}[du \ref{prop:comp_int_1}]
+    $\displaystyle\int_{0}^{1^-}\frac{1}{\sqrt{1-t^2}}dt$ converge : 
+    \begin{align*}
+        0 \leq \frac{1}{\sqrt{1-t^2}}dt \leq \frac{1}{\sqrt{1-t}}
+        \intertext{Et on a :}
+        \int_{0}^{1^-} \frac{1}{\sqrt{1-t}}dt \overset{x = 1-t}{=} -\int_{1}^{0^+}\frac{1}{\sqrt{x}}dx\\
+        = \int_{0^+}^{1}\frac{1}{\sqrt{x}}dx 
+        \intertext{Qui converge}
+    \end{align*}
+\end{example}
+\begin{property}[Comparaison intégrales / séries]
+    Soit $f: [n_0, +\infty[ \to \R$ une fonction continue, positive, et décroissante. Alors :
+    \[\sum_{n = n_0}^{\infty}f(n) \text{ converge } \iff \int_{n_ 0}^{+\infty}f(x)dx \text{ converge}\]
+    \textcolor{red}{\faExclamationTriangle}\textcolor{red}{Valeurs pas égales ! }
+\end{property}
+\begin{example}
+    La somme $\displaystyle\sum_{n = 1}^{\infty}\frac{1}{n^p}$ converge $\displaystyle\iff \int_{1}^{+\infty} \frac{1}{n^p}dx$ converge si et seulement si $p>1$.
+\end{example}
+\begin{example}
+    \begin{align*}
+        \sum_{n =2}^{\infty} \frac{1}{n(\underbrace{\log(n)}_{u})^p} \; \text{ converge } &\iff \int_{2}^{+\infty}\frac{1}{x\left(\log(x)\right)^p}dx \; \text{ converge}
+        \intertext{Voyons la veleur de l'intégrale indéfinie :}
+        \int\frac{1}{x\left(\log(x)\right)^p}dx &= \int\frac{1}{u^p}du = \begin{cases}
+            \frac{u^{1-p}}{1-p} + c & p \neq 1\\
+            \log(u) & p = 1
+        \end{cases} \\
+        &\overset{du = \frac{1}{x}dx}{=} \begin{cases}
+            \frac{log(x)^{1-p}}{1-p} & p\neq 1\\
+            \log(\log(x)) & p = 1
+        \end{cases}\\
+        &\implies I = \int_{2}^{+\infty} \frac{1}{x\left(\log(x)\right)^p}dx \overset{p = 1}{=} \lim_{u \to +\infty}\Big[\log(\log(x))\Big]_{x = 2}^u = +\infty\\
+        &\implies I \overset{p\neq 1}{=} \lim_{u\to +\infty} \Big[\frac{\log(x)^{1-p}}{1-p}\Big]_{x = 2}^u =c\frac{-\lim_{u\to + \infty}\log(x)^{1-p}}{1-p} - \frac{\log(2)^{1-p}}{1-p}
+        \intertext{$I$ converge si et seulement si $p>1$, ainsi }
+        &\sum_{n =2}^{\infty}\frac{1}{n\left(\log(n)\right)^p} \text{ converge } \iff p > 1
+        \intertext{En particulier : }
+        &\sum_{n = 2}^{\infty}\frac{1}{n\log(n)} \text{ diverge}\\
+        &\sum_{n = 2}^{\infty}\frac{1}{n\log(n)^2} \text{ converge}
+    \end{align*}
+\end{example}

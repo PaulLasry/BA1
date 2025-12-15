@@ -25,6 +25,7 @@
 \RequirePackage{amsthm}      % Cœur du système de théorèmes
 \RequirePackage{thmtools}    % Pour styliser
 \RequirePackage[framemethod=default]{mdframed} % Pour les encadrés
+\RequirePackage[normalem]{ulem} % Permet aux soulignements de passer à la ligne et garde l'italique pour \emph
 
 % --- 1. Définition de vos couleurs ---
 \definecolor{customRed}{HTML}{D9534F}
@@ -69,7 +70,7 @@
 % Style pour les textes (Rem, Cor, Prop)
 \declaretheoremstyle[{
     headfont=\bfseries\color{customViolet},
-    bodyfont=\normalfont,
+    bodyfont=\itshape,
     headpunct={\ :}, % Ajoute " :" après le titre
     notefont=\normalfont\itshape, % Titre optionnel en italique
     spaceabove=6pt,
@@ -97,7 +98,7 @@
 
 \declaretheoremstyle[{
     headfont=\bfseries\color{customViolet},
-    bodyfont=\normalfont,
+    bodyfont=\itshape,
     headpunct={\ .}, % Point pour les defs/thms
     notefont=\normalfont\itshape, % Titre optionnel en italique
     spaceabove=6pt,
@@ -159,6 +160,7 @@
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\C}{\mathbb{C}}
+\newcommand{\itemtitle}[1]{\hfill(\upshape#1)}
 
 
 
