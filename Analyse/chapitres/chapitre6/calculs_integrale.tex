@@ -1,0 +1,149 @@
+\begin{example}[Facile]
+    \noindent On calcule.
+    \begin{enumerate}
+        \item $\displaystyle\int_0^\pi \sin(x)dx = \Big[-\cos(x)\Big]_0^\pi = -\cos(\pi) + \cos(0) = 2$. Mais attention : aire signée ! Donc $ \displaystyle\int_0^{2\pi} \sin(x)dx = \Big[-\cos(x)\Big]_0^{2\pi} = -\cos(2\pi) + \cos(0) = 0$
+        \item $\displaystyle\int (3x+1)dx = \frac{3}{2}x^2 + x + c$
+        \item $\displaystyle\int a^x dx = \int e^{\ln(a)x} dx = \frac{1}{\ln(a)} e^{\ln(a)x} + c = \frac{a^x}{\ln(a)} + c$
+        \item $\displaystyle\int f(x)f'(x)dx = \frac{1}{2}f(x)^2 + c$ (vérifier en dérivant). Ex : \[\int \sin(x)\cos(x)dx = \frac{1}{2} \sin^2(x) + c\] 
+        \item $\displaystyle\int\frac{f'(x)}{f(x)}dx = \ln|f(x)| + c$ (vérifier en dérivant). Ex : \[\int \frac{-\sin(x)}{\cos(x)} dx = -\ln|\cos(x)| + c\]
+        \item $\displaystyle\int_{0}^{\frac{\pi}{2}}\cos^2(x)dx = \int_{0}^{\frac{\pi}{2}}\frac{1+\cos(2x)}{2}dx = \Bigg[\frac{x}{2}+\frac{\sin(2x)}{4}\Bigg]_0^{\frac{\pi}{2}}$
+    \end{enumerate}
+\end{example}
+\begin{property}[Changement de variable/substitution]
+    Soit $f: [a, b] \to \R$ une fonction continue et $\varphi : [u, v]\to [a, b]$ une fonction de la classe $C$ telle que $\varphi (u) = a, \varphi (v) = b$. Alors :
+    \[\int_{a}^{b} f(x)dx \underset{x = \varphi(t)}{=} \int_{u}^{v} f(\varphi(t)) \varphi'(t)dt\]
+\end{property}
+\begin{remark}
+    Si $\varphi$ est bijective, alors on peut écrire :
+    \begin{align*}
+        F(x)=F(\varphi(\varphi^{-1}(x))) = G(\varphi^{-1}(x))
+    \end{align*}
+    Donc $\int f(x)dx = \int f(\varphi(t)) \varphi'(t) dt$.
+\end{remark}
+\begin{example}
+    On pose $\int_{0}^{1}\sqrt{1 - x^2} dx$. En posant :
+    \begin{align*}
+        \varphi : \left[0, \frac{\pi}{2}\right] &\longrightarrow [0, 1]\\
+        t &\longmapsto \sin(t)
+    \end{align*}
+    Cette fonction est de classe $C^1$, $\varphi(0) = 0$ et $\varphi(\frac{\pi}{2}) = 1$. Donc :
+    \begin{align*}
+        \int_{0}^{1}\sqrt{1-x^2}\; dx &= \int_{0}^{\frac{\pi}{2}} \sqrt{1-\sin^2(t)} \cos(t) \;dt\\
+        &= \int_{0}^{\frac{\pi}{2}}\sqrt{\cos^2(t)}\cos(t) \;dt\\
+        &= \int_{0}^{\frac{\pi}{2}} \cos^2(t)\;dt = \frac{\pi}{4} \quad \text{ cf exemple précédent}
+    \end{align*}
+\end{example}
+\begin{example}[indéfinie]
+    On reprend $\int\sqrt{1-x^2}$. On pose :
+    \begin{align*}
+        \varphi : [-\frac{\pi}{2}, \frac{\pi}{2}] &\to [-1, 1]\\
+        t &\mapsto \sin(t)
+    \end{align*}
+    $\varphi$ est bijective. Donc : 
+    \begin{align*}
+        \int\sqrt{1-\sin^2(t)}\cos(t)\; dt &= \int cos^2(t)\; dt\\
+        &= \frac{t}{2}+\frac{1}{4}\sin(2t)+c
+    \end{align*}
+    On évalue en $t = \arcsin(x)$ :
+    \begin{align*}
+        \int \sqrt{1-x^2} \; dx = \frac{\arcsin(x)}{2} + \frac{1}{2}x\sqrt{1-x^2}+c
+    \end{align*}
+\end{example}
+\begin{remark}
+    On peut aussi exprimer $t$ en fonction de $x$. 
+\end{remark}
+\begin{example}[remaeque]
+    On pose $\int e^{x^2} dx$. Donc $t = x^2$, $\frac{dt}{dx} = 2x$ :
+    \begin{align*}
+        \int e^{x^2} dx &= \frac{1}{2}\int e^{t}\; dt = \frac{1}{2}e^t +c\\
+        &= \frac{1}{2}e^{x^2} + c 
+    \end{align*}
+\end{example}
+Comment bien choisir \underline{la} substitution ? C'est dur ! Voici quelques exemples :
+\begin{itemize}
+    \item $\displaystyle\int e^{x^2} dx$ : $t = x^2$
+    \item $\displaystyle\int\frac{x}{1+x^2}dx, \int\frac{\sin(x)}{(1+\cos(x))^3} dx$ : $t =1+\cos(x)$, ou $t = 1+x^2$. Il faut prendre ce qu'il ya "sous" le dénominateur, ou mieux "dedans dessous".
+    \item $\begin{aligned}[t]
+            \displaystyle\int\sqrt{1-x^2} dx\\
+            x = \sin(t)
+        \end{aligned}, \begin{aligned}[t]
+            \int\sqrt{1+x^2}dx\\
+            x = \sinh(t)
+        \end{aligned}$
+    \item En cas de forces majeures, pour les fonction rationnelles en $\sin$ ou $\cos$ comme : \[\int\frac{1}{\sin(x)}dx, \int\frac{1}{\sin^4(x)}dx\] on pose 
+    \begin{quote}
+        $t = \tan(x)$ donc $\sin(x) = \displaystyle\frac{t}{\sqrt{1+t^2}}$ et $\cos(x) = \displaystyle\frac{1}{\sqrt{1+t^2}}$.\\
+        ou $t = \tan(\frac{x}{2})$, donc $\displaystyle\sin(x)=\frac{2t}{1+t^2}, \cos(x) = \frac{1-t^2}{1+t^2}, dx = \frac{2dt}{1+t^2}$.
+    \end{quote}
+\end{itemize}
+\begin{example}
+    $\displaystyle\int \frac{1}{\sin^4(x)} dx$.
+    \begin{align*}
+        \int\frac{1}{\sin^4(x)}dx &\overset{t = \tan(x)}{=} \int\frac{\left(1+t^2\right)^2}{t^4} \frac{1}{1+t^2} dt\\
+        &=\int t^{-4} + 2t^{-2} + 1\; dt = \frac{t^{-3}}{-3} + \frac{t^{-1}}{-1}+c\\
+        &= -\frac{1}{3\tan^3(x)} - \frac{1}{\tan(x)} + c
+    \end{align*}
+\end{example}
+\begin{example}
+    $\displaystyle\int \frac{1}{\sin(x)}dx$. 
+    \begin{align*}
+        \int\frac{1}{\sin(x)} dx &\overset{t = \tan\left(\frac{x}{2}\right)}{=} \int \frac{1+t^2}{2t} \cdot \frac{2}{1+t^2} dt\\
+        &= \int \frac{1}{t} dt = \ln|t| + c = \ln\left|\tan\left(\frac{x}{2}\right)\right| + c
+    \end{align*} 
+\end{example}
+\begin{property}[Intégrale par parties]
+    Soit $f \in C^0([a, b])$ et $g \in C^1([a, b])$ et $F$ une primitive de $f$. Alors \[\int_{a}^{b}f(x)dx = \Big[F(x)g(x)\Big]_a^b -\int_{a}^{b} F(x)g'(x)dx\]
+\end{property}
+\begin{proof}
+    On a $\left(Fg\right)' = F'g+Fg' = fg+Fg$, donc :
+    \begin{align*}
+        \int_{a}^{b}f(x)g(x)dx &= \int_{a}^{b} \left(F(x)g(x)\right)' dx - \int_{a}^{b} F(x)g'(x) dx\\
+        &= \Big[F(x)g(x)\Big]_a^b - \int_{a}^{b} F(x)g'(x) dx
+    \end{align*}
+\end{proof}
+\begin{remark}
+    La preuve montre que c'est pareil pour les intégrales indéfinies.
+\end{remark}
+\begin{example}[1]
+    \[\int e^xdx = e^xx-\int e^x \cdot 1 dx = e^x(x-1)+c\]
+\end{example}
+\begin{example}[2]
+    \begin{align*}
+        \int \ln(x)dx &= \int \ln(x)\cdot 1dx \\ 
+        &= \ln(x)x - \int \frac{1}{x}x dx\\
+        &= x\ln(x) - x + c \\
+        &= x(\ln(x) - 1) + c
+    \end{align*}
+\end{example}
+\begin{example}[3]
+    \begin{align*}
+        \underbrace{\int \cos^2(x)dx}_{I} &= \int \cos(x)\cdot \cos(x) dx\\ 
+        &= \sin(x)\cos(x) - \int \sin(x) \cdot \left(-\sin(x)\right)dx\\
+        &= \sin(x)\cos(x) + \int \sin^2(x)dx\\
+        &= \sin(x)\cos(x) + \int 1 dx - \underbrace{\int \cos^2(x)dx}_{I}\\
+        &\implies 2I = \sin(x)\cos(x)+x - I\\
+        &\implies 2I = \sin(x)\cos(x)+x+c\\
+        &\implies I = \frac{1}{2}\left(\sin(x)\cos(x) + x\right) + c
+    \end{align*}
+\end{example}
+\begin{example}[4]
+    (Intégrale par récurrence)
+    \begin{align*}
+        A_n &= \int_{0}^{\frac{\pi}{2}} \cos^{2n}(x)dx\\
+        \implies A_0 &=\int_{0}^{\frac{\pi}{2}}1dx = \frac{\pi}{2}\\
+        \intertext{Pour  $n\geq 1$ :}
+        A_n &= \int_{0}^{\frac{\pi}{2}} \cos(x)\cos^{2n-1}(x)dx\\ 
+        &= \Big[\sin(x)\cos^{2n-1}(x)\Big]_0^{\frac{\pi}{2}} - \int_{0}^{\frac{\pi}{2}}\sin(x)(2n-1)\cos^{2n-2}(x)(-sin(x))dx\\
+        &= (2n-1)\int_{0}^{\frac{\pi}{2}}\sin^2(x)\cos^{2(n-1)}(x)dx\\
+        &= (2n-1)\int_{0}^{\frac{\pi}{2}}\cos^{2(n-1)}(x)dx - (2n-1)\int_{0}^{\frac{\pi}{2}}\cos^{2n}(x)dx\\
+        \implies A_n &= (2n-1)A_{n-1} - (2n-1)A_n\\
+        \implies 2nA_n &= (2n-1)A_{n-1}\\
+        \implies A_n &= \frac{2n-1}{2n}A_{n-1}
+    \end{align*}
+\end{example}
+
+
+
+\subsection{Intégration de fonctions rationnelles}
+\input{chapitres/chapitre6/integrale_fonctions_rationnelle.tex}
+

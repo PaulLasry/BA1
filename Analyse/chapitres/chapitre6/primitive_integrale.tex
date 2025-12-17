@@ -1,0 +1,102 @@
+\begin{definition}[Primitive]
+    Soit $f:I\to\R$ une fonction continue où $I$ est intervalle. Une \underline{primitive} de $f$ est une fonction $F:I\to\R$ telle que \[F'(x)=f(x), \quad \forall x\in I.\]
+\end{definition}
+\begin{remark}
+    Si $F, G$ sont deux primitives de la même fonction $f$, alors :
+    \[F(x) - G(x) = f(x) - f(x) = 0\]
+    Donc $F$ et $G$ diffèrent d'une constante : il existe $c\in\R$ tel que \[F(x) = G(x) + c, \quad \forall x\in I.\]
+\end{remark}
+\textbf{Notation :} $\int f(x) dx$ est l'ensemble de \underline{toutes} les primitives de $f$. Donc :
+\[\int f(x)dx = \{F(x)+c | c\in\R\}\] où $F$ est une primitive de $f$. Alors la notation \[\int f(x) dx = F(x)+c\]
+\begin{remark}
+    L'intégrale $\int f(x)dx$ s'appelle \underline{intégrale indéfinie} de $f$.
+\end{remark}
+Changeons de point de vue, pour $f : [a,b]\to\R$.
+\begin{center}
+    \includegraphics[width=0.8\textwidth]{int_approx.png}
+\end{center}
+Approx 1 :
+\[\text{Aire } \gtrsim  \sum_{i = 1}^{n} (x_i - x_{i-1}) \cdot (\inf_{x\in[x_{i-1}, x_i]} f(x))\]
+Approx 2 :
+\[\text{Aire } \lesssim  \sum_{i = 1}^{n} (x_i - x_{i-1}) \cdot (\sup_{x\in[x_{i-1}, x_i]} f(x))\]
+\begin{definition}[Intégrale de Riemann]
+    Soit $f:[a,b]\to\R$ est \underline{intégrale} (au sens de Riemann) si \[\sup\{\text{ Approx 1 }\} = \inf\{\text{ Approx 2 }\} = A \in\R\]
+    Dans ce cas, on note \[\int_a^b f(x) dx = A\]
+    Dans ce cas, on parle d'intégrale définie de $f$ entre $a$ et $b$.
+\end{definition}
+\begin{remark}
+    On dit que $\int_a^b f(x)dx$ donne l'aire signée sous la courbe. Par convention, on dit que $\int_a^a = 0$ et que $\int_b^a f(x) dx = -\int_a^b f(x) dx$.
+\end{remark}
+\begin{theorem}
+    Si $f : [a,b]\to\R$ est continue, monotone, bornée et continue partout sauf en un nombre finis de points, alors $f$ est intégrable (au sens de Riemann) sur $[a,b]$.
+\end{theorem}
+\begin{proof}[Preuve]
+    Technique (Ex : monotone)
+\end{proof}
+\begin{example}[Contre exemple]
+    Soit $f : [0,1]\to\R$ définie par \[f(x) = \begin{cases}
+        1 & x\in\Q\\
+        0 & x\notin\Q
+    \end{cases}\]
+    Alors $f$ n'est pas intégrable sur $[0,1]$. En effet, pour toute subdivision $0 = x_0 < x_1 < \ldots < x_n = 1$, on a
+    \[\text{Approx 1} = \sum_{i=1}^n (x_i - x_{i-1}) \cdot 0 = 0\]
+    car dans chaque intervalle $[x_{i-1}, x_i]$ il existe des réels irrationnels. De même,
+    \[\text{Approx 2} = \sum_{i=1}^n (x_i - x_{i-1}) \cdot 1 = 1\]
+    car dans chaque intervalle $[x_{i-1}, x_i]$ il existe des rationnels. Donc \[\sup\{\text{Approx 1}\} = 0 \neq 1 = \inf\{\text{Approx 2}\}\] et $f$ n'est pas intégrable au sens de Riemann.
+\end{example}
+\begin{remark}
+    Cette fonction est intégrable au sens de Lebesgue mais ce n'est pas le sujet de ce cours.
+\end{remark}
+\begin{property}[Intégrale de Riemann]
+    Les fonctions intégrables au sens de Riemann ont ces propriétés. Soient $f, g : [a,b]\to\R$ intégrables et $\alpha, \beta \in\R$. Alors :
+    \begin{enumerate}
+        \item $\displaystyle\int_{a}^{b}(\alpha f(x) + \beta g(x)) dx = \alpha \int_a^b f(x) dx + \beta \int_a^b g(x) dx$ (linéarité)
+        \item Si $a <u <b$, alors : $\displaystyle\int_a^b f(x) dx = \int_a^u f(x) dx + \int_u^b f(x) dx$ (additivité) 
+        \item Si $f(x)\leq g(x), \forall x\in[a,b]$, alors $\displaystyle\int_a^b f(x) dx \leq \int_a^b g(x) dx$ (monotonie)
+    \end{enumerate}
+\end{property}
+\begin{proof}[Preuve]
+    Technique, mais :
+    \begin{enumerate}
+        \item Linéarité : \[\sup_{x\in [x_{i-1}, x_i]} (\alpha f(x) + \beta g(x)) \leq \alpha \sup_{x\in [x_{i-1}, x_i]} f(x) + \beta \sup_{x\in [x_{i-1}, x_i]} g(x)\]
+    \end{enumerate}
+\end{proof}
+\begin{remark}
+    On peut écrire l'intégrale avec n'importe quelle variable : \[\int_{a}^{b} f(x)dx = \int_{a}^{b}f(y)dy\]
+    On a aussi :\[-\left|f(x)\right|\leq f(x)\leq\left|f(x)\right|\implies \left|\int_{a}^{b} f(x)dx\right| \leq \int_{a}^{b}\left|f(x)\right|dx\]
+\end{remark}
+\begin{theorem}[Théorème de la moyenne]
+    Soit $f:[a, b]\to\R$ continue. Alors il existe $u\in]a, b[$ tel que : \[\int_{a}^{b}f(x)dx = f(u)\cdot(b-a)\]
+\end{theorem}
+\begin{proof}
+    On prend $m = \min_{x\in[a, b]} f(x)\leq f(x) \leq M = \max_{x\in[a, b]} f(x)$. Donc :
+    \[m(b-a) \leq \int_{a}^{b} f(x) dx \leq M(b-a)\]
+    Ainsi : \[m \leq \frac{1}{b-a} \int_{a}^{b}f(x)dx\leq M\]
+    Par le théorème des valeurs intermédiaires, il existe $u\in]a, b[$ tel que $f(u) = \frac{1}{b-a} \int_{a}^{b}f(x)dx$.
+\end{proof}
+\begin{remark}
+    Donc $f(u)$ est la valeur moyenne de $f$ sur $[a, b]$.
+\end{remark}
+\begin{theorem}[Théorème fondamental du calcul intégrale]
+    Soit $f : [a, b]\to \R$ continue. Alors 
+    \begin{enumerate}
+        \item La fonction $G : [a, b]\to \R$ définie par \[G(x) = \int_{a}^{x} f(t) dt\] est une primitive de $f$ sur $[a, b]$.
+        \item Si $F$ est une primitive de $f$ sur l'intervalle $[a, b]$, alors : \[\int_{a}^{b}f(x)dx = F(b)-F(a)\]
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+    
+    \textbf{Parie 1 :} On dérive $G$ : \begin{align*}
+        G'(x) &= \lim_{h\to0}\frac{G(x+h)-G(x)}{h} = \lim_{h\to 0}\frac{1}{h}\left(\int_{a}^{x+h}f(t)dt - \int_{a}^{x} f(t)dt\right)\\
+        &= \lim_{h\to 0}\frac{1}{h} \underbrace{\int_{x}^{x+h}f(t)dt}_{f(u)h \text{ thm de la moyenne}}\\
+        &= \lim_{h\to 0} \frac{1}{h}\underbrace{f(u)h}_{\in]x, x+h[} = \lim_{u\to x}f(x)
+    \end{align*}
+    \textbf{Partie 2 :} On a $F(x) = G(x) + c$, donc :
+    \begin{align*}
+        F(b) - F(a) &= (G(b) + c) - (G(a) + c)\\
+        &= G(b) - G(a) = \int_{a}^{b} f(t) dt - \int_{a}^{a}f(t)dt\\
+        &= \int_{a}^{b} f(t) dt
+    \end{align*} 
+\end{proof}
+\textbf{Notation : } On note $F(x)\Big|_{a}^{b} = \Big[F(x)\Big]_a^b= F(b) - F(a)$.
+

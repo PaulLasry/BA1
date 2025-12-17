@@ -1,0 +1,67 @@
+Les fonctions rationnelles sont des fonctions de la forme $\frac{p(x)}{q(x)}$ où $p, q$ sont des polynômes. Pour intégrer ces fonctions, on utilise la décomposition en éléments simples.
+\subsubsection{Building blocks}
+\begin{enumerate}[label=\roman*), ref=\text{\roman*}]
+    \item $\displaystyle\int \frac{1}{x}dx = \log|x| + c$. Ainsi : \[\int \frac{1}{ax+b}dx = \int \frac{1}{u}\frac{1}{a}du = \frac{1}{a}\log|ax+b| +c\] avec $u = ax+b \implies du = a dx\implies dx = \frac{1}{a}du$.
+    \item $\displaystyle\int \frac{1}{x^k}dx = \int x^{-k}dx = \frac{x^{-k+1}}{-k+1}+c = \frac{x^{1-k}}{1-k} + c$, ainsi :
+        \[\int\frac{1}{\left(ax+b\right)^k}dx = \frac{1}{a}\int \frac{1}{u^k}du = \frac{1}{a}\frac{u^{1-k}}{1-k} + c = \frac{1}{a}\frac{\left(ax+b\right)^{1-k}}{1-k}+c\]
+    \item \label{prop:3} $\displaystyle\int \frac{1}{x^2+1}dx = \arctan(x) + c$. Si $q(x) = ax^2 +bx+c$ est tel que $\Delta < 0$, alors on peut "completer le carré" :
+        \begin{align*}
+            q(x)&= a\left(\left(x+\frac{b}{2a}\right)^2 + \frac{-\Delta}{4a^2}\right)\\
+            \intertext{On pose $d^2 = \frac{-\Delta}{4a^2} > 0$, donc :}
+            &= ad^2\left(\left(\frac{x+\frac{b}{2na}}{d}\right)+1\right)\\
+            \intertext{On pose $u = \frac{x+\frac{b}{2na}}{d} \implies du = \frac{1}{d}dx \implies dx = d\cdot du$, donc :}
+            \int \frac{1}{ax^2+bx+c}dx &= \frac{1}{ad^2}\int\frac{1}{u^2+1}d\cdot du \\
+            &= \frac{1}{ad}\arctan(u) + c = \frac{1}{ad}\arctan\left(\frac{x+\frac{b}{2na}}{d}\right) + c
+        \end{align*}
+    \item $\displaystyle\int \frac{x}{ax^2+bx+c}dx = I$. On a alors :
+        \begin{align*}
+            I &= \frac{1}{2a}\int\frac{2ax+b}{ax^2+bx+c}dx - \frac{b}{2a}\int \frac{1}{q(x)}dx\\
+            &= \frac{1}{2a}\log|ax^2+bx+c| + (\ref{prop:3}) + c
+        \end{align*}
+    \item $\displaystyle\int \frac{2ax+b}{\left(ax^2+bx+c\right)^k}dx = \int \frac{1}{u ^k}du$ avec $u = ax^2+bx+c \implies du = (2ax+b)dx$. Donc :
+        \[\int \frac{2ax+b}{\left(ax^2+bx+c\right)^k}dx = \frac{(ax^2+bx+c)^{-k+1}}{-k+1} + c\]
+    \item $\displaystyle\int \frac{1}{\left(ax^2+bx+c\right)^k}dx$. En exercices.
+\end{enumerate}
+A l'aide de ces 6 building blocks, ont peut intégrer tout $f(x) = \frac{p(x)}{q(x)}$ avec le décomposition en éléments simples.
+\subsubsection{Méthode 1}
+\begin{enumerate}
+    \item Si $\deg(p)\geq deg(q)$, faire la division polynomiale !
+        \begin{example}
+            Prenons $\int\frac{3x^4+6}{x^4-x^3-x+1}dx$. On fait la division polynomiale :
+            \[= \int \frac{3(x^4 - x^3-x+1)}{x^4-x^3-x+1}dx + \int\frac{3x^3+3x+3}{x^3 -x^3-x+1}dx\]\[=\int 3dx + \int\frac{\ldots}{q(x)}dx = 3x + \int \frac{3x^3+3x+3}{x^4-x^3-x+1}dx\]
+        \end{example}
+    \item Factoriser le dénominateur $q(x)$ et décomposer. On a $q(x)=(x-u)^k\cdot(ax^2+bx+c)(x-v)$. Ainsi on peut écrire : 
+        \[\frac{p(x)}{q(x)} = \frac{A}{x-u}+ \frac{A_2}{(x-u)^2}+\frac{A_k}{(x-u)^k}+\frac{Bx+C}{ax^2+bx+c}\]
+        \begin{example}
+            $q(x) = x^4 -x^3 -x +1 = (x-1)^2(x^2+x+1)$. Donc :
+            \begin{align*}
+                \frac{p(x)}{q(x)} &= \frac{3x^3+3x+3}{x^4 - x^3 - x + 1} = \frac{A_1}{x-1} + \frac{A_2}{(x-1)^2} + \frac{Bx+C}{x^2+x+1}\\
+                &= \frac{(A_1+B)x^3 + (A_2-2B+C) x^2 + (A_2 + B - 2C) x + (-A_1+A_2+C)}{x^4 - x^3 -x + 1}
+                \intertext{On pose alors le système :}
+                \implies &\begin{cases}
+                    A_1 + B = 3\\
+                    A_2 - 2B + C = 0\\
+                    A_2 + B - 2C = 3\\
+                    -A_1 + A_2 + C = 3
+                \end{cases}\\
+                \iff& \begin{cases}
+                    A_1 = 1\\
+                    B = 2\\
+                    A_2 = 3\\
+                    C = 1
+                \end{cases}
+                \intertext{Donc :}
+                &\frac{3x^3 + 3x + 3}{x^4- x^3-x+1} = \frac{1}{x-1} + \frac{3}{(x-1)^2} + \frac{2x+1}{x^2+x+1} 
+            \end{align*}
+        \end{example}
+    \item Intégrer les éléments simples à l'aide des building blocks.
+        \begin{example}
+            \begin{align*}
+                \int \frac{1}{x - 1}dx &= \log|x-1| + c\\
+                \int \frac{3}{\left(x-1\right)^2}dx &= \int 3(x-1)^{-2}dx = \frac{-3}{x-1}+c\\
+                \int \frac{2x+1}{x^2+x+1}dx &= \log|x^2+x+1| + c 
+                \intertext{Ainsi :}
+                \int \frac{3x^4+ 6}{x^4-x^3-x + 1}dx &= 3x + \log|x-1| - \frac{3}{x-1} + \log|x^2+x+1| + c
+            \end{align*}
+        \end{example}
+\end{enumerate}
