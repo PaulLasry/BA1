@@ -61,18 +61,18 @@
     \end{enumerate}
 \end{proof}
 \begin{remark}
-    $f$ continues $\not \implies$ $f$ dérivable.
+    $f$ continues $\nRightarrow$ $f$ dérivable.
 \end{remark}
 \begin{example}
-    $f(x) = |x|$, $x_0=0$. Alors $f$ est continue en $0$ mais on a \[\lim_{h\downarrow0}\frac{f(0+h)-f(0)}{h} = \lim_{h\downarrow0}\frac{|h|}{h} = 1\neq -1 = \lim_{h\uparrow0}\frac{|h|}{h} = \lim_{h\uparrow0}\frac{f(0+h)-f(0)}{h}\]
-    Donc la limite n'existe pas, donc $f$ n'est pas dérivable en $0$.
+    $f(x) = \left|x\right|$, $x_0=0$. Alors $f$ est continue en $0$ mais on a \[\lim_{h\downarrow0}\frac{f(0+h)-f(0)}{h} = \lim_{h\downarrow0}\frac{|h|}{h} = 1\neq -1 = \lim_{h\uparrow0}\frac{|h|}{h} = \lim_{h\uparrow0}\frac{f(0+h)-f(0)}{h}\]
+    Ainsi, la limite n'existe pas, donc $f$ n'est pas dérivable en $0$.
 \end{example}
 \begin{property}[Opérations algébriques]
     Soient $f, g : D\to\R$ derivables en $x_0\in D$. Alors :
     \begin{enumerate}
         \item $\displaystyle(p\cdot f+q\cdot g)'(x_0) = p\cdot f'(x_0)+q\cdot g'(x_0)$
-        \item $\displaystyle(f\cdot g)'(x_0) = f'(x_0)\cdot g(x_0) + f(x_0)\cdot g'(x_0)$
-        \item $\displaystyle\left(\frac{f}{g}\right)'(x_0) = \frac{f'(x_0)\cdot g(x_0) - f(x_0)\cdot g'(x_0)}{(g(x_0))^2}$, si $g(x_0)\neq 0$
+        \item $\displaystyle(f\cdot g)'(x_0) = f'(x_0)\cdot g(x_0) + f(x_0)\cdot g'(x_0)$\label{prop:derive_op_algebrique_2}
+        \item $\displaystyle\left(\frac{f}{g}\right)'(x_0) = \frac{f'(x_0)\cdot g(x_0) - f(x_0)\cdot g'(x_0)}{(g(x_0))^2}$, si $g(x_0)\neq 0$\label{prop:derive_op_algebrique_3}
     \end{enumerate}
 \end{property}
 \begin{property}[Dérivées de fonction usuelles]
@@ -87,52 +87,57 @@
                 \item Supposons vrai pour $n$, montrons pour $n+1$ :
                     \begin{align*}
                         f(x) &= x^{n+1} = x^n \cdot x\\
-                        f'(x) &\overset{\text{Prop 2}}{=} (x^n)' \cdot x + x^n \cdot (x)'\\
+                        f'(x) &\overset{\text{Prop \ref{prop:derive_op_algebrique_2}}}{=} (x^n)' \cdot x + x^n \cdot (x)'\\
                         &= n\cdot x^{n-1} \cdot x + x^n \cdot 1 = (n+1)\cdot x^n
                     \end{align*}
             \end{itemize}   
         \end{proof}
-        \item $\sin'(x) = \cos(x), \cos'(x) = -\sin(x)$ et \[\tan'(x) = \left(\frac{\sin(x)}{\cos(x)}\right)' \overset{\text{Prop 3}}{=} \frac{\sin'(x)\cos - \sin(x)\cos'(x)}{\cos^2(x)} = \cdots = \frac{1}{\cos^2(x)} \text{ ou } 1 + \tan^2(x)\]
-        \item $f(x)=x^{-n}$, $n\in \N^*, x\neq0$\[\implies f(x)=\frac{1}{x^n} \overset{\text{Prop 3}}{\implies} f'(x) = -n\cdot x^{-n-1}\]
+        \item $\sin'(x) = \cos(x)$, $\cos'(x) = -\sin(x)$ et \[\tan'(x) = \left(\frac{\sin(x)}{\cos(x)}\right)' \overset{\text{Prop 3}}{=} \frac{\sin'(x)\cos - \sin(x)\cos'(x)}{\cos^2(x)} = \cdots = \frac{1}{\cos^2(x)} \text{ ou } 1 + \tan^2(x)\]
+        \item $f(x)=x^{-n}$, $n\in \N^*, x\neq0$\[\implies f(x)=\frac{1}{x^n} \overset{\text{Prop \ref{prop:derive_op_algebrique_3}}}{\implies} f'(x) = -n\cdot x^{-n-1}\]
     \end{enumerate}
 \end{property}
-\begin{property}[Dériviées de composées]
+\begin{property}[Dériviées de composées]\label{prop:derivee_composee}
     Soient $f : A\to B$, $g: B \to \R$, deux fonction telles que $f$ est dérivable en $x_0$ et $g$ est dérivable en $f(x_0)$. Alors:
     \begin{align*}
         \left(g(f(x_0))\right)' &= (g\circ f)'(x_0) \\
         &= g'(f(x_0))\cdot \underbrace{f'(x_0)}_{\text{Dériviée interne}}
     \end{align*}
-    \begin{proof}[Preuve]
-        Le quotient est \begin{align*}
-            &\frac{g(f(x_0+h)) - g(f(x_0))}{h} \\
-            =& \frac{g(f(x_0+h)) - g(f(x_0))}{f(x_0+h) - f(x_0)} \cdot \frac{f(x_0+h) - f(x_0)}{h}
-        \end{align*}
-        En prenant la limite lorsque $h\to 0$, on obtient le résultat voulu.
-    \end{proof}
 \end{property}
-\begin{property}[Dériviées des réciproques]
+\begin{proof}[Preuve de la propriété \ref{prop:derivee_composee}]
+    Le quotient est \begin{align*}
+        \frac{g(f(x_0+h)) - g(f(x_0))}{h} = \frac{g(f(x_0+h)) - g(f(x_0))}{f(x_0+h) - f(x_0)} \cdot \frac{f(x_0+h) - f(x_0)}{h}
+    \end{align*}
+    En prenant la limite lorsque $h\to 0$, on obtient le résultat voulu.
+\end{proof}
+\begin{property}[Dériviées des réciproques]\label{prop:derivee_reciproques}
     Soit $f: A\to B$ bijective et dérivable sur $A$, un intervalle ouvert. Si $f'(x)\neq 0$ pour tout $x\in A$, alors
     \[\left(f^{-1}\right)'(x) = \frac{1}{f'(f^{-1(x)})}\]
-    \begin{proof}[Preuve]
-        On admet que $f^{-1}$ est dérivable sur tout $B$. On dérive l'equation $f(f^{-1}(x)) = x$ des deux cotés :
-        \begin{align*} 1 &= (f\circ f^{-1})'(x) = f'\left(f^{-1}(x)\right)\\ \implies& \frac{1}{f'\left(f^{-1}(x)\right)} = (f^{-1})'(x) \end{align*} \end{proof} \end{property} \begin{example}[1] $f(x) = \sqrt[n]{x} = f^{-1}(x)$ où $f(x)=x^n$, où $x>0$ \begin{align*} x &= f(g(x)) = \left(\sqrt[n]{x}\right)^n\\
+\end{property} 
+\begin{proof}[Preuve de la propriété \ref{prop:derivee_reciproques}]
+    On admet que $f^{-1}$ est dérivable sur tout $B$. On dérive l'equation $f(f^{-1}(x)) = x$ des deux cotés :
+    \begin{align*} 
+        x = \left(f\circ f^{-1}\right)(x)\iff 1 =& f(f^{-1}(x))' \overset{\text{Prop \ref{prop:derivee_composee}}}{=} f'\left(f^{-1}(x)\right)\cdot \left(f^{-1}\right)'(x)\\ 
+        \iff& \frac{1}{f'\left(f^{-1}(x)\right)} = (f^{-1})'(x) 
+    \end{align*} 
+\end{proof} 
+\begin{example}[1] $f(x) = \sqrt[n]{x} = f^{-1}(x)$ où $f(x)=x^n$, où $x>0$ \begin{align*} x &= f(g(x)) = \left(\sqrt[n]{x}\right)^n\\
         &\implies 1 = n(\sqrt[n]{x})^{n-1}\cdot (\sqrt[n]{x})'\\
         &\implies (\sqrt[n]{x})' = \frac{1}{n(\sqrt[n]{x})^{n-1}} = \frac{1}{n}x^{\frac1n -1}
     \end{align*} 
-    On montre de manière analogue que $\left(x^{\frac{p}{q}}\right) = \frac{p}{q}x^{\frac{p}{q}-1}$ pour tout $\frac{p}{q} \in \Q$ et on verra que c'est aussi vrai pour tout réel.
+    On montre de manière analogue que $\displaystyle\left(x^{\frac{p}{q}}\right) = \frac{p}{q}x^{\frac{p}{q}-1}$ pour tout $\frac{p}{q} \in \Q$ et on verra que c'est aussi vrai pour tout réel.
 \end{example}
 \begin{example}[2]
-    $\arcsin'(x) = \frac{1}{\cos(\arcsin(x))}, x\in ]-1,1[$
+    $\displaystyle\arcsin'(x) = \frac{1}{\cos(\arcsin(x))}$, $x\in \left]-1,1\right[$, car $f = \sin(x)$, donc $f'(x) = \cos(x)$
         \begin{center}
             \includegraphics[width=0.8\textwidth]{derivee_arcsin.png}
         \end{center}        
-    \[\implies arcsin'(x) = \frac{1}{\sqrt{1-x^2}}\]
+    \[\implies \arcsin'(x) = \frac{1}{\sqrt{1-x^2}}\]
 \end{example}
 \begin{definition}
-    $\lim_{h \downarrow 0}\frac{f(x+h)-f(h)}{h}$ est la dérivée à droite, si $h\uparrow 0$, c'est la dérivée à gauche.
+    $\displaystyle\lim_{h \downarrow 0}\frac{f(x+h)-f(h)}{h}$ est la dérivée à droite, si $h\uparrow 0$, c'est la dérivée à gauche.
 \end{definition}
 \begin{property}
-    $f$ est dérivable en $x_0$ si et seulement si les deux dérivées latérales existent et sont égales.
+    $f$ est dérivable en $x_0$ si et seulement si les deux dérivées latérales existent ($\in\R$) et sont égales.
 \end{property}
 \begin{example}[1]
     $f(x) = \left|x\right|$. On a:
@@ -144,7 +149,7 @@
 \begin{example}[2]
     $f(x) = \sqrt[3]{x}$. On a:
     \[\lim_{h\to 0}\frac{f(0+h)-f(0)}{h} = \lim_{x\to 0}\frac{\sqrt[3]{h}}{h} = \lim_{h \to 0}\frac{1}{\left(\sqrt[3]{n}\right)^2} = \frac{1}{0^+} = +\infty\]
-    $f'(0)$ n'existe pas, mais les deux dérivées latérales sont égales à $+\infty$.
+    $f'(0)$ n'existe pas car $\notin\R$, mais les deux dérivées latérales sont égales à $+\infty$.
 \end{example}
 \begin{definition}[Dériviée d'ordre supérieur]
     La \underline{dérivée seconde} de $f$ est \[f''(x)=f^{(2)}(x)=\left(f'(x)\right)'\]
@@ -153,10 +158,10 @@
 \begin{definition}[Clsses de fonctions dérivables]
     Soit $I$ un intervalle. Alors
     \begin{align*}
-        &D^n(I) = \left\{f : I\to \R | \,f \text{ est $n$ fois dérivable sur } I\right\}\\
-        &C^n(I) = \left\{f : I\to \R | \,f \text{ est $n$ fois dérivable sur et $f^{(n)}$ est continue sur } I\right\}
+        &D^n(I) = \left\{f : I\to \R \mid f \text{ est $n$ fois dérivable sur } I\right\}\\
+        &C^n(I) = \left\{f : I\to \R \mid f \text{ est $n$ fois dérivable sur et $f^{(n)}$ est continue sur } I\right\}
     \end{align*}
-    On pose $C^{\infty}(I) = \left\{f : I\to\R\, |\, f^{(n)}\text{ existe pour tour } n\in \N\right\}$.
+    On pose $C^{\infty}(I) = \left\{f : I\to\R\mid f^{(n)}\text{ existe pour tour } n\in \N\right\}$.
 \end{definition}
 \begin{remark}
     \noindent
@@ -173,10 +178,10 @@
 \begin{remark}
     \noindent
     \begin{itemize}
-        \item $x^n|x|$ est dans $C^{n}(\R)\setminus D^{n+1}(\R)$
-        \item $x|x| \begin{aligned}[t]
-            &\in C^{\infty}(]0, +\infty[)\\
-            &\in C^{\infty}(]-\infty, 0[)
+        \item $x^n\left|x\right|$ est dans $C^{n}(\R)\setminus D^{n+1}(\R)$
+        \item $x\left|x\right| \begin{aligned}[t]
+            &\in C^{\infty}\Big(\left]0, +\infty\right[\Big)\\
+            &\in C^{\infty}\Big(\left]-\infty, 0\right[\Big)
         \end{aligned}$
     \end{itemize}
 \end{remark}
@@ -191,20 +196,21 @@
 
 \section{Dérivée et croissance}
 \begin{theorem}[Théorhème de Rolle]
-    Soit $f:[a,b]\to\R$ continue sur $[a,b]$ et dérivable sur $]a,b[$. On suppose que $f(a)=0=f(b)$. Alors $\exists u\in ]a, b[$ tel que $f'(u)=0$.
-        \centering
-        \includegraphics[width=0.5\textwidth]{rolle.png}    
+    Soit $f:[a,b]\to\R$ continue sur $[a,b]$ et dérivable sur $]a,b[$. On suppose que $f(a)=0=f(b)$. Alors il existe $u\in \left]a, b\right[$ tel que $f'(u)=0$.
+        \begin{center}
+            \includegraphics[width=0.5\textwidth]{rolle.png}           
+        \end{center}
 \end{theorem}
 \begin{proof}[Preuve par le TVI]
-    Par le TVI, $f$ atteint son max $M=\max_{x\in[a,b]} f(x)$, on le suppose supérieur à $0$. Alors $\exists u\in ]a, b[$ tel que :
+    Par le TVI (\ref{thm:TVI}), $f$ atteint son max $M=\max_{x\in[a,b]} f(x)$, on le suppose supérieur à $0$. Alors il existe $u\in \left]a, b\right[$ tel que :
     \begin{align*}
         f(u)=M \implies f'(u)=f'_{\text{droite}}(u)&=\lim_{x\to u^+}\frac{f(x)-f(u)}{x-u}\leq 0\\ 
         \text{et}\quad f'(u) = f'_{\text{gauche}}(u) &= \lim_{x\to u^-}\frac{f(x)-f(u)}{x-u} \geq 0\\
     \end{align*}
     Donc $f'(u)=0$.
 \end{proof}
-\begin{theorem}[Théorhème des acroissements finis (TAF)]
-    Soit $f:[a, b]\to \R$ continue, dérivable sur $]a, b[$. Alors $\exists u\in ]a, b[$ tel que :
+\begin{theorem}[Théorhème des acroissements finis -- TAF]\label{thm:TAF}
+    Soit $f:[a, b]\to \R$ continue, dérivable sur $]a, b[$. Alors il existe $u\in ]a, b[$ tel que :
     \begin{align*}
         f'(u)=\frac{f(b)-f(a)}{b-a}
     \end{align*}
@@ -214,19 +220,19 @@
 \begin{proof}[Preuve]
     En exercice.
 \end{proof}
-\begin{property}[Application du TAF]
+\begin{property}[Application du TAF (\ref{thm:TAF})]
     Soit $f:[a,b]\to\R$ continue sur $[a,b]$ et dérivable sur $]a,b[$.
     \begin{enumerate}
         \item Si $f'(x)=0$ pour tout $x\in ]a,b[$, alors $f$ est constante sur $[a,b]$.
         \begin{proof}[Preuve]
             Le sens "$\impliedby$" est évident. Pour le sens "$\implies$", si $f$ n'est pas constante, on trouve $c, d \in [a, b]$ tels que $c<d$ et  $f(c) \neq f(d)$. 
-            Par le TAF, $\exists u\in ]c,d[$ tel que \[f'(u) = \frac{f(d)-f(c)}{d-c} \neq 0\] ce qui est une contradiction.
+            Par le TAF, $\exists u\in \left]c,d\right[$ tel que \[f'(u) = \frac{f(d)-f(c)}{d-c} \neq 0\] ce qui est une contradiction.
         \end{proof}
-        \item Si $g:[a, b]\overset{\text{continue}}{\longrightarrow }\R$ dérivable sur $]a,b[$ et $f'(x)=g'(x)$ pour tout $x\in ]a,b[$, alors $f(x) = g(x) + c$ pour un certain $c\in \R$ et tout $x\in [a,b]$.
-        \item Si $f'(x)\geq 0$ pour tout $x\in ]a,b[$, alors $f$ est croissante sur $[a,b]$.
-        \item Si $f'(x)\leq 0$ pour tout $x\in ]a,b[$, alors $f$ est décroissante sur $[a,b]$.
-        \item Si $f'(x)>0$ pour tout $x\in ]a,b[$, alors $f$ est strictement croissante sur $[a,b]$.
-        \item Si $f'(x)<0$ pour tout $x\in ]a,b[$, alors $f$ est strictement décroissante sur $[a,b]$.
+        \item Si $g:[a, b]\overset{\text{continue}}{\longrightarrow }\R$ dérivable sur $]a,b[$ et $f'(x)=g'(x)$ pour tout $x\in \left]a,b\right[$, alors $f(x) = g(x) + c$ pour un certain $c\in\R$ et tout $x\in [a,b]$.
+        \item Si $f'(x)\geq 0$ pour tout $x\in \left]a,b\right[$, alors $f$ est croissante sur $[a,b]$.
+        \item Si $f'(x)\leq 0$ pour tout $x\in \left]a,b\right[$, alors $f$ est décroissante sur $[a,b]$.
+        \item Si $f'(x)>0$ pour tout $x\in \left]a,b\right[$, alors $f$ est strictement croissante sur $[a,b]$.
+        \item Si $f'(x)<0$ pour tout $x\in \left]a,b\right[$, alors $f$ est strictement décroissante sur $[a,b]$.
     \end{enumerate}
 \end{property}
 \begin{remark}
@@ -234,16 +240,17 @@
 \end{remark}
 \subsection{La fonction exponentielle (et logarithmes)}
 \begin{theorem}
-    Il existe une \underline{unique} fonction $f:\R\to\R$ telle que :
+    Il existe une \uline{unique} fonction $f:\R\to\R$ telle que :
     \begin{align*}
-        f'(x) = f(x) \; \forall x\in\R \quad \text{ et } \quad f(0) = 1 
+        f'(x) &= f(x) \quad \forall x\in\R\\ 
+        \text{ et } \quad f(0) &= 1 
     \end{align*}
 \end{theorem}
 \begin{proof}[Preuve]
     La preuve de l'existence se fera plus tard.\\ 
     Pour l'unicité, la preuve se fait en deux étapes :
     \begin{enumerate}
-        \item $f(x)\neq0 \;\forall x\in \R$. On pose $h(x)=f(x)\cdot f(-x)$. On calcule la dérivée de $h$:
+        \item $f(x)\neq0 \quad\forall x\in \R$. On pose $h(x)=f(x)\cdot f(-x)$. On calcule la dérivée de $h$:
             \begin{align*}
                 h'(x) &= f'(x)\cdot f(-x)+ f(x)\cdot \underbrace{f'(-x)}_{=f(-x)}(-1)\\
                 &= 0
@@ -257,16 +264,16 @@
     \end{enumerate} 
 \end{proof}
 
-\begin{definition}[Foonction exponentielle]
-    Cette fonction s'appelle la fonction \\ \underline{exponentielle}. Notée \[\exp(x) \quad \text{ (plus tard } e^x)\]
+\begin{definition}[Fonction exponentielle]
+    Cette fonction s'appelle la fonction \uline{ex\-po\-nen\-tielle}, notée $\exp(x)$ (et plus tard $e^x$).
 \end{definition}
 \begin{property}[$\exp(x)$]
     \noindent
     \begin{enumerate}
         \item $\exp'(x) = \exp(x)$ et $\exp(0)=1$ nous donne \[\exp \in C^\infty(\R)\]
-        \item $\exp(x)\neq 0 \; \forall x\in \R$ et $\exp(-x) = \displaystyle\frac{1}{\exp(x)}$
+        \item $\exp(x)\neq 0 \quad \forall x\in \R$ et $\exp(-x) = \displaystyle\frac{1}{\exp(x)}$
         \item $\exp$ est strictement croissante
-        \item $\exp(x+y) = \exp(x)\cdot\exp(y) \; \forall x\in\R$
+        \item $\exp(x+y) = \exp(x)\cdot\exp(y) \quad \forall x\in\R$
         \item $\lim_{x\to +\infty} \exp(x)=+\infty$, $\lim_{x\to 0} \exp(x)=0$
             \begin{proof}[Preuve]
                 $\exp(x) \geq x$. En effet, si $g(x) = \exp(x)-x$, on a 
