@@ -267,7 +267,7 @@ Attention : La condition 3 est indispensable, regardons un cas où elle n'est pa
         \end{center}
 \end{remark}
 \begin{definition}[Divergence vers l'infini]
-    Soit $f : D \to \R$ def au voisinage de $u \in \R$. Alors $f(x)$ tends vers $+\infty$ (resp. $-\infty$) lorsque $x \to u$ si $\forall A \in \R \; \exists \delta > 0$ t.q. $\forall x \in D \setminus \{u\}$ on a :
+    Soit $f : D \to \R$ définie au voisinage de $u \in \R$. Alors $f(x)$ tends vers $+\infty$ (resp. $-\infty$) lorsque $x \to u$ si pour tout $A \in \R \; \exists \delta > 0$ tel que $\forall x \in D \setminus \{u\}$ on a :
     $$|x-u| \leq \delta \iff f(x) \geq A \quad \text{(resp. } f(x) \geq A \text{)}$$
     \textbf{Notation :} $\lim_{x \to u} f(x) = +\infty$ (resp. $-\infty$) ou $f(x) \to +\infty$ (resp. $-\infty$)
 \end{definition}
@@ -296,19 +296,18 @@ Attention : La condition 3 est indispensable, regardons un cas où elle n'est pa
     \end{itemize}
 \end{remark}
 \begin{example}
-    $$\lim_{x \to +\infty} \frac{x^2 +1}{x+1} = \lim_{x \to +\infty} \frac{x^2\left(1 + \displaystyle\frac{1}{x^2}\right)}{x\left(1 + \displaystyle\frac{1}{x}\right)} = \frac{+\infty}{1} = \infty$$
+    $$\lim_{x \to +\infty} \frac{x^2 +1}{x+1} = \lim_{x \to +\infty} \frac{x^2\left(1 +\frac{1}{x^2}\right)}{x\left(1 + \frac{1}{x}\right)} = \frac{+\infty}{1} = \infty$$
 \end{example}
 
 \section{Fonctions continues}
 \begin{definition}
-    Soit $f:D\to \R$ def au voisinage de $u\in \R$. Alors $f$ est $\underline{\text{continues en } x=u}$ si :
+    Soit $f:D\to \R$ définie au voisinage de $u\in \R$. Alors $f$ est \uline{continues en  $x=u$} si :
     $$\lim_{x \to u} f(x)= f(u)$$  
 \end{definition}
-\newpage
 \begin{remark}[Concéquences de la continuité]
-    Cela implique trois choses 
+    Cela implique trois choses :
     \begin{enumerate}
-        \item $u\in D \implies f$ def au voisinage de $u$ $\underline{\text{et}}$ en $u$.
+        \item Si $u\in D$, alors $f$ est définie au voisinage de $u$ $\underline{\text{et}}$ en $u$.
         \item la limite $\lim_{x \to u} f(x)$ existe dans $\R$
         \item tout $f(u)\in \R$
     \end{enumerate}
@@ -317,7 +316,7 @@ Attention : La condition 3 est indispensable, regardons un cas où elle n'est pa
     Les polynômes, les fonctions rationnelles, $\sqrt[n]{x}$, $\sin x$ (toutes les fonction trigo), $e^x$, $\log x$ etc... sont continues $\underline{\textbf{sur leur domaine}}$.
 \end{example}
 \begin{example}[2]
-    $f(x) = \frac{x^2 +1}{x+1}$ est continues pour tout $x\in \R \setminus \{1\}$. On voit que 
+    $\displaystyle f(x) = \frac{x^2 +1}{x+1}$ est continues pour tout $x\in \R \setminus \{1\}$. On voit que 
     $$\lim_{x \to 2} f(x) = \frac{2^2+1}{2-1}=5 = f(2)$$
     Mais $1 \not \in D \implies f$ n'est pas continue en $x=1$.
 \end{example}
@@ -326,42 +325,41 @@ Attention : La condition 3 est indispensable, regardons un cas où elle n'est pa
     $$\lim_{n\to \infty} f(a_n) = f(\lim_{n \to \infty} a_n) = f(u)$$
 \end{remark}
 \begin{definition}
-    Soit $f:D\to \R$ def au voisinage $\begin{aligned}
+    Soit $f:D\to \R$ définie au voisinage $\begin{aligned}
         &\text{à droite }\\
         &\text{à gauche}
     \end{aligned}$ de $u\in \R$. Alors $f$ est $\textbf{continue $\begin{aligned}
         &\text{à droite }\\
         &\text{à gauche}
     \end{aligned}$ en } x = u$ si :
-    \[\begin{aligned} 
-        &\lim_{x \uparrow u} f(x) = f(u)\\ 
-        &\lim_{x \downarrow u} f(x) = f(u)
-    \end{aligned}\]
+    $\displaystyle\begin{aligned} 
+        &\lim_{x \downarrow u} f(x) =  \lim_{x\to u^+} f(x)=f(u)\\ 
+        &\lim_{x \uparrow u} f(x) = \lim_{x\to u^-} f(x)= f(u)
+    \end{aligned}$
 \end{definition}
 \begin{example}
     $f(x) = \begin{cases}
         2x + 1 & x\geq 0 \\
-        \frac{\sin(x)}{x} & x<0
+        \displaystyle\frac{\sin(x)}{x} & x<0
     \end{cases} \implies f$ est continue en tout $x \neq 0$. En $x =0$ on a :
     $$\lim_{x \uparrow 0} f(x) = \lim_{x \uparrow 0} \frac{\sin(x)}{x} =1$$
     $$\lim_{x \downarrow 0} f(x)  \overset{x>0}{=} \lim_{x \downarrow 0} (2x+1) = 1 = f(0)$$
     Donc $f$ est continues à gauche et à droite, donc continue en $x=0$ donc continue sur $\R$ 
 \end{example}
-\begin{property}[Opération sur les fonctions continues]
-    Si $f$ et $g$ sont continues en $u$ alors $f+g$, $\,f\cdot g$, $\,\alpha f + \beta g$, $\,\frac{f}{g}$ (si $g(u) \neq 0$) sont aussi continue.\\
+\begin{property}[Opérations sur les fonctions continues]
+    Si $f$ et $g$ sont continues en $u$ alors $(f+g)$, $(f\cdot g)$, $(\alpha f + \beta g)$, $\left(\frac{f}{g}\right)$ (si $g(u) \neq 0$) sont aussi continues.\\
     De plus, si $f$ est continue en $u$ et $g$ continue en $f(u)$, alors $(f\circ g)(x)$ est continues en $u$.
 \end{property}
 \begin{example}
     $\displaystyle\frac{\sin(x^2 +8x+1)}{\sqrt{x^2 + 5+\cos(x)}}$ est continue sur tout $\R$
 \end{example}
 \begin{definition}[Prolongement par continuité]
-    Si $f : D \to \R$ est def au voisinage de $u$ avec $u\not\in \R$ et tq $\lim_{x \to u}f(x)=l\in\R$ alors, le $\underline{\text{prolongement par continuité}}$
+    Si $f : D \to \R$ est définie au voisinage de $u$ avec $u\not\in \R$ telle que $\lim_{x \to u}f(x)=l\in\R$ alors, le $\underline{\text{prolongement par continuité}}$
     de $f$ est :
     \[
     \begin{aligned}
         \hat{f} : D \cup \{u\} &\longrightarrow \R\\
         x &\longmapsto 
-        % Voici la partie corrigée :
         \left\{ \begin{array}{cl}
             f(x) & \text{si } x \neq u \\
             l    & \text{si } x = u
@@ -384,7 +382,7 @@ Attention : La condition 3 est indispensable, regardons un cas où elle n'est pa
 \begin{definition}[Fonction continues sur un intervalle]
     Une fonction $f: [a, b] \to\R$ est $\underline{\text{continue}}$ (jusqu'au bord) si :
     \begin{enumerate}
-        \item $\lim_{x\to u} f(x)=f(u) \, \forall u\in[a, b]$
+        \item $\lim_{x\to u} f(x)=f(u)$ pour tout $u\in[a, b]$
         \item $\lim_{x \to a^+} f(x) = f(a)$ ($f$ est continue à droite en $x=b$)
         \item $\lim_{x\to b^-} f(x) = f(b) $ ($f$ est continue à gauche en $x=b$)
 
@@ -400,7 +398,7 @@ Attention : La condition 3 est indispensable, regardons un cas où elle n'est pa
     Soit $f : [a, b] \to \R$ continue. Alors:
     \[f([a, b]) = \left[\inf_{x \in [a,b]} f(x), \sup_{x \in [a, b]} f(x)\right]\]
 \end{theorem}
-\begin{remark}
+\begin{remark}[TVI]
     Cela veut dire que $f$ atteint :
     \begin{itemize}
         \item Son $\inf$ est son minimum:\[\inf_{x \in [a,b]} f(x) = \min_{x \in [a, b]} f(x) \in \R\]
@@ -409,10 +407,10 @@ Attention : La condition 3 est indispensable, regardons un cas où elle n'est pa
     \end{itemize}
     Le $\min$ et $\max$ n'est pas $\pm \infty$. De plus, $f([a, b])$ est un intervalle fermé.
 \end{remark}
-\begin{proof}[Preuve que $f$ atteint]
+\begin{proof}[Preuve de la remarque]
     Posons $s = \sup_{x \in [a, b]}f(x) = \sup(f(\left[a, b\right]))$. On sait qu'il existe une suite $(y_n) \in f([a, b])$ tel que $y_n \to s$. Ainsi
     \begin{align*}
-        &f(x_n) &&x_n \in [a, b]\\
+        &f(x_n) && x_n \in [a, b]\\
         \implies & \exists (x_{n_k}) \text{ une sous suite de } (x_n) \text{ t.q. } x_{n_k} \to u \in [a, b]\\
         \implies & f(u) = f(\lim_{k \to \infty} x_{n_k})\\
         =& \lim_{k \to \infty} f(x_{n_k}) \\ 
@@ -420,28 +418,28 @@ Attention : La condition 3 est indispensable, regardons un cas où elle n'est pa
     \end{align*}
 \end{proof}
 \begin{example}
-    L'equation $\cos(x)=x$ possède une solution $x_0 \in ]0, \frac{\pi}{2}[$.\\
+    L'equation $\cos(x)=x$ possède une solution $x_0 \in \left]0, \frac{\pi}{2}\right[$.\\
     On pose \(\begin{aligned}[t]
         f: \left[0, \frac{\pi}{2}\right] &\longrightarrow  \R\\
         x &\longmapsto \cos(x) - x
-    \end{aligned}\) qui est continue. On a $f(0)=\cos(0)-0=1\, \underline{ > 0}$ et $f(\frac{\pi}{2}) = \cos(\frac{\pi}{2}) - \frac{\pi}{2} = -\frac{\pi}{2} \, \underline{< 0}$.\\
+    \end{aligned}\), continue. On a $f(0)=\cos(0)-0=1\, \underline{ > 0}$ et $f(\frac{\pi}{2}) = \cos(\frac{\pi}{2}) - \frac{\pi}{2} = -\frac{\pi}{2} \, \underline{< 0}$.\\
     Par le théorème des valeurs intermédiaires, 
-    \[f\left(\left[0, \frac{\pi}{2}\right]\right) = \left[\underbrace{\min f(x)}_{x < 0},\; \underbrace{\min f(x)}_{x > 0}\right]\] 
+    \[f\left(\left[0, \frac{\pi}{2}\right]\right) = \left[\underbrace{\min_{x\in\left[0, \frac{\pi}{2}\right]} f(x)}_{x < 0},\; \underbrace{\max_{x\in\left[0, \frac{\pi}{2}\right]} f(x)}_{x > 0}\right]\] 
     Ainsi, il existe $x_0 \in \left[0, \frac{\pi}{2}\right]$ tel que $f(x_0)=0$ $\iff \cos(x_0) = x_0$ 
 \end{example}
 \begin{corollary}[TVI -- 1]
-    Si $f: [a, b] \to \R$ est continues et que $f(a)<0$ et $f(b)>0$ (ou l'inverse), alors il existe $u\in ]a, b[$ tel que $f(u) = 0$
+    Si $f: [a, b] \to \R$ est continues et que $f(a)<0$ et $f(b)>0$ (ou l'inverse), alors il existe $u\in \left]a, b\right[$ tel que $f(u) = 0$
 \end{corollary}
 \begin{corollary}[TVI -- 2]
     Si $f: I\to \R$ et continue, où $I$ est un intervalle, alors $\Im(f) = f(I)$ est aussi un intervalle.
 \end{corollary}
-\begin{corollary}[TVI -- 3]
-    Soit $f: [a, b]\to \R$ continue. Alors $f$ est injective $\iff f$ est strictement monotone. 
+\begin{corollary}[TVI -- 3]\label{cor:TVI_3}
+    Soit $f: [a, b]\to \R$ continue. Alors $f$ est injective si et seulement si $f$ est strictement monotone. 
 \end{corollary}
-\begin{proof}[Preuve du Corollaire 3]
+\begin{proof}[Preuve du corrolaire \ref{cor:TVI_3}]
     $\underline{\impliedby}$ cf. Chap 0.\\
     $\underline{\implies}$ Supposons que $f$ n'est pas strictement monotone :
-    \[\exists u < v < w \text{ t.q. } f(u) < f(v) > f(w)\]
+    \[\exists u < v < w \text{ tel que } f(u) < f(v) > f(w)\]
     \begin{center}
         \includegraphics[width=0.5\textwidth]{TVI.png}
     \end{center}
