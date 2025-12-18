@@ -22,7 +22,7 @@ On sait que si $f: [a, b]\overset{\text{ continue }}{\longrightarrow} \R$ alors 
         \item On dit que l'intégrale converge si la (les !) limites existe(nt) ($\in\R$), et l'intégrale diverge sinon.
         \item Pour le point 3), on peut montrer que le résultat ne dépend pas du $w$ choisi.
     \end{itemize}
-    Ce sont les intégrales généralisées (ou impropres) de $f$.
+
 \end{remark}
 \textbf{Notation : } \[\int_{a}^{+\infty^-} = \int_{a}^{+\infty} \quad, \quad \int_{-\infty^+}^{b} = \int_{-\infty}^{b}\]
 \begin{example}[1]
@@ -47,9 +47,9 @@ On sait que si $f: [a, b]\overset{\text{ continue }}{\longrightarrow} \R$ alors 
         +\infty & r \leq 1
     \end{cases}$. Exemple :
     \begin{align*}
-        I = \int_{0^+}^{1}\frac{1}{x^r}dx &= \lim_{u\to 0^+}\int_{u}^{1}\frac{1}{x^r}dx = \begin{cases}
-            \lim_{u\to 0^+}(-\log(u)) = +\infty & r = 1\\
-            \lim_{u\to 0^+} \Big[\frac{x^{1-r}}{1-r}\Big]_{x = u}^{x = 1} & r\neq 1
+        I = \int_{0^+}^{1}\frac{1}{x^r}dx &= \lim_{u\to 0^+}\int_{u}^{1}\frac{1}{x^r}dx = \lim_{u\to 0^+}\begin{cases}
+            (-\log(u)) = +\infty & r = 1\\
+            \Big[\frac{x^{1-r}}{1-r}\Big]_{x = u}^{x = 1} & r\neq 1
         \end{cases}\\
         \intertext{Calculons $\Big[\frac{x^{1-r}}{1-r}\Big]_{x = u}^{x = 1}$ :}
         &\Big[\frac{x^{1-r}}{1-r}\Big]_{x = u}^{x = 1} = \frac{1}{1-r} + \frac{1}{r-1}\lim_{u\to 0^+}u^{1-r}
@@ -78,7 +78,7 @@ On sait que si $f: [a, b]\overset{\text{ continue }}{\longrightarrow} \R$ alors 
     L'intégrale diverge ! En revenche, sa valeur principale de Cauchy est $\lim_{u\to +\infty}\int_{-u}^{u}xdx = 0$. On voit alors que la valeur principale de Cauchy $\neq \int_{-\infty}^{+\infty}$.
 \end{example}
 \begin{property}[Comparaison d'intégrales]
-    Soient $f, g : [a, b[\to\R$ sontinues telles que $0\leq f(x) \leq g(x)$ pour tout $x \in [a, b[$. Alors : 
+    Soient $f, g : \left[a, b\right[\to\R$ continues telles que $0\leq f(x) \leq g(x)$ pour tout $x \in [a, b[$. Alors : 
     \begin{enumerate}
         \item $\label{prop:comp_int_1}\int_{a}^{b^-} f(x)dx$ converge $\impliedby \int_{a}^{b ^-}g(x)dx$ converge.
             \begin{proof}
@@ -87,14 +87,15 @@ On sait que si $f: [a, b]\overset{\text{ continue }}{\longrightarrow} \R$ alors 
     \end{enumerate}
 \end{property}
 \begin{example}[du \ref{prop:comp_int_1}]
-    $\displaystyle\int_{0}^{1^-}\frac{1}{\sqrt{1-t^2}}dt$ converge : 
+    $I=\displaystyle\int_{0}^{1^-}\frac{1}{\sqrt{1-t^2}}dt$ converge : 
     \begin{align*}
-        0 \leq \frac{1}{\sqrt{1-t^2}}dt \leq \frac{1}{\sqrt{1-t}}
+        0 &\leq \frac{1}{\sqrt{1-t^2}}dt \leq \frac{1}{\sqrt{1-t}}
         \intertext{Et on a :}
-        \int_{0}^{1^-} \frac{1}{\sqrt{1-t}}dt \overset{x = 1-t}{=} -\int_{1}^{0^+}\frac{1}{\sqrt{x}}dx\\
-        = \int_{0^+}^{1}\frac{1}{\sqrt{x}}dx 
-        \intertext{Qui converge}
+        \int_{0}^{1^-} \frac{1}{\sqrt{1-t}}dt &\overset{x = 1-t}{=} -\int_{1}^{0^+}\frac{1}{\sqrt{x}}dx\\
+        &= \int_{0^+}^{1}\frac{1}{\sqrt{x}}dx \\
+        &= \left(2\sqrt{1}\right) - \lim_{u\to 0^+}\left(2\sqrt{u}\right) = 2-0 = 2
     \end{align*}
+    qui converge. Donc $I$ converge par comparaison.
 \end{example}
 \begin{property}[Comparaison intégrales / séries]
     Soit $f: [n_0, +\infty[ \to \R$ une fonction continue, positive, et décroissante. Alors :
@@ -108,16 +109,16 @@ On sait que si $f: [a, b]\overset{\text{ continue }}{\longrightarrow} \R$ alors 
     \begin{align*}
         \sum_{n =2}^{\infty} \frac{1}{n(\underbrace{\log(n)}_{u})^p} \; \text{ converge } &\iff \int_{2}^{+\infty}\frac{1}{x\left(\log(x)\right)^p}dx \; \text{ converge}
         \intertext{Voyons la veleur de l'intégrale indéfinie :}
-        \int\frac{1}{x\left(\log(x)\right)^p}dx &= \int\frac{1}{u^p}du = \begin{cases}
+        \int\frac{1}{x\left(\log(x)\right)^p}dx &\overset{du = \frac{1}{x}dx}{=} \int\frac{1}{u^p}du = \begin{cases}
             \frac{u^{1-p}}{1-p} + c & p \neq 1\\
-            \log(u) & p = 1
+            \log(u)+c & p = 1
         \end{cases} \\
-        &\overset{du = \frac{1}{x}dx}{=} \begin{cases}
+        &=\begin{cases}
             \frac{log(x)^{1-p}}{1-p} & p\neq 1\\
             \log(\log(x)) & p = 1
         \end{cases}\\
         &\implies I = \int_{2}^{+\infty} \frac{1}{x\left(\log(x)\right)^p}dx \overset{p = 1}{=} \lim_{u \to +\infty}\Big[\log(\log(x))\Big]_{x = 2}^u = +\infty\\
-        &\implies I \overset{p\neq 1}{=} \lim_{u\to +\infty} \Big[\frac{\log(x)^{1-p}}{1-p}\Big]_{x = 2}^u =c\frac{-\lim_{u\to + \infty}\log(x)^{1-p}}{1-p} - \frac{\log(2)^{1-p}}{1-p}
+        &\implies I \overset{p\neq 1}{=} \lim_{u\to +\infty} \Bigg[\frac{\log(x)^{1-p}}{1-p}\Bigg]_{x = 2}^u =c\frac{-\lim_{u\to + \infty}\log(x)^{1-p}}{1-p} - \frac{\log(2)^{1-p}}{1-p}
         \intertext{$I$ converge si et seulement si $p>1$, ainsi }
         &\sum_{n =2}^{\infty}\frac{1}{n\left(\log(n)\right)^p} \text{ converge } \iff p > 1
         \intertext{En particulier : }

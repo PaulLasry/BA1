@@ -272,7 +272,7 @@
     \begin{enumerate}
         \item $\exp'(x) = \exp(x)$ et $\exp(0)=1$ nous donne \[\exp \in C^\infty(\R)\]
         \item $\exp(x)\neq 0 \quad \forall x\in \R$ et $\exp(-x) = \displaystyle\frac{1}{\exp(x)}$
-        \item $\exp$ est strictement croissante
+        \item la fonction exponentielle est strictement croissante
         \item $\exp(x+y) = \exp(x)\cdot\exp(y) \quad \forall x\in\R$
         \item $\lim_{x\to +\infty} \exp(x)=+\infty$, $\lim_{x\to 0} \exp(x)=0$
             \begin{proof}[Preuve]
@@ -297,27 +297,27 @@
     La fonction exponentielle est 
     \begin{itemize}
         \item injective (car strictement croissante)
-        \item surjective (coréstraintes à $]0, +\infty[$)
+        \item surjective (coréstraintes à $\left]0, +\infty\right[$)
     \end{itemize}
     Donc $\exp(x)$ est bijective !
 \end{remark}
 \begin{definition}[Logarithme]
     Le \underline{logarithme} est la réciproque que la fonction exponentielle. Donc :
     \begin{align*}
-        \log : \; ]0, + \infty[ &\longrightarrow \R\\
+        \log : \left]0, + \infty\right[ &\longrightarrow \R\\
         x &\longmapsto \log(x) = \ln(x)
     \end{align*}
 \end{definition}
 \begin{property}[Logarithme]
     \noindent
     \begin{enumerate}
-        \item $\mathcal{D}(\ln) = \;]0, + \infty[$ et $\Im(\ln) = \R$. 
-        \item $\ln(1) = 0$. On a :
+        \item $\mathcal{D}(\log) = \left]0, + \infty\right[$ et $\Im(\log) = \R$. 
+        \item $\log(1) = 0$. On a :
             \begin{align*}
                 &x = \exp(\ln(x)) \\
                 \iff& 1 = \exp'(\ln(x))\cdot\ln'(x) = x\ln'(x)\\
                 \implies& \ln'(x) = \frac{1}{x}\\
-                \implies& \ln \in C^\infty\left(]0, +\infty[\right)
+                \implies& \ln \in C^\infty\left(\left]0, +\infty\right[\right)
             \end{align*} 
         
         \item $\log$ est strictement croissante.
@@ -347,7 +347,7 @@
     \end{align*}
 \end{definition}
 \begin{theorem}[Règle de Bernouilli-l'Hospital]
-    Soit $x_0$ et $f, g: A\to\R$, où $A=]x_0-d, \, x_0+d[\setminus{\{x_0\}}$ est un voisinage de $x_0$. Si :
+    Soit $x_0$ et $f, g: A\to\R$, où $A=\left]x_0-d, x_0+d\right[\setminus{\{x_0\}}$ est un voisinage de $x_0$. Si :
     \begin{enumerate}
         \item $\displaystyle \frac{\lim_{x\to x_0}f(x)}{\lim_{x\to x_0}g(x)} = \frac{0}{0} \text{ ou } \frac{\infty}{\infty}$
         \item $\displaystyle \frac{f'(x)}{g'(x)} = l \in\R\cup \{\pm \infty\}$
@@ -371,11 +371,11 @@
             0 & p \leq 0
         \end{cases}
     \end{align*}
-    Cela montre que $\log(x)$ croît moins vite que tout polynôme.
+    Cela montre que $\log(x)$ croît moins vite que tout polynôme (de degré supérieur à $0$).
 \end{example}
 \begin{example}[3]
     \begin{align*}
-        \lim_{x\to 0}\cos(2x)^{\frac{3}{x^2}} &= \lim_{x\to 0}\exp(\frac{\log(\cos(2x)\cdot3)}{x^2})\\ 
+        \lim_{x\to 0}\cos(2x)^{\frac{3}{x^2}} &= \lim_{x\to 0}\exp\left(\frac{\log(\cos(2x)\cdot3)}{x^2}\right)\\ 
         &= \exp\left(\lim_{x\to 0}\left(\frac{3}{\cos(2x)}\cdot\frac{-\sin(2x)}{2x}\cdot2\right)\right)\\
         &= \exp\left(\frac{3}{\cos(0)}\cdot\lim_{y\to 0} \frac{-\sin(y)}{y}\cdot2\right) \\
         &= \exp(-6) = e^{-6}
@@ -384,7 +384,7 @@
 \begin{remark}
     \textbf{Attention :} Si la limite du quotient des dérivées n'existe pas ($\notin \R\cup\{\pm \infty\}$), alors B-H ne marche pas.
 \end{remark}
-\begin{property}[Finction $C^1$ par morceaux]
+\begin{property}[Fonctions $\in C^1$ par morceaux]
     Soient $f, g \in C^1(I = \text{intervalle})$ et $x_0\in I$. On suppose que $f(x_0)=g(x_0)$, et on pose \begin{align*}
         h : I&\to\R\\
         x&\mapsto\begin{cases}
@@ -434,15 +434,15 @@
 \end{example}
 
 \section{Etude de fonctions}
-Slides
+c.f. Slides
 \subsection{Applications : convergence de suites définies par récurrence}
-\noindent\textbf{Rappel :} Une suite définie par récurrence est une suite $(a_n)_{n\in\N}$ définie par $a_0 = \text{valeur fixée}$ et $a_{n+1} = g(a_n)$, pour une fonction $g:D\to\R$.
+Une suite définie par récurrence est une suite $(a_n)_{n\in\N}$ définie par $a_0 = \text{valeur fixée}$ et $a_{n+1} = g(a_n)$, pour une fonction $g:D\to\R$.
 \begin{remark}[Important]
     \textcolor{red}{Si} $(a_n)$ converge, disons $a_n\to l\in\R$, alors: \begin{align*}
         l &= \lim_{n\to\infty}a_{n+1} = \lim_{n\to\infty}g(a_n)\\
         &\overset{g\text{ est cont.}}{=}g(\lim_{n\to\infty} a_n) = g(l)
     \end{align*}
-    Donc $l$ est foncément une sol de l'équation $\underline{x = g(x)}$. On supposera en général que $g(x)$ est continue et même $C^1$ sur un intervalle. 
+    Donc $l$ est forcément une sol de l'équation $\underline{x = g(x)}$. On supposera en général que $g(x)$ est continue et même $C^1$ sur un intervalle. 
 \end{remark}
 \begin{example}
     Soit $a_0 = \frac13$, $a_{n+1} = a_n^2 = g(a_n)$ où $g(x)=x^2$. Condidats pour $l$ : $x = g(x)=x^2$, donc $l = 0$ ou $l =1$. On calcule quelques valeurs :
@@ -523,7 +523,7 @@ Slides
 \section{Développements limités}
 Le but est d'approximer une fonction par un polynôme. 
 \begin{definition}
-    Soit $f\in C^n(I)$ où $I$ est un intervalle ouvert et $x_0\in I$. Le polynôme de Taylor de $f$ d'ordre $n$ en $x_0$ est l'unique polynôme $p(x)$ de degré $ \leq n$ dont les dérivées en $x_0$ sont les mêmes que celles de $f$ jusqu'à l'ordre $n$.
+    Soit $f\in C^n(I)$ où $I$ est un intervalle ouvert et $x_0\in I$. Le polynôme de Taylor de $f$ d'ordre $n$ en $x_0$ est l'unique polynôme $p(x)$ de degré inférieur ou égal à $n$ dont les dérivées d'ordre $x_0$ sont les mêmes que celles de $f$ jusqu'à l'ordre $n$.
 \end{definition}
 \begin{example}
     Soit $f(x) = \sin(x)$, $x_0=0$. On a 
@@ -543,7 +543,7 @@ Ainsi, la formule pour trouver le $p_n$ polynôme est \begin{align*}
     \end{align*}
     pour tout $x\in I$ où $r_n(x)$ vérifie
      \begin{itemize}
-        \item Pour tout $c > 0$, $|r_n(x)| \leq c|x-x_0|^n$ dans un voisinage de $x_0$.
+        \item Pour tout $c > 0$, $|r_n(x)| \leq c\cdot|x-x_0|^n$ dans un voisinage de $x_0$.
         \item $\displaystyle\lim_{x\to x_0} \frac{r_n(x)}{(x-x_0)^n} = 0$
         \item $r_n(x) = (x-x_0)^n\varepsilon(x)$, où $\varepsilon : I\to\R$ est telle que $\displaystyle\lim_{x\to x_0}\varepsilon(x)=0$
     \end{itemize}
@@ -570,16 +570,15 @@ Ainsi, la formule pour trouver le $p_n$ polynôme est \begin{align*}
     On a donc que le $DL_2$ en $x_0=0$ est \[x+x^2\varepsilon (x)\]
 \end{example}
 \begin{remark}[Estimation du reste]
-    On dit que
-    $|r_n(x)|\leq f^{(n+1)}(u)=\frac{|x-x_0|^{n+1}}{n!}$
+    On a que \[\left|r_n(x)\right|\leq \left|f^{(n+1)}(u)\right|\cdot\frac{\left|x-x_0\right|^{n+1}}{n!}\] pour $u$ entre $x$ et $x_0$.
 \end{remark}
-\subsection{Applications : Calculs de limites}
 
+\subsection{Applications : Calculs de limites}
 \begin{itemize}
     \item Calculons la limite suivante : $\lim_{x\to 0}\frac{\sin(x)-x}{x^3}$
         \begin{align*}
             &=\lim_{x\to 0} \frac{x - \frac{1}{6}x^3+x^3\varepsilon(x)-x}{x^3}\\
-            &=\lim_{x\to 0}\left(-\frac{1}{6}+\varepsilon(x) = -\frac{1}{6}\right)
+            &=\lim_{x\to 0}\left(-\frac{1}{6}+\varepsilon(x)\right) = -\frac{1}{6}
         \end{align*}
         On voit qu'avec un $DL_1$ ca ne marche pas. Donc :
         \begin{align*}
@@ -595,12 +594,12 @@ Ainsi, la formule pour trouver le $p_n$ polynôme est \begin{align*}
         =\sum_{n=1}^{\infty}\left(1-\left(1-\frac{\left(\frac{1}{n}\right)^2}{2} + \left(\frac{1}{n}\right)^2 \varepsilon(x)\right)\right)\\
         =\sum_{n=1}^{\infty}\frac{\left(\frac{1}{n}\right)^2}{n}-\left(\frac{1}{n}\right)^2\varepsilon\left(\frac{1}{n}\right)\leq \sum_{n = 1}^{\infty}\left(\frac{1}{n}\right)^2
     \end{align*}
-    Comme $c$ est supérieur à $0$, cette série converge et la série originale aussi, par comparaison.
+    Cette série converge et la série originale aussi, par comparaison.
 \end{itemize}
 \begin{example}[Calculs de $DL$]
-    Tant qu'on écrit le rest, on peut tout faire.
+    Tant qu'on écrit le reste, on peut tout faire.
 \end{example}
-\begin{example}[Le $DL_2$ en $x_0 = 0$ de $f(x)=\sin(x)\cos(x)$] 
+\begin{example}Le $DL_2$ en $x_0 = 0$ de $f(x)=\sin(x)\cos(x)$.\\ 
     On utilise le $DL_2$ de $\sin(x)$ et le $DL_1$ de $\cos(x)$. Donc \begin{align*}
         \sin(x)\cos(x)&=\left(x+x^2\varepsilon(x)\right)\left(1+x\varepsilon(x)\right)\\
         &=x+x^2\varepsilon(x)+x^2\varepsilon(x)+x^3\varepsilon(x)\varepsilon(x)\\
@@ -627,13 +626,13 @@ Methode (ii) : Combiner le $DL_1$ en $x_0 = 0$ et de $\cos(x)$ avec le $DL_1$ en
 
 \subsection{Séries de Taylor}
 Si $f \in C^n(I)$, avec $I$ un intervalle ouvert, $x_0\in I$, on a \[f(x)=\sum_{k=0}^{n}\frac{f^{(n)}(x_0)}{k!} (x-x_0)^k + r_n(x)\]
-Question : si $f\in C^\infty(I)$, a-t-on $f(x)=\sum_{k=0}^{\infty}\frac{f^{(n)}(x_0)}{k!} (x-x_0)^k$ ? Quand on a $n\to \infty$, il faut que :
+\textbf{Question :} si $f\in C^\infty(I)$, a-t-on $f(x)=\sum_{k=0}^{\infty}\frac{f^{(n)}(x_0)}{k!} (x-x_0)^k$ ? Quand on a $n\to \infty$, il faut que :
 \begin{enumerate}
     \item La série converge
     \item Le reste $r_n(x) \longrightarrow 0$ lorsque $n\to \infty$
 \end{enumerate}
-\begin{definition}
-    Pour $f\in C^\infty(I)$ avec $I$ un intervalle ouvert, $x_0\in I$, la série de Taylor de $f$ centrée en $x_0$ est la série \[\sum_{k = 0}^{\infty}\frac{f^{(n)}(x_0)}{k!}(x-x_0)^k\]
+\begin{definition}[Série de Taylor]
+    Pour $f\in C^\infty(I)$ avec $I$ un intervalle ouvert et $x_0\in I$, la série de Taylor de $f$ centrée en $x_0$ est la série \[\sum_{k = 0}^{\infty}\frac{f^{(n)}(x_0)}{k!}(x-x_0)^k\]
 \end{definition}
 \begin{remark}
     \noindent\begin{itemize}
@@ -643,13 +642,13 @@ Question : si $f\in C^\infty(I)$, a-t-on $f(x)=\sum_{k=0}^{\infty}\frac{f^{(n)}(
     \end{itemize}
 \end{remark}
 \begin{example}[1]
-    $f(x) = e^x\in C^\infty(\R), x_0 = 0$. Le $DL_n$ de $f$ donne \[e^x =\sum_{k = 0}^{\infty}\frac{x^k}{k!}+x^n\varepsilon(x)\] 
+    $f(x) = e^x\in C^\infty(\R), x_0 = 0$. Le $DL_n$ de $f$ donne \[e^x =\sum_{k = 0}^{n}\frac{x^k}{k!}+x^n\varepsilon(x)\] 
     Donc la série de Taylor (en $x_0 = 0$) est donc $\sum_{k = 0}^{\infty}\frac{x^k}{k!}$. Cette série converge pour tout $x\in\R$. Il reste à voir que $\lim_{x\to \infty}r_n(x) = 0$. On a :
     \[|r_n(x)| \leq f^{(n+1)} (u) \frac{|x|^{n+1}}{n!} = e^u\frac{|x|^{n+1}}{n !} \leq \frac{e ^{|x|} |x|^{n+1}}{n!} \longrightarrow 0 \text{ lorsque } n\to \infty \]
-    Ainsi la limite du ret et bien $0$. Donc $e^x$ est égale à sa série de Taylor en $x_0 = 0$ pour tout $x\in\R$ :
+    Car $\exp$ est strictement croissant et que $u\in\left[0, x\right]$, donc $e^u \le e^{\left|x\right|}$. Le reste tend bien vers $0$. Donc $e^x$ est égale à sa série de Taylor en $x_0 = 0$ pour tout $x\in\R$ :
     \[e^x = \sum_{k = 0}^{\infty}\frac{x^k}{k!}\] 
     \begin{remark}
-        En fait, $e^x = \sum_{k = 0}^{\infty}\frac{e^{x_0}}{k!}(x-x_0)^n$
+        En fait, $\displaystyle e^x = \sum_{k = 0}^{\infty}\frac{e^{x_0}}{k!}(x-x_0)^k$
     \end{remark}
 \end{example}
 
@@ -662,24 +661,24 @@ Question : si $f\in C^\infty(I)$, a-t-on $f(x)=\sum_{k=0}^{\infty}\frac{f^{(n)}(
     pour tout $x\in\R$.
     \begin{remark}
         Cela donne enfin une raison pour la formule $e^{ix} = \cos(x) + i\sin(x)$. En effet \begin{align*}
-            e^{ix}&=\sum_{k = 0}^{\infty}\frac{(ix)^k}{k!} = \sum_{k = 0}^{\infty}\frac{(ix)^2}{(2k)!} + \sum_{k = 0}^{\infty} \frac{(ix)^{2k+1}}{(2k+1)!}\\
+            e^{ix}&=\sum_{k = 0}^{\infty}\frac{(ix)^k}{k!} = \sum_{k = 0}^{\infty}\frac{(ix)^{2k}}{(2k)!} + \sum_{k = 0}^{\infty} \frac{(ix)^{2k+1}}{(2k+1)!}\\
             &= \sum_{k = 0 }^{\infty}\frac{(-1)^{k}}{(2k)!} x^{2k} + i \sum_{k=0}^{\infty}\frac{(-1)^k}{(2k+1)!}x^{2k+1}\\
             &= \cos(x)+i\sin(x)
         \end{align*}
     \end{remark}
 \end{example}
-\begin{property}[Dériviées de série entières]
-    Si $f(x) = \sum_{k = 0}^{\infty}b_k(x-x_0)^k$, alors $f'(x) = \sum_{k = 0}^{\infty}k\cdot b_k(x-x_0)^{k-1} = \sum_{k = 0}^{\infty}(k+1)b_{k+1}(x-x_0)$ et les rayons de convergences sont les mêmes !
-    Concéquences de la porp :
-    \begin{itemize}
-        \item On peut définir \[e^x = \exp(x)=\sum_{k=0}^{\infty}\frac{x^k}{k!}\quad \forall x\in\R\]
-            En effet, $\exp(0)=\frac{0^0}{0!} =1$ et \[\exp'(x)=\sum_{k=1}^{\infty}\frac{x^{k-1}}{(k-1)!} \overset{j=k-1}{=} \sum_{j=0}^{\infty}\frac{x^j}{j!} = \exp(x)\]
-            C'est donc l'unique fonction $f$ telle que $f'(x)=f(x)$ et $f(0)=1$.
-        \item Si $f(x)$ est déjà une série entière, i.e. $f(x)=\sum_{k = 0}^{\infty}b_k(x-x_0)^k$, on dérive :
-            \[f(x_0) = b_0, f'(x) = \sum_{k = 1}^{\infty}b_k(x-x_0)^{k-1} \implies f'(x_0) = b_1\]
-            \[f^{(k)}(x)=b_k\cdot k!\implies b_k = \frac{f^{(k)}(x_0)}{k!}\]
-    \end{itemize}
-\end{property}
+\begin{proposition}[Dériviées de série entières]
+    Si $\displaystyle f(x) = \sum_{k = 0}^{\infty}b_k(x-x_0)^k$, alors \[f'(x) = \sum_{k = 1}^{\infty}k\cdot b_k(x-x_0)^{k-1} = \sum_{k = 0}^{\infty}(k+1)b_{k+1}(x-x_0)^k\] et les rayons de convergences sont les mêmes !
+\end{proposition}
+\noindent\textbf{Concéquences de la porposition :}
+\begin{itemize}
+    \item On peut définir \[e^x = \exp(x)=\sum_{k=0}^{\infty}\frac{x^k}{k!}\quad \forall x\in\R\]
+        En effet, $\exp(0)=\frac{0^0}{0!} =1$ et \[\exp'(x)=\sum_{k=1}^{\infty}\frac{x^{k-1}}{(k-1)!} \overset{j=k-1}{=} \sum_{j=0}^{\infty}\frac{x^j}{j!} = \exp(x)\]
+        C'est donc l'unique fonction $f$ telle que $f'(x)=f(x)$ et $f(0)=1$.
+    \item Si $f(x)$ est déjà une série entière, i.e. $f(x)=\sum_{k = 0}^{\infty}b_k(x-x_0)^k$, on dérive :
+        \[f(x_0) = b_0, f'(x) = \sum_{k = 1}^{\infty}b_k(x-x_0)^{k-1} \implies f'(x_0) = b_1\]
+        \[f^{(k)}(x)=b_k\cdot k!\implies b_k = \frac{f^{(k)}(x_0)}{k!}\]
+\end{itemize}
 \begin{example}[3]
     $f(x) = \frac{1}{1-x} \in C^\infty(]-1, 1[)$. On a vu que \[\frac{1}{1-x} = \sum_{k = 0}^{\infty}x^k = \sum_{k = 0}^{\infty} 1(x-0)^k\quad \text{ si } |x|<1\]
     Ainsi \[f(x)= \frac{1}{1-x} = \text{ série de Taylor en $x_0 = 0$ } =\sum_{k = 0}^{\infty}x^k \]
@@ -687,21 +686,21 @@ Question : si $f\in C^\infty(I)$, a-t-on $f(x)=\sum_{k=0}^{\infty}\frac{f^{(n)}(
     \[f(-10)=\frac{1}{11}\neq\sum_{k = 0}^{\infty}(-10)^k\]
 \end{example}
 \begin{example}[4]
-    $f(x)=\log(1+x) = \sum_{k = 1}^{n}\frac{(-1)^{k-1}}{k}x^k + x^n \varepsilon(x)$. Série de Taylor ?? $\sum_{k = 1}^{\infty}\frac{(-1)^{k-1}}{k}x^k$. On calcule $f(x)-\text{ série de Taylor }$ : 
+    $f(x)=\log(1+x) = \sum_{k = 1}^{n}\frac{(-1)^{k-1}}{k}x^k + x^n \varepsilon(x)$. Série de Taylor ? $\sum_{k = 1}^{\infty}\frac{(-1)^{k-1}}{k}x^k$. On calcule $f(x)-\text{ série de Taylor }$ : 
     \begin{align*}
        f(x) - \text{ série de Taylor }&= \frac{1}{1+x} - \sum_{k = 1}^{\infty}\frac{(-1)^{k-1}}{k}kx^{k-1}\\
-       &= \frac{1}{1-(-x)} - \sum_{k = 0}^{\infty}(-x)^k = 0 quad \text{ cf. exemple précédent }\\
+       &= \frac{1}{1-(-x)} - \sum_{k = 0}^{\infty}(-x)^k = 0 \quad \text{ cf. exemple précédent }\\
        &\implies \log(1+x) - \sum_{k = 1}^{\infty}\frac{(-1)^{k-1}}{k}x^k = C = 0\\
        &\implies \log(1+x) = \sum_{k = 1}^{\infty}\frac{(-1)^{k-1}}{k}x^k
     \end{align*}
-    pour $x\in ]-1, 1[$. En $x=1$, on obtient, par prolongement par continuité que : \[\log(2) = \sum_{k = 1}^{\infty}\frac{(-1)^{k-1}}{k}\]
+    pour $x\in \left]-1, 1\right[$. En $x=1$, on obtient, par prolongement par continuité que : \[\log(2) = \sum_{k = 1}^{\infty}\frac{(-1)^{k-1}}{k}\]
 \end{example}
 \begin{example}[5 (Contre example)]
     On pose $f(x) = \begin{cases}
         e^{-\frac{1}{x^2}} & x\neq 0\\
         0 & x=0
     \end{cases}$. On vérifie qu'elle est continue en $0$ : 
-    \[\lim_{x\to 0}f(x) = e^{-\infty} = 0 = f(0)\] Donc $f$ est continue en $0$. De plus, si $x\neq 0$, $f'(x) = e^{\frac{-1}{x^2}}\frac{2}{x^3}$ et on calcule $\lim_{x\to 0}f'(x)=\lim_{x\to 0}e^{\frac{-1}{x^2}} \frac{2}{x^3}$ :
+    \[\lim_{x\to 0}f(x) = e^{-\infty} = 0 = f(0)\] Donc $f$ est continue en $0$. De plus, si $x\neq 0$, $\displaystyle f'(x) = e^{\frac{-1}{x^2}}\frac{2}{x^3}$ et on calcule $\displaystyle\lim_{x\to 0}f'(x)=\lim_{x\to 0}e^{\frac{-1}{x^2}} \frac{2}{x^3}$ :
     \begin{align*}
         &= \lim_{y\to \pm\infty}e^{-y^2}2y^3\\
         &=\lim_{y\to \pm\infty}\frac{2y^3}{e^{y^2}} = 0\\
