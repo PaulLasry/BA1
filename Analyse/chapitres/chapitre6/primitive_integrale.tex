@@ -8,6 +8,29 @@
 \end{remark}
 \textbf{Notation :} $\displaystyle\int f(x) dx$ est l'ensemble de \underline{toutes} les primitives de $f$. Donc :
 \[\int f(x)dx = \{F(x)+c \mid c\in\R\}\] où $F$ est une primitive de $f$. Abus de notation : \[\int f(x) dx = F(x)+c\]
+\begin{figure}
+    \[
+    \begin{array}{|c|c||c|c|}
+        \hline
+        f(x) & \int f(x)\, dx & f(x) & \int f(x)\, dx \\
+        \hline\hline
+        x & \frac{1}{2}x^2 + C & 1 + \tan^2(x) = \frac{1}{\cos^2(x)} & \tan(x) + C \\
+        \hline
+        x^r \ (r \neq -1) & \frac{1}{r+1} x^{r+1} + C & \frac{1}{1 + x^2} & \arctan(x) + C \\
+        \hline
+        \frac{1}{x} & \log |x| + C & \frac{1}{\sqrt{1 - x^2}} & \arcsin(x) + C \\
+        \hline
+        e^x & e^x + C & \frac{-1}{\sqrt{1 - x^2}} & \arccos(x) + C \\
+        \hline
+        \sin(x) & -\cos(x) + C & & \\
+        \hline
+        \cos(x) & \sin(x) + C & & \\
+        \hline
+    \end{array}
+    \]
+    \caption{Primitives de fonctions de base}
+\end{figure}
+
 \begin{remark}
     L'intégrale $\int f(x)dx$ s'appelle \textbf{intégrale indéfinie} de $f$.
 \end{remark}
