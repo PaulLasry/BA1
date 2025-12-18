@@ -97,7 +97,7 @@ On sait que si $f: [a, b]\overset{\text{ continue }}{\longrightarrow} \R$ alors 
     \end{align*}
     qui converge. Donc $I$ converge par comparaison.
 \end{example}
-\begin{property}[Comparaison intégrales / séries]
+\begin{property}[Comparaison intégrales / séries]\label{prop:com_integrale_series}
     Soit $f: [n_0, +\infty[ \to \R$ une fonction continue, positive, et décroissante. Alors :
     \[\sum_{n = n_0}^{\infty}f(n) \text{ converge } \iff \int_{n_ 0}^{+\infty}f(x)dx \text{ converge}\]
     \textcolor{red}{\faExclamationTriangle}\textcolor{red}{Valeurs pas égales ! }
@@ -105,24 +105,28 @@ On sait que si $f: [a, b]\overset{\text{ continue }}{\longrightarrow} \R$ alors 
 \begin{example}
     La somme $\displaystyle\sum_{n = 1}^{\infty}\frac{1}{n^p}$ converge $\displaystyle\iff \int_{1}^{+\infty} \frac{1}{n^p}dx$ converge si et seulement si $p>1$.
 \end{example}
+\newpage
 \begin{example}
+    \[\sum_{n =2}^{\infty} \frac{1}{n(\underbrace{\log(n)}_{u})^p} \; \text{ converge } \iff I=\int_{2}^{+\infty}\frac{1}{x\left(\log(x)\right)^p}dx \; \text{ converge}\]
+    Voyons la valeur de l'intégrale indéfinie :
     \begin{align*}
-        \sum_{n =2}^{\infty} \frac{1}{n(\underbrace{\log(n)}_{u})^p} \; \text{ converge } &\iff \int_{2}^{+\infty}\frac{1}{x\left(\log(x)\right)^p}dx \; \text{ converge}
-        \intertext{Voyons la veleur de l'intégrale indéfinie :}
-        \int\frac{1}{x\left(\log(x)\right)^p}dx &\overset{du = \frac{1}{x}dx}{=} \int\frac{1}{u^p}du = \begin{cases}
+       \int\frac{1}{x\left(\log(x)\right)^p}dx &\overset{du = \frac{1}{x}dx}{=} \int\frac{1}{u^p}du = \begin{cases}
             \frac{u^{1-p}}{1-p} + c & p \neq 1\\
             \log(u)+c & p = 1
         \end{cases} \\
         &=\begin{cases}
             \frac{log(x)^{1-p}}{1-p} & p\neq 1\\
             \log(\log(x)) & p = 1
-        \end{cases}\\
-        &\implies I = \int_{2}^{+\infty} \frac{1}{x\left(\log(x)\right)^p}dx \overset{p = 1}{=} \lim_{u \to +\infty}\Big[\log(\log(x))\Big]_{x = 2}^u = +\infty\\
-        &\implies I \overset{p\neq 1}{=} \lim_{u\to +\infty} \Bigg[\frac{\log(x)^{1-p}}{1-p}\Bigg]_{x = 2}^u =c\frac{-\lim_{u\to + \infty}\log(x)^{1-p}}{1-p} - \frac{\log(2)^{1-p}}{1-p}
-        \intertext{$I$ converge si et seulement si $p>1$, ainsi }
-        &\sum_{n =2}^{\infty}\frac{1}{n\left(\log(n)\right)^p} \text{ converge } \iff p > 1
-        \intertext{En particulier : }
-        &\sum_{n = 2}^{\infty}\frac{1}{n\log(n)} \text{ diverge}\\
-        &\sum_{n = 2}^{\infty}\frac{1}{n\log(n)^2} \text{ converge}
+        \end{cases}
+        \intertext{Ainsi : }
+        \implies I &= \int_{2}^{+\infty} \frac{1}{x\left(\log(x)\right)^p}dx \overset{p = 1}{=} \lim_{u \to +\infty}\Big[\log(\log(x))\Big]_{x = 2}^u = +\infty\\
+        \implies I &\overset{p\neq 1}{=} \lim_{u\to +\infty} \Bigg[\frac{\log(x)^{1-p}}{1-p}\Bigg]_{x = 2}^u =c\frac{-\lim_{u\to + \infty}\log(x)^{1-p}}{1-p} - \frac{\log(2)^{1-p}}{1-p}
+    \end{align*}
+    $I$ converge si et seulement si $p>1$, donc par la propriété \ref{prop:com_integrale_series}
+        \[\sum_{n =2}^{\infty}\frac{1}{n\left(\log(n)\right)^p} \text{ converge } \iff p > 1\]
+    En particulier : 
+    \begin{align*}
+        \sum_{n = 2}^{\infty}\frac{1}{n\log(n)} \text{ diverge}\\
+        \sum_{n = 2}^{\infty}\frac{1}{n\log(n)^2} \text{ converge}
     \end{align*}
 \end{example}
