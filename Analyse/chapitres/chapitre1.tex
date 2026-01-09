@@ -1,2 +1,221 @@
 % !TEX root = ../Analyse1.tex
 \chapter{Les nombres}
+\section{Entiers et rationnels}
+\begin{definition}[Entiers naturels]
+  On note \[\N = \{0, 1, 2, \ldots\}\quad, \quad \N^* = \N \setminus\{0\}\]
+\end{definition}
+\begin{definition}[Entiers relatifs]
+  On note \[\Z = \{\ldots, -1, 0, 1, 2, \ldots\} = \N \cup -\N\]
+\end{definition}
+\begin{definition}[Nombres naturels]
+  On note \[\Q = \left\{\frac{a}{b} \mid a, b\in\Z, b\ne0\right\}\]
+\end{definition}
+\begin{proposition}
+  L'équation $x^2 = 2$ n'a pas de solution dans $\Q$
+\end{proposition}
+\textbf{\uline{Lemme} :} $a^2 \equiv 0  \mod 2 \implies a \equiv 0  \mod 2$
+\begin{proof}[Preuve du lemme]
+  Si $a$ est impaire, on a que $a = 2k +1$ où $k\in\Z$ donc $a^2 = 2(2k^2+2k) + 1$. Ainsi $a^2$ est impaire. Par la contraposé, on a que:
+  \begin{quote}
+    $a$ est pair si et seulement si $a^2$ est paire.
+  \end{quote}
+\end{proof}
+\begin{proof}
+  Supposons q'il existe une solution $x = \frac{a}{b}$ tel que $a, b\in\Z$ et $b\ne0$. On suppose la fraction irreductible. On a alors :
+  \begin{align*}
+    x^2 = 2 &\implies \frac{a^2}{b^2} = 2\implies a^2 = 2b^2
+    \intertext{Par le lemme, on sait que $a$ est paire}
+    a = 2c &\implies 2b^2 = 4c^2\\
+    &\implies b^2 = 2c^2 \implies b^2 \equiv 0\mod 2
+    \intertext{Par le lemme, $b$ est pair, donc :}
+    x &= \frac{2c}{2d} = \frac{c}{d}
+  \end{align*}
+  La fraction est réductible, ce qui est en condratiction avec l'hypothèse. Il n'y a donc pas de solution dans $\Q$.
+\end{proof}
+\section{Construction des nombres réels}
+On utilise la relation d'ordre sur $\Q$ pour "ajouter" des nomnbres aux entiers.
+\begin{definition}[Minorant / Majorant]
+  Soit $A\subseteq\Q$ un ensemble non vide.
+  \begin{itemize}
+    \item Un \uline{majorant / minorant} de l'ensemble $A$ est un nombre $x$ tel que $x\ge(\le)\forall a\in A$
+    \item S'il existe un majorant / minorant de $A$ tel que $x\in A$ alors il s'appelle le \uline{maximum / minimum} de $A$
+    \item L'ensemble $A$ est majoré / minoré / borné s'il admet un majorant / minorant / les deux.
+  \end{itemize}
+\end{definition}
+\begin{example}
+  $A = \{x\in\Q\mid0\le x\le1\}$. On a que $A$ est borné, $\min A = 0, \max A = 1$.
+\end{example}
+\begin{definition}[Supprémum / Infinimum]
+  Soit $A\subseteq\Q (\R)$. 
+  \begin{itemize}
+    \item Le \uline{supprémum} de $A$ est \[\sup A = \min{x\mid x \text{ est un majorant de }A}\]
+    \item Le \uline{infinimum} de $A$ est \[\inf A = \{x\mid x \text{ est un minorant de }A\}\]
+  \end{itemize}
+\end{definition}
+\begin{remark}
+  Si $A$ n'a pas de minorant / majorant, on dit par convention $\sup A = +\infty$, $\inf A = -\infty$.\\
+  De plus, si $\max A$, $\min A$ existent, on a :
+  \begin{align*}
+    \sup A = \max A\\
+    \inf A = \min A
+  \end{align*}
+\end{remark}
+\begin{remark}
+  Pour un ensemble borné, on s'attend à toujours avoir un $\inf$ et $\sup$, même si $\min$ et $\max$ n'existent pas, mais c'est faux : \[D = \{x\in\Q\mid x\le x^2\}\]
+  \begin{align*}
+    |x|\leq \frac32 \iff \underbrace{-\frac32}_{\text{minorant de $A$}} \leq x\leq\underbrace{\frac32}_{\text{majorant de $A$}}
+  \end{align*}
+\end{remark} 
+\begin{proposition}
+  Si $x = \sup D$ existe, alors $x^2 = 2$.
+\end{proposition}
+\begin{proof}[Preuve proposition]
+  \begin{enumerate}
+    \item Supposons que $x^2 <2$. Soit $d\in D$ tel que $d=x+\frac1n$, où $n\in\N^*$ est choisi tel que $n \ge \frac{2x+1}{2-x^2}$, on a:
+      \begin{align*}
+        d^2 &=\left(x+\frac1n\right)^2 = x^2 + \frac{2x}{n} + \frac1{n^2}\\
+        &\le x^2 + \frac{2x}n + \frac1n = x^2 + \frac{2x+1}n \le 2\\
+        \iff& \frac{2x+1}{n}\le2-x^2\iff n\le\frac{2x+1}{2-x^2}
+      \end{align*}
+      Comme $n$ a été choisi comme tel, on a que $d^2 \le 2$. Ainsi, $d\in D$ et $d>x$, ainsi $x$ n'est pas majorant.
+    
+    \item Supposons que $x^2>2$ [exercice dur !]. Comme on ne peut pas avoir ni $x^2<2$ ni $x^2>2$, on a que $x^2 = 2$
+  \end{enumerate}
+\end{proof}
+\begin{corollary}
+  Le nombre $x = \sup D$ n'existe pas dans $\Q$.
+\end{corollary}
+\begin{remark}
+  Il n'y a pas de $x\in\Q$ tel que $x^2 = 2$.
+\end{remark}
+On voit qu'il manque des nombres dans $\Q$, cela nous indique à en ajouter !\\
+\textbf{Construction de $\R$} :\\
+$\R$ s'obtient à partir de $\Q$ en ajoutant les $\sup$ et les $\inf$ de tous les ensembles bornés $A\subseteq\Q$.
+\section{Propriétés de réels}
+\begin{enumerate}[label=(\roman*)]
+  \item $\R$ est un corp, (on a $0, 1, +, \cdot$, inverse pour $+$ et $\cdot$, distibutivité, muni d'un ordre total ($x\le y$))
+  \item Les definitions de $\min$, $\max$ etc... restent les mêmes, pour des sous-ensembles $A\subseteq\R$
+  \item Réussite de la construction
+\end{enumerate}
+\begin{theorem}
+  Pour tout $A\subseteq\R$ non-vide et minoré / majoré, le nombre $\sup A$ / $\inf A$ existe toujours et est unique.
+\end{theorem}
+\begin{remark}
+  $\displaystyle D=\{x\in\R\mid x^2\le 2\} \implies \sup D = \sqrt{2} \quad, \quad \inf A = -\sqrt{2}$
+\end{remark}
+
+\section{Représentation décimale}
+Tout nombre $x\in\R$ s'écrit $x \pm d_1d_2d_3\ldots d_n, d_{n+1}$ avec $d_i \in \N \mid 0\le d_i\le 9$
+\begin{theorem}
+  Soit $x\in\R$. Alors $x\in\Q$ si et seulement si $x$ a une représentation décimale finie et périodique.
+\end{theorem}
+\textbf{Conséquence du théorème :}
+\begin{itemize}
+  \item La représentation de $\sqrt2$ est bel et bien infinie, non-périodique.
+  \item Densité de $\Q$ dans $\R$. Pour tous $x<y\in\R$, il existe $a\in\Q$ tel que $x<a<y$
+  \item Pour tout $x\in\R$, il existe $a\in\R$ tel que $|a-x|<\varepsilon$.
+\end{itemize}
+\section{Nombre complexe}
+Dans $\R$, on a une solution de $x^2=a$ pour tout $a\le 0$. Mais pas de solution de $x^2 = -1$. On prend $\R^2 = \R \times \R$ et on le munnit de :
+\begin{enumerate}
+  \item L'addition : $(a, b)+(c, d) = (a+c, b+d)$
+  \item La multiplication : $(a, b)\cdot(c, d)=(ac-bd,ad+bc)$
+\end{enumerate}
+\textbf{Remarque /Notation :} \begin{enumerate}[label = (\roman*)]
+  \item $(a, 0) + (c, 0) = (a+b, 0)$, $(a, 0) \cdot (c, 0) = (ab, 0)$. On identifie l'ensemble \[\{(x, 0)\mid x\in\R\} = \R\]
+  \item Le "nombre" $(0, 1)$ est intéressant : \[(0, 1)\cdot(0, 1) = (-1, 0) = -1\]On l'appelle $i = (0, 1) =$ unité imaginaire. On dit aussi que $(a, b)=a+bi$. 
+\end{enumerate} 
+\begin{definition}
+  L'ensemble $\R^2$ munit de $+$, $\cdot$ et de ces notations / identification est le corp des nomnbres complexe, qu'on note $\C$.
+\end{definition}
+\begin{remark}
+  Tout nomnbre complexe $z\in\C$ s'écrit $z = a+bi$, avec $a, b\in\R$. C'est la \uline{forme cartésienne} de $z$.
+\end{remark}
+
+\section{Propriétés des nomnbres complexes}
+\begin{enumerate}[label=(\roman*)]
+  \item $\displaystyle\Re(z) = \frac{z+\bar{z}}{2}\quad, \quad \Im(z)=\frac{z-\bar{z}}{2}$
+  \item $\overline{z_1 + z_2} = \bar{z_1}+\bar{z_2}$, $\overline{z_1 \cdot z_2} = \bar{z_1}\cdot\bar{z_2}$, $\overline{z_1 / z_2} = \bar{z_1}/\bar{z_2}$
+  \item \label{prop:complex_fond_3} $|z_1|^2 = z\cdot\bar{z} \implies (a+bi)(a-bi) = a^2 + b^2 = |z|^2$
+  \item $|z_1\cdot z_2 = |z_1|\cdot|z_2|\implies |z_1\cdot z_2|^2\overset{\ref{prop:complex_fond_3}}{=}z_1\cdot z_2\cdot \bar{z_1\cdot z_2}=|z_1|^2\cdot |z_2|^2$
+  \item Si $z\in\C^*$, alors $\displaystyle\frac1z = \frac1{|z|^2}\cdot \bar{z}$
+  \item Inégalité triangulaire : \[|z_1+z_2|\le |z_1|+|z_2|\]
+\end{enumerate}
+\subsubsection{Trois représentations de $\C$}
+\begin{enumerate}
+  \item Cartésienne : $z = a+bi$, où $a, b\in\R$
+  \item Forme polaire : $z =r(\cos\theta+i\sin\theta)$ où $r\in\R^*$
+  \item Forme exponentielle : $z = re^{i\theta}$
+\end{enumerate}
+\subsubsection{Conséquences de l'exponentielle complexe}
+\begin{itemize}
+  \item Pour $z\in\C, \overline{e^z} = e^{\overline{z}}$. Dnc si $z=re^{i\theta}$, alors $\overline{z}=e^{-i\theta}$.
+\end{itemize}
+\begin{property}
+  [Formule d'Euler] \[e^{i\pi}+1 = 0\]
+\end{property}
+\begin{property}
+  [Formule de Moivre]
+  \begin{equation}
+    \left(\cos\theta + i \sin\theta \right)^n = \cos(n\theta) + i\sin(n\theta)
+  \end{equation}
+  \begin{equation}\label{prop:com_moivre}
+    \implies(e^{i\theta})^n = e^{in\theta}
+  \end{equation}
+\end{property}
+\begin{property}
+  [Formule pour $\sin$ et $\cos$] \[\cos\theta = \frac{e^{i\theta} + e^{-i\theta}}{2} \quad,\quad \sin\theta=\frac{e^{i\theta}-e^{-i\theta}}{2}\]
+\end{property}
+
+\section{Calcul dans $\C$}
+\subsubsection{Calcul de $(1-\sqrt{3}i)^{30}$} 
+\begin{align*}
+  z &= 1-\sqrt3i\\
+  |z|&=\sqrt{1 + 3} = 2\\
+  \arg{z} &=\arctan\frac{-\sqrt3}{1} = \arctan-\sqrt3 = \frac{-\pi}{3}\\
+  \intertext{Avec ces informations, on passe en forme polaire :}
+  z^{30} &= \left(2e^{-i\frac\pi3}\right)^{30} = \ldots = 2^{30} 
+\end{align*}
+\subsubsection{L'équation $z^n=1$, $z=er^{i\theta}$} 
+Par la formule de Moivre \eqref{prop:com_moivre}, on a :
+\begin{align*}
+  z^n=1 &\iff r^ne^{in\theta} = 1e^{i0}
+  \intertext{On a alors que $r^n = 1$ et $n\theta=0$, donc :}
+\end{align*}
+\[r=1\quad,\quad\theta=\frac{k2\pi}{n}\]
+Les solutions sont donc $\left\{z\in\C\mid e^{i\frac{2k\pi}{n}} : k\in\Z\right\}$. Il y a bien $n$ solutions distinctes.
+\subsubsection{L'équation $z^n = w$, pour tout $w\in\C$ et $n\in\Z$} 
+\noindent\textbf{Etape 1 :} Trouver une solution $z_0$, appellée solution particulière.
+\begin{quote}
+  \begin{example}
+    Si $w=se^{i\phi}$, prendre $z_0 = \sqrt[n]se^{i\frac\phi{n}}$
+  \end{example}
+\end{quote}
+\textbf{Etape 2 :} Trouver la solution générele. On a $z^n=w=z_0^n$. Donc : \[\left(\frac{z}{z_0}\right)^n = 1 \iff \frac{z}{z_0} \in\left\{e^{i\frac{2k\pi}{n}}\mid k\in\Z\right\}\]
+On trouve a nouveau $n$ solutions distinctes : $\mathbb{S} = z_0\cdot\{\text{solutions de $z^n=1$}\}$.
+\begin{theorem}[Théorème fondamental de l'algèbre]
+  Tout polynomes $p(z)=a_nz^n+\ldots+a_iz^i+a_0$, avec $a_i\in\C$ se factorise en : \[p(z)=(z-z_1)(z-z_2)\cdots(z-z_n)\]
+\end{theorem}
+\begin{corollary}
+  Toute équation polynomiale $p(z)=0$ de degré $n$ possède $n$ solutions complexes en comptant les multiplicités. 
+\end{corollary}
+\begin{example}
+  Polynome de degré $2$. 
+  \begin{align*}
+    p(z)&=az^2+bz+c=0\\
+    z &=\frac{-b\pm\sqrt{b^2+4ac}}{2a}
+    \intertext{A interpreter comme : $\pm\sqrt{b^2-4ac}$ sont les solutions de $u^2=b^2-4ac$}
+    \iff z&=\frac{-b + \text{"sols de $u^2=b^2 - 4ac$"}}{2a}
+  \end{align*}
+\end{example}
+\begin{example}
+  $z^2 +2z+3 = 0$ :
+  \begin{align*}
+    z&=\frac{-2\pm \text{"$\sqrt{4-12}$"}}{2}\\
+    \intertext{Les solution de $u^2=-8$ sont $ u_1 =2\sqrt2\cdot i, \; u_2=-2\sqrt{2}\cdot i$, donc :}
+    z&=-1\pm\sqrt2\cdot i
+  \end{align*}
+\end{example}
+\begin{remark}
+  Si $p(z)$ est à coefficient réels, alors les racines non-réelles vienntn par paire complexes conjuguées.
+\end{remark}
