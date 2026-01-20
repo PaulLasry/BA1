@@ -1,12 +1,4 @@
-# Description
-
-Cheatsheet for LaTex, using Markdown for markup. I use this with
-[atom.io](https://atom.io/) and :package:`markdown-preview-plus` to write math
-stuff. :package:`keyboard-localization` is necessary when using an international
-layout (like [swiss] german).
-
-Further Reference and source:
-ftp://ftp.ams.org/pub/tex/doc/amsmath/short-math-guide.pdf
+# Cheatsheet
 
 ## Example expressions / functions
 
@@ -116,4 +108,4 @@ ftp://ftp.ams.org/pub/tex/doc/amsmath/short-math-guide.pdf
 $\arccos$, $\arcsin$, $\arctan$, $\arg$, $\cos$, $\cosh$, $\cot$, $\coth$,
 $\deg$, $\det$, $\dim$, $\exp$, $\gcd$, $\hom$, $\inf$, $\injlim$, $\lg$,
 $\lim$, $\liminf$, $\limsup$, $\ln$, $\log$, $\max$, $\min$, $\Pr$, $\projlim$,
-$\sec$, $\sin$, $\sinh$, $\sup
+$\sec$, $\sin$, $\sinh$, $\sup$
